@@ -1,6 +1,8 @@
-## `# prettyscope`
+## `# prettyscope-old`
 
-`home of the pretty oscilloscope (not yet ready for serious use)`
+`OLD home of the pretty oscilloscope (not yet ready for serious use)`
+`⚱ instead of trying to salvage this project, let this be a gravestone. ⚱`
+` i will make it from scratch instead in a new repositry `
 
 ### `# GOALS`
 
