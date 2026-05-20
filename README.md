@@ -15,7 +15,7 @@
 
 ```markdown
 
-* desperately needs a dedicated community
+* desperately needs a small dedicated community
 * official discord: https://discord.gg/hjpBC8kZ3s ← invite link
 1. currently draws 1/4 screen on retina display
 2. needs proper frame adhesion the prevent glitchy drawing and screen tearing
@@ -25,31 +25,31 @@
 ```
 
 dependency hell, will solve as i have time:
-```markdown
-# Required Software #
+
+`# Required Software #`
 
 https://shop.juce.com/get-juce/download
 
-# Dependencies #
+`# Dependencies #`
 
-#### RS-MET ####
+`#### RS-MET ####`
 
 * https://github.com/elanhickler/RS-MET 
 * (use juce code from here, not a separate JUCE repository!)
 
-#### VST-SDK ####
+`#### VST-SDK ####`
 
 * MISSING: VST3 SDK 3.6.5
 
-#### SoundemoteFramework ####
+`#### SoundemoteFramework ####`
 
 * https://gitlab.com/Hickler/soundemoteframework
 
-#### ElanJuceHelpers ####
+`#### ElanJuceHelpers ####`
 
 * https://gitlab.com/Hickler/elanjucehelpers
 
-# Folder structure #
+`# Folder structure #`
 
 (everthing is top level next to each other)
 
@@ -58,4 +58,4 @@ https://shop.juce.com/get-juce/download
 * VST3 SDK/files
 * ElanJuceHelpers/elan_juce_helpers/files
 * SoundemoteFramework/se_framework/files
-```
+
