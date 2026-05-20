@@ -12,10 +12,10 @@
 ```adoc
 * i want this prettyscope to be the standard for all digital synths
 * i want all digital synths around the world to use prettyscope to show their waveforms
-* i want prettysope to be free for humanity forever
+* i want prettyscope to be free for humanity forever
 * i want it to be developed as a library for building your own aesthetic oscilloscope
 * the perfect "do it all" oscilloscope, best of all worlds
-* highly customizeable for whatever you want to use it for
+* highly customizable for whatever you want to use it for
 ```
 
 ```markdown
@@ -31,36 +31,31 @@
 
 dependency hell, will solve as i have time:
 
-`# Required Software #`
+# Required Software #
 
 https://shop.juce.com/get-juce/download
 
-`# Dependencies #`
+# Dependencies #
 
 `#### RS-MET ####`
-
 * https://github.com/elanhickler/RS-MET 
 * (use juce code from here, not a separate JUCE repository!)
 
 `#### VST-SDK ####`
-
 * MISSING: VST3 SDK 3.6.5
 
 `#### SoundemoteFramework ####`
-
 * https://gitlab.com/Hickler/soundemoteframework
 
 `#### ElanJuceHelpers ####`
-
 * https://gitlab.com/Hickler/elanjucehelpers
 
-`# Folder structure #`
-
-(everthing is top level next to each other)
-
+# Folder structure #
+(everything is top level next to each other)
 * PrettyScope/files
 * RS-MET/files
 * VST3 SDK/files
 * ElanJuceHelpers/elan_juce_helpers/files
 * SoundemoteFramework/se_framework/files
+
 
