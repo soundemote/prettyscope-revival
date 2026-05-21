@@ -6,6 +6,7 @@
 
 🦴 we will collect the bones for a new body
 * I WILL MAKE IT FROM SCRATCH IN A NEW REPOSITORY
+`* * when i have time`
 
 ### `# GOALS`
 
