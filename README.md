@@ -1,66 +1,35 @@
-## `# prettyscope-old`
+# Prettyscope
 
-`OLD home of the pretty oscilloscope (not yet ready for serious use)`
+Prettyscope is a modern OpenGL oscilloscope and signal visualizer. The goal is a
+beautiful, musical scope that can grow from a standalone visual demo into a
+reusable visualization layer for generated signals, audio buffers, and eventual
+`soemdsp-sandbox` runtime output.
 
-⚱ instead of trying to salvage this project, let this be a gravestone ⚱
+This repository still contains PrettyScope Graveyard material at the root. New
+work lives in `src/` and should stay small, direct, and runnable.
 
-🦴 we will collect the bones for a new body
-* I WILL MAKE IT FROM SCRATCH IN A NEW REPOSITORY
+## Current Demo
 
-### `# GOALS`
+- Native Win32 window
+- OpenGL rendering through the vendored GLAD 3.2 loader
+- Animated shader-drawn waveform trace
+- Small `SignalBuffer`, `TestSignalGenerator`, and `VisualParams` abstraction
 
-```adoc
-* i want this prettyscope to be the standard for all digital synths
-* i want all digital synths around the world to use prettyscope to show their waveforms
-* i want prettysope to be free for humanity forever
-* i want it to be developed as a library for building your own aesthetic oscilloscope
-* the perfect "do it all" oscilloscope, best of all worlds
-* highly customizeable for whatever you want to use it for
+## Build
+
+```powershell
+cmake -S . -B build-ninja -G Ninja
+cmake --build build-ninja
+.\build-ninja\prettyscope.exe
 ```
 
-```markdown
+Run those commands from a Visual Studio Developer PowerShell or Developer
+Command Prompt so MSVC is on `PATH`.
 
-* desperately needs a small dedicated community
-* official discord: https://discord.gg/hjpBC8kZ3s ← invite link
-1. currently draws 1/4 screen on retina display
-2. needs proper frame adhesion the prevent glitchy drawing and screen tearing
-3. needs the implement realtime editing of shaders for quick swapping of visual fx
-4. annoyingly draws an unneeded line across the screen for 1d mode since it's just a dumb repurposing of the x y mode
-5. code cleanup and clarity
-```
+Press `Esc` or close the window to quit.
 
-dependency hell, will solve as i have time:
+## Salvage Policy
 
-`# Required Software #`
-
-https://shop.juce.com/get-juce/download
-
-`# Dependencies #`
-
-`#### RS-MET ####`
-
-* https://github.com/elanhickler/RS-MET 
-* (use juce code from here, not a separate JUCE repository!)
-
-`#### VST-SDK ####`
-
-* MISSING: VST3 SDK 3.6.5
-
-`#### SoundemoteFramework ####`
-
-* https://gitlab.com/Hickler/soundemoteframework
-
-`#### ElanJuceHelpers ####`
-
-* https://gitlab.com/Hickler/elanjucehelpers
-
-`# Folder structure #`
-
-(everthing is top level next to each other)
-
-* PrettyScope/files
-* RS-MET/files
-* VST3 SDK/files
-* ElanJuceHelpers/elan_juce_helpers/files
-* SoundemoteFramework/se_framework/files
-
+The old JUCE plugin project, presets, color maps, and installer files are
+reference material only unless a piece is intentionally adapted. Any salvaged
+code or assets should be documented in `docs/SALVAGE.md` with source and reason.

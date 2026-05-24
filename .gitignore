@@ -19,6 +19,7 @@ JuceLibraryCode
 *.wav
 xcuserdata/
 build/
+build-*/
 Builds/
 us.stackdump
 *.mp3
