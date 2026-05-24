@@ -11,20 +11,200 @@ namespace
 constexpr VisualParams kDefaults;
 
 constexpr VisualFloatParameter kFloatParameters[] = {
-    {VisualFloatParameterId::TraceGain, "traceGain", "Signal Gain", kMinTraceGain, kMaxTraceGain, kDefaults.traceGain},
-    {VisualFloatParameterId::GlowStrength, "glowStrength", "Glow Strength", kMinGlowStrength, kMaxGlowStrength, kDefaults.glowStrength},
-    {VisualFloatParameterId::TraceWidth, "traceWidth", "Trace Width", kMinTraceWidth, kMaxTraceWidth, kDefaults.traceWidth},
-    {VisualFloatParameterId::GlowWidth, "glowWidth", "Glow Width", kMinTraceWidth, kMaxGlowWidth, kDefaults.glowWidth},
-    {VisualFloatParameterId::Persistence, "persistence", "Decay", kMinPersistence, kMaxPersistence, kDefaults.persistence},
-    {VisualFloatParameterId::FastDecay, "fastDecay", "Fast Decay", kMinDecayAmount, kMaxDecayAmount, kDefaults.fastDecay},
-    {VisualFloatParameterId::Afterglow, "afterglow", "Tail Burn", kMinDecayAmount, kMaxDecayAmount, kDefaults.afterglow},
-    {VisualFloatParameterId::GridIntensity, "gridIntensity", "Grid Intensity", 0.0f, 1.0f, kDefaults.gridIntensity},
+    {
+        VisualFloatParameterId::TraceGain,
+        "signal.gain",
+        {0x01010001u},
+        "Signal Gain",
+        "Gain",
+        "",
+        "Scales incoming signal amplitude before trace mapping.",
+        VisualParameterCategory::Signal,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinTraceGain,
+        1.0f,
+        kMaxTraceGain,
+        kDefaults.traceGain,
+        2,
+    },
+    {
+        VisualFloatParameterId::GlowStrength,
+        "beam.glow_intensity",
+        {0x01010002u},
+        "Glow Intensity",
+        "Glow",
+        "",
+        "Controls the additive wide-beam glow pass intensity.",
+        VisualParameterCategory::Beam,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinGlowStrength,
+        0.5f,
+        kMaxGlowStrength,
+        kDefaults.glowStrength,
+        2,
+    },
+    {
+        VisualFloatParameterId::TraceWidth,
+        "beam.thickness",
+        {0x01010003u},
+        "Beam Thickness",
+        "Trace",
+        "px",
+        "Controls the narrow bright beam width in pixels.",
+        VisualParameterCategory::Beam,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinTraceWidth,
+        4.0f,
+        kMaxTraceWidth,
+        kDefaults.traceWidth,
+        1,
+    },
+    {
+        VisualFloatParameterId::GlowWidth,
+        "beam.glow_width",
+        {0x01010004u},
+        "Glow Width",
+        "Bloom",
+        "px",
+        "Controls the wide glow beam width in pixels.",
+        VisualParameterCategory::Beam,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinTraceWidth,
+        8.0f,
+        kMaxGlowWidth,
+        kDefaults.glowWidth,
+        1,
+    },
+    {
+        VisualFloatParameterId::Persistence,
+        "phosphor.persistence",
+        {0x01010005u},
+        "Phosphor Persistence",
+        "Decay",
+        "",
+        "Base per-frame retention for the persistence buffer.",
+        VisualParameterCategory::Phosphor,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinPersistence,
+        0.9f,
+        kMaxPersistence,
+        kDefaults.persistence,
+        3,
+    },
+    {
+        VisualFloatParameterId::FastDecay,
+        "phosphor.fast_decay",
+        {0x01010006u},
+        "Fast Decay",
+        "Fast",
+        "",
+        "Controls how aggressively bright phosphor energy drains.",
+        VisualParameterCategory::Phosphor,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinDecayAmount,
+        0.5f,
+        kMaxDecayAmount,
+        kDefaults.fastDecay,
+        2,
+    },
+    {
+        VisualFloatParameterId::Afterglow,
+        "phosphor.afterglow",
+        {0x01010007u},
+        "Phosphor Afterglow",
+        "Tail",
+        "",
+        "Controls how long dim phosphor energy lingers.",
+        VisualParameterCategory::Phosphor,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        kMinDecayAmount,
+        0.5f,
+        kMaxDecayAmount,
+        kDefaults.afterglow,
+        2,
+    },
+    {
+        VisualFloatParameterId::GridIntensity,
+        "overlay.grid_intensity",
+        {0x01010008u},
+        "Grid Intensity",
+        "Grid",
+        "",
+        "Controls overlay grid opacity.",
+        VisualParameterCategory::Overlay,
+        VisualParameterRole::Visual,
+        VisualParameterDisplayMode::Scalar,
+        true,
+        true,
+        0.0f,
+        0.5f,
+        1.0f,
+        kDefaults.gridIntensity,
+        2,
+    },
 };
 
 constexpr VisualBoolParameter kBoolParameters[] = {
-    {VisualBoolParameterId::PersistenceEnabled, "persistenceEnabled", "Persistence", kDefaults.persistenceEnabled},
-    {VisualBoolParameterId::ShowFps, "showFps", "FPS Overlay", kDefaults.showFps},
-    {VisualBoolParameterId::ShowGrid, "showGrid", "Grid Overlay", kDefaults.showGrid},
+    {
+        VisualBoolParameterId::PersistenceEnabled,
+        "phosphor.enabled",
+        {0x01020001u},
+        "Persistence",
+        "Persist",
+        "Enables framebuffer persistence and phosphor decay.",
+        VisualParameterCategory::Phosphor,
+        VisualParameterRole::Visual,
+        true,
+        true,
+        kDefaults.persistenceEnabled,
+    },
+    {
+        VisualBoolParameterId::ShowFps,
+        "overlay.fps_enabled",
+        {0x01020002u},
+        "FPS Overlay",
+        "FPS",
+        "Shows the debug FPS readout.",
+        VisualParameterCategory::Overlay,
+        VisualParameterRole::Debug,
+        false,
+        true,
+        kDefaults.showFps,
+    },
+    {
+        VisualBoolParameterId::ShowGrid,
+        "overlay.grid_enabled",
+        {0x01020003u},
+        "Grid Overlay",
+        "Grid",
+        "Shows the scope grid overlay.",
+        VisualParameterCategory::Overlay,
+        VisualParameterRole::Visual,
+        true,
+        true,
+        kDefaults.showGrid,
+    },
 };
 
 constexpr VisualChoiceOption kTraceModeOptions[] = {
@@ -40,16 +220,30 @@ constexpr VisualChoiceOption kDecayStyleOptions[] = {
 constexpr VisualChoiceParameter kChoiceParameters[] = {
     {
         VisualChoiceParameterId::TraceMode,
-        "traceMode",
+        "scope.trace_mode",
+        {0x01030001u},
         "Trace Mode",
+        "Mode",
+        "Selects 1D waveform or XY vectorscope mapping.",
+        VisualParameterCategory::Signal,
+        VisualParameterRole::Visual,
+        true,
+        true,
         kTraceModeOptions,
         sizeof(kTraceModeOptions) / sizeof(kTraceModeOptions[0]),
         static_cast<int>(kDefaults.traceMode),
     },
     {
         VisualChoiceParameterId::DecayStyle,
-        "decayStyle",
+        "phosphor.decay_style",
+        {0x01030002u},
         "Decay Style",
+        "Decay",
+        "Selects classic linear decay or phosphor-style decay.",
+        VisualParameterCategory::Phosphor,
+        VisualParameterRole::Visual,
+        true,
+        true,
         kDecayStyleOptions,
         sizeof(kDecayStyleOptions) / sizeof(kDecayStyleOptions[0]),
         static_cast<int>(kDefaults.decayStyle),
@@ -169,27 +363,13 @@ bool setNormalizedVisualFloatParameter(VisualParams& params, VisualFloatParamete
 std::string formatVisualFloatParameterValue(VisualFloatParameterId id, float value)
 {
     char text[32] = {};
-
-    switch (id)
+    const VisualFloatParameter* parameter = findVisualFloatParameter(id);
+    if (parameter == nullptr)
     {
-    case VisualFloatParameterId::TraceGain:
-    case VisualFloatParameterId::GlowStrength:
-    case VisualFloatParameterId::FastDecay:
-    case VisualFloatParameterId::Afterglow:
-    case VisualFloatParameterId::GridIntensity:
-        std::snprintf(text, sizeof(text), "%.2f", value);
-        break;
-
-    case VisualFloatParameterId::TraceWidth:
-    case VisualFloatParameterId::GlowWidth:
-        std::snprintf(text, sizeof(text), "%.1f", value);
-        break;
-
-    case VisualFloatParameterId::Persistence:
-        std::snprintf(text, sizeof(text), "%.3f", value);
-        break;
+        return {};
     }
 
+    std::snprintf(text, sizeof(text), "%.*f", parameter->precision, value);
     return text;
 }
 

@@ -27,6 +27,17 @@ bool expectEqual(const char* name, float actual, float expected)
     return false;
 }
 
+bool expectEqual(const char* name, std::uint32_t actual, std::uint32_t expected)
+{
+    if (actual == expected)
+    {
+        return true;
+    }
+
+    std::cerr << name << " expected " << expected << " but got " << actual << '\n';
+    return false;
+}
+
 bool expectEqual(const char* name, const std::string& actual, const char* expected)
 {
     if (actual == expected)
@@ -54,6 +65,14 @@ int main()
     if (traceGain != nullptr)
     {
         passed = expectEqual("trace gain default", traceGain->defaultValue, 0.10f) && passed;
+        passed = expectEqual("trace gain midpoint", traceGain->midpoint, 1.0f) && passed;
+        passed = expectEqual("trace gain stable string", std::string(traceGain->stableId), "signal.gain") && passed;
+        passed = expectEqual("trace gain stable numeric", traceGain->numericId.value, 0x01010001u) && passed;
+        passed = expectTrue("trace gain automatable", traceGain->automatable) && passed;
+        passed = expectTrue("trace gain visible", traceGain->visible) && passed;
+        passed = expectTrue("trace gain category", traceGain->category == prettyscope::VisualParameterCategory::Signal) && passed;
+        passed = expectTrue("trace gain role", traceGain->role == prettyscope::VisualParameterRole::Visual) && passed;
+        passed = expectTrue("trace gain precision", traceGain->precision == 2) && passed;
     }
 
     prettyscope::VisualParams params;
@@ -117,6 +136,16 @@ int main()
     const prettyscope::VisualBoolParameter* bools = prettyscope::visualBoolParameters(boolCount);
     passed = expectTrue("bool parameters exist", bools != nullptr) && passed;
     passed = expectTrue("bool parameter count", boolCount == 3) && passed;
+    const prettyscope::VisualBoolParameter* fps =
+        prettyscope::findVisualBoolParameter(prettyscope::VisualBoolParameterId::ShowFps);
+    passed = expectTrue("find fps bool", fps != nullptr) && passed;
+    if (fps != nullptr)
+    {
+        passed = expectEqual("fps stable string", std::string(fps->stableId), "overlay.fps_enabled") && passed;
+        passed = expectEqual("fps stable numeric", fps->numericId.value, 0x01020002u) && passed;
+        passed = expectTrue("fps not automatable", !fps->automatable) && passed;
+        passed = expectTrue("fps debug role", fps->role == prettyscope::VisualParameterRole::Debug) && passed;
+    }
     passed = expectTrue(
         "set show grid",
         prettyscope::setVisualBoolParameter(params, prettyscope::VisualBoolParameterId::ShowGrid, true)) && passed;
@@ -128,6 +157,15 @@ int main()
     const prettyscope::VisualChoiceParameter* choices = prettyscope::visualChoiceParameters(choiceCount);
     passed = expectTrue("choice parameters exist", choices != nullptr) && passed;
     passed = expectTrue("choice parameter count", choiceCount == 2) && passed;
+    const prettyscope::VisualChoiceParameter* traceMode =
+        prettyscope::findVisualChoiceParameter(prettyscope::VisualChoiceParameterId::TraceMode);
+    passed = expectTrue("find trace mode", traceMode != nullptr) && passed;
+    if (traceMode != nullptr)
+    {
+        passed = expectEqual("trace mode stable string", std::string(traceMode->stableId), "scope.trace_mode") && passed;
+        passed = expectEqual("trace mode stable numeric", traceMode->numericId.value, 0x01030001u) && passed;
+        passed = expectTrue("trace mode options", traceMode->optionCount == 2) && passed;
+    }
 
     const int clearRevision = params.clearRevision;
     passed = expectTrue(

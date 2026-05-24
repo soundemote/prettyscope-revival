@@ -3,10 +3,43 @@
 #include "visual/visual_params.hpp"
 
 #include <cstddef>
+#include <cstdint>
 #include <string>
 
 namespace prettyscope
 {
+inline constexpr std::uint32_t kVisualParameterStateVersion = 1;
+
+struct VisualParameterStableId
+{
+    std::uint32_t value = 0;
+};
+
+enum class VisualParameterCategory
+{
+    Beam,
+    Phosphor,
+    Overlay,
+    Palette,
+    Signal,
+    Debug,
+};
+
+enum class VisualParameterRole
+{
+    Visual,
+    Debug,
+    Performance,
+    State,
+    Internal,
+};
+
+enum class VisualParameterDisplayMode
+{
+    Scalar,
+    Percent,
+};
+
 enum class VisualFloatParameterId
 {
     TraceGain,
@@ -35,18 +68,36 @@ enum class VisualChoiceParameterId
 struct VisualFloatParameter
 {
     VisualFloatParameterId id;
-    const char* key;
-    const char* label;
+    const char* stableId;
+    VisualParameterStableId numericId;
+    const char* displayName;
+    const char* shortName;
+    const char* unit;
+    const char* description;
+    VisualParameterCategory category;
+    VisualParameterRole role;
+    VisualParameterDisplayMode displayMode;
+    bool automatable;
+    bool visible;
     float minimum;
+    float midpoint;
     float maximum;
     float defaultValue;
+    int precision;
 };
 
 struct VisualBoolParameter
 {
     VisualBoolParameterId id;
-    const char* key;
-    const char* label;
+    const char* stableId;
+    VisualParameterStableId numericId;
+    const char* displayName;
+    const char* shortName;
+    const char* description;
+    VisualParameterCategory category;
+    VisualParameterRole role;
+    bool automatable;
+    bool visible;
     bool defaultValue;
 };
 
@@ -60,8 +111,15 @@ struct VisualChoiceOption
 struct VisualChoiceParameter
 {
     VisualChoiceParameterId id;
-    const char* key;
-    const char* label;
+    const char* stableId;
+    VisualParameterStableId numericId;
+    const char* displayName;
+    const char* shortName;
+    const char* description;
+    VisualParameterCategory category;
+    VisualParameterRole role;
+    bool automatable;
+    bool visible;
     const VisualChoiceOption* options;
     size_t optionCount;
     int defaultValue;

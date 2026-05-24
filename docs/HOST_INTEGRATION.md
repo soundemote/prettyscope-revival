@@ -68,6 +68,30 @@ Bind toggles through `VisualBoolParameterId`, and menu/choice controls through
 `VisualChoiceParameterId`. Choice setters update `clearRevision` where the
 persistence buffer needs a visual reset.
 
+Descriptors are host-ready, not host-owned. Core descriptors carry:
+
+- stable string identity, such as `signal.gain` or `phosphor.persistence`
+- manually assigned stable numeric IDs for host adapters
+- category and role metadata
+- `automatable` and `visible` flags
+- display names, short names, descriptions, units, and precision
+- float minimum, midpoint, maximum, and default values
+
+The current visual state version is `kVisualParameterStateVersion`.
+
+State compatibility rules:
+
+- Descriptor string IDs are stable across versions.
+- Numeric IDs are never reused for a different parameter.
+- Removed numeric IDs are retired.
+- Missing parameters should use descriptor defaults.
+- Unknown parameters should be ignored until a future state container can
+  preserve them.
+- Renamed parameters require an explicit migration table later.
+
+Normalized value means transport/automation value. Raw value means visual/render
+value. The descriptor is the source of mapping rules; mapping is linear for now.
+
 ## Palettes
 
 Use `visualPalettes()` to list named palettes and `applyVisualPalette()` to
