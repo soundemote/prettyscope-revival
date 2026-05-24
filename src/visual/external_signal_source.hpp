@@ -2,6 +2,7 @@
 
 #include "visual/signal_source.hpp"
 
+#include <mutex>
 #include <vector>
 
 namespace prettyscope
@@ -19,6 +20,7 @@ public:
     void advance(SignalBuffer& signal, float dt) override;
 
 private:
+    mutable std::mutex mutex_;
     std::vector<float> left_;
     std::vector<float> right_;
     SignalLayout layout_ = SignalLayout::Stereo;

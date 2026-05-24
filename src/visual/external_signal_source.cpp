@@ -21,6 +21,7 @@ void copySamples(std::vector<float>& destination, const float* source, int sampl
 void ExternalSignalSource::reserve(int maxSampleCount)
 {
     const int count = positiveCount(maxSampleCount);
+    std::lock_guard<std::mutex> lock(mutex_);
     left_.reserve(static_cast<size_t>(count));
     right_.reserve(static_cast<size_t>(count));
 }
@@ -48,6 +49,7 @@ void ExternalSignalSource::setInputChannels(const float* const* channels, int ch
 void ExternalSignalSource::setMonoInput(const float* samples, int sampleCount)
 {
     const int count = positiveCount(sampleCount);
+    std::lock_guard<std::mutex> lock(mutex_);
     if (samples == nullptr || count == 0)
     {
         left_.clear();
@@ -64,6 +66,7 @@ void ExternalSignalSource::setMonoInput(const float* samples, int sampleCount)
 void ExternalSignalSource::setStereoInput(const float* left, const float* right, int sampleCount)
 {
     const int count = positiveCount(sampleCount);
+    std::lock_guard<std::mutex> lock(mutex_);
     if (count == 0 || (left == nullptr && right == nullptr))
     {
         left_.clear();
@@ -94,16 +97,19 @@ void ExternalSignalSource::setStereoInput(const float* left, const float* right,
 
 int ExternalSignalSource::sampleCount() const
 {
+    std::lock_guard<std::mutex> lock(mutex_);
     return static_cast<int>(left_.size());
 }
 
 SignalSourceInfo ExternalSignalSource::info() const
 {
+    std::lock_guard<std::mutex> lock(mutex_);
     return {"external", layout_, layout_ == SignalLayout::Stereo ? TraceMode::Xy : TraceMode::Time};
 }
 
 void ExternalSignalSource::advance(SignalBuffer& signal, float)
 {
+    std::lock_guard<std::mutex> lock(mutex_);
     if (left_.empty())
     {
         for (int i = 0; i < signal.size(); ++i)

@@ -38,6 +38,11 @@ source.setInputChannels(channels, channelCount, sampleCount);
 scope.advance(source, dt);
 ```
 
+`ExternalSignalSource` synchronizes access internally, so a first plugin build can
+feed it from a host callback while the editor renders on another callback. Call
+`reserve()` during prepare/setup to avoid routine vector growth. If profiling
+shows the lock matters, replace this bridge with a lock-free handoff later.
+
 When audio and OpenGL arrive on different callbacks, update the source from the
 audio side, then render the current signal from the OpenGL/editor side:
 
