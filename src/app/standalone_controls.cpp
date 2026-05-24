@@ -4,6 +4,7 @@
 
 #include "visual/visual_param_limits.hpp"
 #include "visual/visual_parameters.hpp"
+#include "visual/visual_palettes.hpp"
 
 #include <cstdio>
 
@@ -168,30 +169,14 @@ bool StandaloneControls::pressed(const Win32GlWindow& window, int key)
 
 void StandaloneControls::cyclePalette(VisualParams& params)
 {
-    paletteIndex_ = (paletteIndex_ + 1) % 4;
-
-    switch (paletteIndex_)
+    size_t count = 0;
+    visualPalettes(count);
+    if (count == 0)
     {
-    case 0:
-        params.traceColor = {1.0f, 0.22f, 0.70f};
-        params.glowColor = {0.18f, 0.80f, 1.0f};
-        params.backgroundColor = {0.018f, 0.012f, 0.026f};
-        break;
-    case 1:
-        params.traceColor = {1.0f, 0.86f, 0.26f};
-        params.glowColor = {1.0f, 0.18f, 0.08f};
-        params.backgroundColor = {0.018f, 0.010f, 0.006f};
-        break;
-    case 2:
-        params.traceColor = {0.72f, 1.0f, 0.32f};
-        params.glowColor = {0.16f, 0.92f, 0.62f};
-        params.backgroundColor = {0.008f, 0.016f, 0.012f};
-        break;
-    default:
-        params.traceColor = {0.24f, 0.92f, 0.78f};
-        params.glowColor = {0.95f, 0.20f, 0.72f};
-        params.backgroundColor = {0.015f, 0.014f, 0.022f};
-        break;
+        return;
     }
+
+    paletteIndex_ = (paletteIndex_ + 1) % count;
+    applyVisualPalette(params, paletteIndex_);
 }
 }

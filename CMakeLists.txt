@@ -28,7 +28,8 @@ add_library(prettyscope_core STATIC
     src/visual/scope_renderer.cpp
     src/visual/shaders.cpp
     src/visual/test_signal.cpp
-    src/visual/visual_parameters.cpp)
+    src/visual/visual_parameters.cpp
+    src/visual/visual_palettes.cpp)
 
 target_include_directories(prettyscope_core PUBLIC
     src)
@@ -89,4 +90,5 @@ if(BUILD_TESTING)
     add_prettyscope_core_test(scope_engine tests/scope_engine_tests.cpp)
     add_prettyscope_core_test(public_header tests/public_header_tests.cpp)
     add_prettyscope_core_test(visual_parameters tests/visual_parameters_tests.cpp)
+    add_prettyscope_core_test(visual_palettes tests/visual_palettes_tests.cpp)
 endif()

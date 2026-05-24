@@ -7,4 +7,5 @@
 #include "visual/test_signal.hpp"
 #include "visual/visual_param_limits.hpp"
 #include "visual/visual_parameters.hpp"
+#include "visual/visual_palettes.hpp"
 #include "visual/visual_params.hpp"
