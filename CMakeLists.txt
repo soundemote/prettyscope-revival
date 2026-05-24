@@ -24,6 +24,7 @@ add_library(prettyscope_core STATIC
     src/visual/overlay_renderer.cpp
     src/visual/persistence_buffer.cpp
     src/visual/screen_quad.cpp
+    src/visual/scope_engine.cpp
     src/visual/scope_renderer.cpp
     src/visual/shaders.cpp
     src/visual/test_signal.cpp)
