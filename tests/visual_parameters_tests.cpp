@@ -1,6 +1,7 @@
 #include "visual/visual_parameters.hpp"
 
 #include <iostream>
+#include <set>
 #include <string>
 
 namespace
@@ -48,6 +49,26 @@ bool expectEqual(const char* name, const std::string& actual, const char* expect
     std::cerr << name << " expected " << expected << " but got " << actual << '\n';
     return false;
 }
+
+bool rememberDescriptorId(
+    const char* name,
+    const char* stableId,
+    prettyscope::VisualParameterStableId numericId,
+    std::set<std::string>& stableIds,
+    std::set<std::uint32_t>& numericIds)
+{
+    bool passed = true;
+    passed = expectTrue(name, stableId != nullptr && stableId[0] != '\0') && passed;
+    passed = expectTrue(name, numericId.value != 0) && passed;
+
+    if (stableId != nullptr)
+    {
+        passed = expectTrue(name, stableIds.insert(stableId).second) && passed;
+    }
+
+    passed = expectTrue(name, numericIds.insert(numericId.value).second) && passed;
+    return passed;
+}
 }
 
 int main()
@@ -58,6 +79,18 @@ int main()
     bool passed = true;
     passed = expectTrue("parameters exist", parameters != nullptr) && passed;
     passed = expectTrue("parameter count", count == 8) && passed;
+
+    std::set<std::string> stableIds;
+    std::set<std::uint32_t> numericIds;
+    for (size_t i = 0; i < count; ++i)
+    {
+        passed = rememberDescriptorId(
+            "unique float descriptor id",
+            parameters[i].stableId,
+            parameters[i].numericId,
+            stableIds,
+            numericIds) && passed;
+    }
 
     const prettyscope::VisualFloatParameter* traceGain =
         prettyscope::findVisualFloatParameter(prettyscope::VisualFloatParameterId::TraceGain);
@@ -157,6 +190,15 @@ int main()
     const prettyscope::VisualBoolParameter* bools = prettyscope::visualBoolParameters(boolCount);
     passed = expectTrue("bool parameters exist", bools != nullptr) && passed;
     passed = expectTrue("bool parameter count", boolCount == 3) && passed;
+    for (size_t i = 0; i < boolCount; ++i)
+    {
+        passed = rememberDescriptorId(
+            "unique bool descriptor id",
+            bools[i].stableId,
+            bools[i].numericId,
+            stableIds,
+            numericIds) && passed;
+    }
     const prettyscope::VisualBoolParameter* fps =
         prettyscope::findVisualBoolParameter(prettyscope::VisualBoolParameterId::ShowFps);
     passed = expectTrue("find fps bool", fps != nullptr) && passed;
@@ -184,6 +226,15 @@ int main()
     const prettyscope::VisualChoiceParameter* choices = prettyscope::visualChoiceParameters(choiceCount);
     passed = expectTrue("choice parameters exist", choices != nullptr) && passed;
     passed = expectTrue("choice parameter count", choiceCount == 2) && passed;
+    for (size_t i = 0; i < choiceCount; ++i)
+    {
+        passed = rememberDescriptorId(
+            "unique choice descriptor id",
+            choices[i].stableId,
+            choices[i].numericId,
+            stableIds,
+            numericIds) && passed;
+    }
     const prettyscope::VisualChoiceParameter* traceMode =
         prettyscope::findVisualChoiceParameter(prettyscope::VisualChoiceParameterId::TraceMode);
     passed = expectTrue("find trace mode", traceMode != nullptr) && passed;
