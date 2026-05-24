@@ -35,6 +35,20 @@ void ScopeEngine::renderCurrentSignal(int width, int height)
     renderer_.render(signal_, params_, width, height);
 }
 
+void ScopeEngine::setSignal(const SignalBuffer& signal)
+{
+    if (signal_.size() != signal.size())
+    {
+        signal_.resize(signal.size());
+    }
+
+    for (int i = 0; i < signal.size(); ++i)
+    {
+        signal_[i] = signal[i];
+        signal_.right(i) = signal.right(i);
+    }
+}
+
 void ScopeEngine::setSampleCount(int sampleCount)
 {
     signal_.resize(sampleCount);

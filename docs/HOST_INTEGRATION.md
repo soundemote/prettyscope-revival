@@ -57,6 +57,14 @@ into `SignalSnapshot` and render from that. `SignalSnapshot` is a simple
 render-side `SignalSource` that owns drawable samples and does not imply any
 audio-thread behavior.
 
+If the plugin adapter already has a `SignalBuffer`, it can skip the source
+interface and set the engine's current render signal directly:
+
+```cpp
+scope.setSignal(editorSafeSignalBuffer);
+scope.renderCurrentSignal(width, height);
+```
+
 When audio and OpenGL arrive on different callbacks, update the source from the
 audio side, then render the current signal from the OpenGL/editor side:
 

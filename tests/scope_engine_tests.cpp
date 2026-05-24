@@ -27,6 +27,16 @@ int main()
     passed = expectEqual("expanded sample count", scope.sampleCount(), 2048) && passed;
     passed = expectEqual("signal size follows sample count", scope.signal().size(), 2048) && passed;
 
+    prettyscope::SignalBuffer signal(4);
+    signal[0] = -0.5f;
+    signal.right(0) = 0.5f;
+    signal[3] = 0.25f;
+    signal.right(3) = -0.25f;
+    scope.setSignal(signal);
+    passed = expectEqual("set signal resizes", scope.sampleCount(), 4) && passed;
+    passed = expectEqual("set signal left", static_cast<int>(scope.signal()[0] * 100.0f), -50) && passed;
+    passed = expectEqual("set signal right", static_cast<int>(scope.signal().right(3) * 100.0f), -25) && passed;
+
     scope.setSampleCount(-8);
     passed = expectEqual("negative sample count clamps", scope.sampleCount(), 2) && passed;
 

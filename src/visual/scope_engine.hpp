@@ -20,6 +20,7 @@ public:
     void advance(SignalSource& source, float dt);
     void render(SignalSource& source, float dt, int width, int height);
     void renderCurrentSignal(int width, int height);
+    void setSignal(const SignalBuffer& signal);
     void setSampleCount(int sampleCount);
     int sampleCount() const;
 
