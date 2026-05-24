@@ -1,6 +1,7 @@
 #include "app/preset_store.hpp"
 
 #include "visual/visual_param_limits.hpp"
+#include "visual/visual_parameters.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -55,9 +56,46 @@ bool readFile(std::string& out)
     return true;
 }
 
+std::string regexEscape(const char* text)
+{
+    std::string escaped;
+    for (const char* cursor = text; cursor != nullptr && *cursor != '\0'; ++cursor)
+    {
+        switch (*cursor)
+        {
+        case '.':
+        case '\\':
+        case '+':
+        case '*':
+        case '?':
+        case '[':
+        case '^':
+        case ']':
+        case '$':
+        case '(':
+        case ')':
+        case '{':
+        case '}':
+        case '=':
+        case '!':
+        case '<':
+        case '>':
+        case '|':
+        case ':':
+        case '-':
+            escaped.push_back('\\');
+            break;
+        default:
+            break;
+        }
+        escaped.push_back(*cursor);
+    }
+    return escaped;
+}
+
 bool findString(const std::string& text, const char* key, std::string& value)
 {
-    const std::regex pattern(std::string("\"") + key + "\"\\s*:\\s*\"([^\"]*)\"");
+    const std::regex pattern(std::string("\"") + regexEscape(key) + "\"\\s*:\\s*\"([^\"]*)\"");
     std::smatch match;
     if (!std::regex_search(text, match, pattern))
     {
@@ -68,9 +106,14 @@ bool findString(const std::string& text, const char* key, std::string& value)
     return true;
 }
 
+bool findString(const std::string& text, const char* key, const char* legacyKey, std::string& value)
+{
+    return findString(text, key, value) || (legacyKey != nullptr && findString(text, legacyKey, value));
+}
+
 bool findFloat(const std::string& text, const char* key, float& value)
 {
-    const std::regex pattern(std::string("\"") + key + "\"\\s*:\\s*(-?[0-9]+(?:\\.[0-9]+)?)");
+    const std::regex pattern(std::string("\"") + regexEscape(key) + "\"\\s*:\\s*(-?[0-9]+(?:\\.[0-9]+)?)");
     std::smatch match;
     if (!std::regex_search(text, match, pattern))
     {
@@ -81,9 +124,14 @@ bool findFloat(const std::string& text, const char* key, float& value)
     return true;
 }
 
+bool findFloat(const std::string& text, const char* key, const char* legacyKey, float& value)
+{
+    return findFloat(text, key, value) || (legacyKey != nullptr && findFloat(text, legacyKey, value));
+}
+
 bool findBool(const std::string& text, const char* key, bool& value)
 {
-    const std::regex pattern(std::string("\"") + key + "\"\\s*:\\s*(true|false)");
+    const std::regex pattern(std::string("\"") + regexEscape(key) + "\"\\s*:\\s*(true|false)");
     std::smatch match;
     if (!std::regex_search(text, match, pattern))
     {
@@ -94,9 +142,32 @@ bool findBool(const std::string& text, const char* key, bool& value)
     return true;
 }
 
+bool findBool(const std::string& text, const char* key, const char* legacyKey, bool& value)
+{
+    return findBool(text, key, value) || (legacyKey != nullptr && findBool(text, legacyKey, value));
+}
+
+const char* stableId(VisualFloatParameterId id)
+{
+    const VisualFloatParameter* parameter = findVisualFloatParameter(id);
+    return parameter != nullptr ? parameter->stableId : "";
+}
+
+const char* stableId(VisualBoolParameterId id)
+{
+    const VisualBoolParameter* parameter = findVisualBoolParameter(id);
+    return parameter != nullptr ? parameter->stableId : "";
+}
+
+const char* stableId(VisualChoiceParameterId id)
+{
+    const VisualChoiceParameter* parameter = findVisualChoiceParameter(id);
+    return parameter != nullptr ? parameter->stableId : "";
+}
+
 bool findColor(const std::string& text, const char* key, RgbColor& color)
 {
-    const std::regex pattern(std::string("\"") + key + "\"\\s*:\\s*\\[\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*,\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*,\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*\\]");
+    const std::regex pattern(std::string("\"") + regexEscape(key) + "\"\\s*:\\s*\\[\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*,\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*,\\s*(-?[0-9]+(?:\\.[0-9]+)?)\\s*\\]");
     std::smatch match;
     if (!std::regex_search(text, match, pattern))
     {
@@ -119,18 +190,20 @@ bool PresetStore::saveDefault(const VisualParams& params, const TestSignalGenera
     }
 
     file << "{\n";
-    file << "  \"traceMode\": \"" << traceModeName(params.traceMode) << "\",\n";
+    file << "  \"stateVersion\": " << kVisualParameterStateVersion << ",\n";
+    file << "  \"" << stableId(VisualChoiceParameterId::TraceMode) << "\": \"" << traceModeName(params.traceMode) << "\",\n";
     file << "  \"signalMode\": \"" << signalModeName(generator.mode()) << "\",\n";
-    file << "  \"decayStyle\": \"" << decayStyleName(params.decayStyle) << "\",\n";
-    file << "  \"traceGain\": " << params.traceGain << ",\n";
-    file << "  \"glowStrength\": " << params.glowStrength << ",\n";
-    file << "  \"traceWidth\": " << params.traceWidth << ",\n";
-    file << "  \"glowWidth\": " << params.glowWidth << ",\n";
-    file << "  \"persistence\": " << params.persistence << ",\n";
-    file << "  \"fastDecay\": " << params.fastDecay << ",\n";
-    file << "  \"afterglow\": " << params.afterglow << ",\n";
-    file << "  \"persistenceEnabled\": " << (params.persistenceEnabled ? "true" : "false") << ",\n";
-    file << "  \"showGrid\": " << (params.showGrid ? "true" : "false") << ",\n";
+    file << "  \"" << stableId(VisualChoiceParameterId::DecayStyle) << "\": \"" << decayStyleName(params.decayStyle) << "\",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::TraceGain) << "\": " << params.traceGain << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::GlowStrength) << "\": " << params.glowStrength << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::TraceWidth) << "\": " << params.traceWidth << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::GlowWidth) << "\": " << params.glowWidth << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::Persistence) << "\": " << params.persistence << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::FastDecay) << "\": " << params.fastDecay << ",\n";
+    file << "  \"" << stableId(VisualFloatParameterId::Afterglow) << "\": " << params.afterglow << ",\n";
+    file << "  \"" << stableId(VisualBoolParameterId::PersistenceEnabled) << "\": " << (params.persistenceEnabled ? "true" : "false") << ",\n";
+    file << "  \"" << stableId(VisualBoolParameterId::ShowFps) << "\": " << (params.showFps ? "true" : "false") << ",\n";
+    file << "  \"" << stableId(VisualBoolParameterId::ShowGrid) << "\": " << (params.showGrid ? "true" : "false") << ",\n";
     file << "  \"traceColor\": [" << params.traceColor.r << ", " << params.traceColor.g << ", " << params.traceColor.b << "],\n";
     file << "  \"glowColor\": [" << params.glowColor.r << ", " << params.glowColor.g << ", " << params.glowColor.b << "],\n";
     file << "  \"backgroundColor\": [" << params.backgroundColor.r << ", " << params.backgroundColor.g << ", " << params.backgroundColor.b << "]\n";
@@ -147,7 +220,7 @@ bool PresetStore::loadDefault(VisualParams& params, TestSignalGenerator& generat
     }
 
     std::string value;
-    if (findString(text, "traceMode", value))
+    if (findString(text, stableId(VisualChoiceParameterId::TraceMode), "traceMode", value))
     {
         params.traceMode = value == "xy" ? TraceMode::Xy : TraceMode::Time;
     }
@@ -166,20 +239,21 @@ bool PresetStore::loadDefault(VisualParams& params, TestSignalGenerator& generat
             generator.setMode(TestSignalGenerator::Mode::Musical);
         }
     }
-    if (findString(text, "decayStyle", value))
+    if (findString(text, stableId(VisualChoiceParameterId::DecayStyle), "decayStyle", value))
     {
         params.decayStyle = value == "phosphor" ? DecayStyle::Phosphor : DecayStyle::Classic;
     }
 
-    findFloat(text, "traceGain", params.traceGain);
-    findFloat(text, "glowStrength", params.glowStrength);
-    findFloat(text, "traceWidth", params.traceWidth);
-    findFloat(text, "glowWidth", params.glowWidth);
-    findFloat(text, "persistence", params.persistence);
-    findFloat(text, "fastDecay", params.fastDecay);
-    findFloat(text, "afterglow", params.afterglow);
-    findBool(text, "persistenceEnabled", params.persistenceEnabled);
-    findBool(text, "showGrid", params.showGrid);
+    findFloat(text, stableId(VisualFloatParameterId::TraceGain), "traceGain", params.traceGain);
+    findFloat(text, stableId(VisualFloatParameterId::GlowStrength), "glowStrength", params.glowStrength);
+    findFloat(text, stableId(VisualFloatParameterId::TraceWidth), "traceWidth", params.traceWidth);
+    findFloat(text, stableId(VisualFloatParameterId::GlowWidth), "glowWidth", params.glowWidth);
+    findFloat(text, stableId(VisualFloatParameterId::Persistence), "persistence", params.persistence);
+    findFloat(text, stableId(VisualFloatParameterId::FastDecay), "fastDecay", params.fastDecay);
+    findFloat(text, stableId(VisualFloatParameterId::Afterglow), "afterglow", params.afterglow);
+    findBool(text, stableId(VisualBoolParameterId::PersistenceEnabled), "persistenceEnabled", params.persistenceEnabled);
+    findBool(text, stableId(VisualBoolParameterId::ShowFps), nullptr, params.showFps);
+    findBool(text, stableId(VisualBoolParameterId::ShowGrid), "showGrid", params.showGrid);
     findColor(text, "traceColor", params.traceColor);
     findColor(text, "glowColor", params.glowColor);
     findColor(text, "backgroundColor", params.backgroundColor);
