@@ -1,6 +1,7 @@
 #include "visual/visual_palettes.hpp"
 
 #include <iostream>
+#include <string>
 
 namespace
 {
@@ -40,6 +41,8 @@ int main()
     passed = expectTrue("first palette", first != nullptr) && passed;
     if (first != nullptr)
     {
+        passed = expectTrue("first palette key", std::string(first->key) == "pinkCyan") && passed;
+        passed = expectTrue("first palette numeric", first->numericId.value == 0x01040001u) && passed;
         passed = expectEqual("first trace red", first->traceColor.r, 1.0f) && passed;
         passed = expectEqual("first glow green", first->glowColor.g, 0.80f) && passed;
         passed = expectEqual("first background blue", first->backgroundColor.b, 0.026f) && passed;

@@ -37,6 +37,9 @@ Color values currently remain explicit RGB state:
 Palette identity can be added later once preset semantics for palette vs custom
 colors are decided.
 
+Named palettes already carry stable keys and numeric IDs. The golden default
+palette is `pinkCyan` with numeric ID `0x01040001`.
+
 ## Compatibility
 
 The loader still accepts legacy keys such as `traceGain`, `glowStrength`,
