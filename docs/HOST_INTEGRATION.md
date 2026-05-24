@@ -1,0 +1,66 @@
+# Host Integration Notes
+
+This is the current integration shape for a future JUCE/CLAP shell.
+
+## Public Include
+
+Use:
+
+```cpp
+#include "prettyscope.hpp"
+```
+
+Avoid including internal renderer headers from the plugin shell unless the shell
+is actively extending renderer internals.
+
+## OpenGL Lifecycle
+
+Create one `prettyscope::ScopeEngine` for the editor/view that owns the OpenGL
+context.
+
+```cpp
+prettyscope::ScopeEngine scope(1024);
+scope.initialize();
+// render callbacks...
+scope.shutdown();
+```
+
+Call `initialize()` and `shutdown()` while the OpenGL context is current.
+
+## Audio Handoff
+
+Use `ExternalSignalSource` as the bridge from host audio buffers.
+
+```cpp
+prettyscope::ExternalSignalSource source;
+source.reserve(maxBlockSize);
+source.setInputChannels(channels, channelCount, sampleCount);
+scope.advance(source, dt);
+```
+
+When audio and OpenGL arrive on different callbacks, update the source from the
+audio side, then render the current signal from the OpenGL/editor side:
+
+```cpp
+scope.renderCurrentSignal(width, height);
+```
+
+## Controls
+
+Bind float controls through `VisualFloatParameterId` and the normalized helpers:
+
+```cpp
+prettyscope::setNormalizedVisualFloatParameter(
+    scope.params(),
+    prettyscope::VisualFloatParameterId::TraceGain,
+    normalizedValue);
+```
+
+Bind toggles through `VisualBoolParameterId`, and menu/choice controls through
+`VisualChoiceParameterId`. Choice setters update `clearRevision` where the
+persistence buffer needs a visual reset.
+
+## Palettes
+
+Use `visualPalettes()` to list named palettes and `applyVisualPalette()` to
+apply one. The standalone `C` key uses the same palette list.

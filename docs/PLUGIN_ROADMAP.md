@@ -49,3 +49,6 @@ direction.
 The first plugin target should prove that Prettyscope can draw live host audio
 with the same look as the standalone scope. Preset management, richer controls,
 and Syphon/Spout output can follow after that rendering path exists.
+
+See `docs/HOST_INTEGRATION.md` for the current core API shape the plugin shell
+should call.
