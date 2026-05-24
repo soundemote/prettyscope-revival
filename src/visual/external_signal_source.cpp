@@ -7,6 +7,14 @@ namespace prettyscope
 void ExternalSignalSource::setMonoInput(const float* samples, int sampleCount)
 {
     const int count = std::max(0, sampleCount);
+    if (samples == nullptr || count == 0)
+    {
+        left_.clear();
+        right_.clear();
+        layout_ = SignalLayout::Mono;
+        return;
+    }
+
     left_.assign(samples, samples + count);
     right_.assign(left_.begin(), left_.end());
     layout_ = SignalLayout::Mono;
@@ -15,8 +23,31 @@ void ExternalSignalSource::setMonoInput(const float* samples, int sampleCount)
 void ExternalSignalSource::setStereoInput(const float* left, const float* right, int sampleCount)
 {
     const int count = std::max(0, sampleCount);
+    if (count == 0 || (left == nullptr && right == nullptr))
+    {
+        left_.clear();
+        right_.clear();
+        layout_ = SignalLayout::Stereo;
+        return;
+    }
+
+    if (left == nullptr)
+    {
+        right_.assign(right, right + count);
+        left_.assign(right_.begin(), right_.end());
+        layout_ = SignalLayout::Stereo;
+        return;
+    }
+
     left_.assign(left, left + count);
-    right_.assign(right, right + count);
+    if (right == nullptr)
+    {
+        right_.assign(left_.begin(), left_.end());
+    }
+    else
+    {
+        right_.assign(right, right + count);
+    }
     layout_ = SignalLayout::Stereo;
 }
 
