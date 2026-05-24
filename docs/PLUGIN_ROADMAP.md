@@ -52,6 +52,8 @@ and Syphon/Spout output can follow after that rendering path exists.
 
 See `docs/HOST_INTEGRATION.md` for the current core API shape the plugin shell
 should call.
+See `docs/SIDEQUEST_STARTINGPOINT_NOTES.md` for the current read-only inspection
+notes on the selected plugin foundation.
 
 ## When Sidequest Is Needed
 
