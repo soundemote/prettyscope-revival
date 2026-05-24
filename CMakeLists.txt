@@ -57,12 +57,20 @@ target_link_libraries(prettyscope PRIVATE
     gdi32
     user32)
 
+add_executable(prettyscope_host_bridge_example
+    examples/host_bridge_example.cpp)
+
+target_link_libraries(prettyscope_host_bridge_example PRIVATE
+    prettyscope_core)
+
 if(MSVC)
     target_compile_options(prettyscope_core PRIVATE /W4 /permissive-)
     target_compile_options(prettyscope PRIVATE /W4 /permissive-)
+    target_compile_options(prettyscope_host_bridge_example PRIVATE /W4 /permissive-)
 else()
     target_compile_options(prettyscope_core PRIVATE -Wall -Wextra -Wpedantic)
     target_compile_options(prettyscope PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(prettyscope_host_bridge_example PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 if(BUILD_TESTING)

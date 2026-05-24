@@ -2,6 +2,9 @@
 
 This is the current integration shape for a future JUCE/CLAP shell.
 
+`examples/host_bridge_example.cpp` is a small compiled example of the public
+core API without creating an OpenGL window.
+
 ## Public Include
 
 Use:
