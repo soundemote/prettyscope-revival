@@ -89,20 +89,23 @@ void StandaloneControls::update(Win32GlWindow& window, VisualParams& params, Tes
     }
     if (pressed(window, 'P'))
     {
-        params.persistenceEnabled = !params.persistenceEnabled;
+        setVisualBoolParameter(
+            params,
+            VisualBoolParameterId::PersistenceEnabled,
+            !getVisualBoolParameter(params, VisualBoolParameterId::PersistenceEnabled));
     }
     if (pressed(window, 'D'))
     {
-        params.decayStyle = params.decayStyle == DecayStyle::Classic ? DecayStyle::Phosphor : DecayStyle::Classic;
-        ++params.clearRevision;
+        const DecayStyle nextStyle = params.decayStyle == DecayStyle::Classic ? DecayStyle::Phosphor : DecayStyle::Classic;
+        setVisualChoiceParameter(params, VisualChoiceParameterId::DecayStyle, static_cast<int>(nextStyle));
     }
     if (pressed(window, 'F'))
     {
-        params.showFps = !params.showFps;
+        setVisualBoolParameter(params, VisualBoolParameterId::ShowFps, !getVisualBoolParameter(params, VisualBoolParameterId::ShowFps));
     }
     if (pressed(window, 'G'))
     {
-        params.showGrid = !params.showGrid;
+        setVisualBoolParameter(params, VisualBoolParameterId::ShowGrid, !getVisualBoolParameter(params, VisualBoolParameterId::ShowGrid));
     }
     if (pressed(window, 'S'))
     {
@@ -121,8 +124,8 @@ void StandaloneControls::update(Win32GlWindow& window, VisualParams& params, Tes
     }
     if (pressed(window, 'X'))
     {
-        params.traceMode = params.traceMode == TraceMode::Time ? TraceMode::Xy : TraceMode::Time;
-        ++params.clearRevision;
+        const TraceMode nextMode = params.traceMode == TraceMode::Time ? TraceMode::Xy : TraceMode::Time;
+        setVisualChoiceParameter(params, VisualChoiceParameterId::TraceMode, static_cast<int>(nextMode));
     }
     if (pressed(window, 'C'))
     {

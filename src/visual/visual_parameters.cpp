@@ -20,6 +20,54 @@ constexpr VisualFloatParameter kFloatParameters[] = {
     {VisualFloatParameterId::Afterglow, "afterglow", "Tail Burn", kMinDecayAmount, kMaxDecayAmount, kDefaults.afterglow},
     {VisualFloatParameterId::GridIntensity, "gridIntensity", "Grid Intensity", 0.0f, 1.0f, kDefaults.gridIntensity},
 };
+
+constexpr VisualBoolParameter kBoolParameters[] = {
+    {VisualBoolParameterId::PersistenceEnabled, "persistenceEnabled", "Persistence", kDefaults.persistenceEnabled},
+    {VisualBoolParameterId::ShowFps, "showFps", "FPS Overlay", kDefaults.showFps},
+    {VisualBoolParameterId::ShowGrid, "showGrid", "Grid Overlay", kDefaults.showGrid},
+};
+
+constexpr VisualChoiceOption kTraceModeOptions[] = {
+    {static_cast<int>(TraceMode::Time), "time", "1D"},
+    {static_cast<int>(TraceMode::Xy), "xy", "XY"},
+};
+
+constexpr VisualChoiceOption kDecayStyleOptions[] = {
+    {static_cast<int>(DecayStyle::Classic), "classic", "Classic"},
+    {static_cast<int>(DecayStyle::Phosphor), "phosphor", "Phosphor"},
+};
+
+constexpr VisualChoiceParameter kChoiceParameters[] = {
+    {
+        VisualChoiceParameterId::TraceMode,
+        "traceMode",
+        "Trace Mode",
+        kTraceModeOptions,
+        sizeof(kTraceModeOptions) / sizeof(kTraceModeOptions[0]),
+        static_cast<int>(kDefaults.traceMode),
+    },
+    {
+        VisualChoiceParameterId::DecayStyle,
+        "decayStyle",
+        "Decay Style",
+        kDecayStyleOptions,
+        sizeof(kDecayStyleOptions) / sizeof(kDecayStyleOptions[0]),
+        static_cast<int>(kDefaults.decayStyle),
+    },
+};
+
+bool choiceContainsValue(const VisualChoiceParameter& parameter, int value)
+{
+    for (size_t i = 0; i < parameter.optionCount; ++i)
+    {
+        if (parameter.options[i].value == value)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 }
 
 const VisualFloatParameter* visualFloatParameters(size_t& count)
@@ -143,5 +191,105 @@ std::string formatVisualFloatParameterValue(VisualFloatParameterId id, float val
     }
 
     return text;
+}
+
+const VisualBoolParameter* visualBoolParameters(size_t& count)
+{
+    count = sizeof(kBoolParameters) / sizeof(kBoolParameters[0]);
+    return kBoolParameters;
+}
+
+const VisualBoolParameter* findVisualBoolParameter(VisualBoolParameterId id)
+{
+    size_t count = 0;
+    const VisualBoolParameter* parameters = visualBoolParameters(count);
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (parameters[i].id == id)
+        {
+            return &parameters[i];
+        }
+    }
+
+    return nullptr;
+}
+
+bool getVisualBoolParameter(const VisualParams& params, VisualBoolParameterId id)
+{
+    switch (id)
+    {
+    case VisualBoolParameterId::PersistenceEnabled: return params.persistenceEnabled;
+    case VisualBoolParameterId::ShowFps: return params.showFps;
+    case VisualBoolParameterId::ShowGrid: return params.showGrid;
+    }
+
+    return false;
+}
+
+bool setVisualBoolParameter(VisualParams& params, VisualBoolParameterId id, bool value)
+{
+    switch (id)
+    {
+    case VisualBoolParameterId::PersistenceEnabled: params.persistenceEnabled = value; return true;
+    case VisualBoolParameterId::ShowFps: params.showFps = value; return true;
+    case VisualBoolParameterId::ShowGrid: params.showGrid = value; return true;
+    }
+
+    return false;
+}
+
+const VisualChoiceParameter* visualChoiceParameters(size_t& count)
+{
+    count = sizeof(kChoiceParameters) / sizeof(kChoiceParameters[0]);
+    return kChoiceParameters;
+}
+
+const VisualChoiceParameter* findVisualChoiceParameter(VisualChoiceParameterId id)
+{
+    size_t count = 0;
+    const VisualChoiceParameter* parameters = visualChoiceParameters(count);
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (parameters[i].id == id)
+        {
+            return &parameters[i];
+        }
+    }
+
+    return nullptr;
+}
+
+int getVisualChoiceParameter(const VisualParams& params, VisualChoiceParameterId id)
+{
+    switch (id)
+    {
+    case VisualChoiceParameterId::TraceMode: return static_cast<int>(params.traceMode);
+    case VisualChoiceParameterId::DecayStyle: return static_cast<int>(params.decayStyle);
+    }
+
+    return 0;
+}
+
+bool setVisualChoiceParameter(VisualParams& params, VisualChoiceParameterId id, int value)
+{
+    const VisualChoiceParameter* parameter = findVisualChoiceParameter(id);
+    if (parameter == nullptr || !choiceContainsValue(*parameter, value))
+    {
+        return false;
+    }
+
+    switch (id)
+    {
+    case VisualChoiceParameterId::TraceMode:
+        params.traceMode = static_cast<TraceMode>(value);
+        ++params.clearRevision;
+        return true;
+    case VisualChoiceParameterId::DecayStyle:
+        params.decayStyle = static_cast<DecayStyle>(value);
+        ++params.clearRevision;
+        return true;
+    }
+
+    return false;
 }
 }

@@ -113,5 +113,33 @@ int main()
         prettyscope::formatVisualFloatParameterValue(prettyscope::VisualFloatParameterId::Persistence, 0.98f),
         "0.980") && passed;
 
+    size_t boolCount = 0;
+    const prettyscope::VisualBoolParameter* bools = prettyscope::visualBoolParameters(boolCount);
+    passed = expectTrue("bool parameters exist", bools != nullptr) && passed;
+    passed = expectTrue("bool parameter count", boolCount == 3) && passed;
+    passed = expectTrue(
+        "set show grid",
+        prettyscope::setVisualBoolParameter(params, prettyscope::VisualBoolParameterId::ShowGrid, true)) && passed;
+    passed = expectTrue(
+        "get show grid",
+        prettyscope::getVisualBoolParameter(params, prettyscope::VisualBoolParameterId::ShowGrid)) && passed;
+
+    size_t choiceCount = 0;
+    const prettyscope::VisualChoiceParameter* choices = prettyscope::visualChoiceParameters(choiceCount);
+    passed = expectTrue("choice parameters exist", choices != nullptr) && passed;
+    passed = expectTrue("choice parameter count", choiceCount == 2) && passed;
+
+    const int clearRevision = params.clearRevision;
+    passed = expectTrue(
+        "set trace mode choice",
+        prettyscope::setVisualChoiceParameter(
+            params,
+            prettyscope::VisualChoiceParameterId::TraceMode,
+            static_cast<int>(prettyscope::TraceMode::Time))) && passed;
+    passed = expectTrue("trace mode clear", params.clearRevision == clearRevision + 1) && passed;
+    passed = expectTrue(
+        "invalid choice rejected",
+        !prettyscope::setVisualChoiceParameter(params, prettyscope::VisualChoiceParameterId::TraceMode, 99)) && passed;
+
     return passed ? 0 : 1;
 }

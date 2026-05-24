@@ -19,6 +19,19 @@ enum class VisualFloatParameterId
     GridIntensity,
 };
 
+enum class VisualBoolParameterId
+{
+    PersistenceEnabled,
+    ShowFps,
+    ShowGrid,
+};
+
+enum class VisualChoiceParameterId
+{
+    TraceMode,
+    DecayStyle,
+};
+
 struct VisualFloatParameter
 {
     VisualFloatParameterId id;
@@ -27,6 +40,31 @@ struct VisualFloatParameter
     float minimum;
     float maximum;
     float defaultValue;
+};
+
+struct VisualBoolParameter
+{
+    VisualBoolParameterId id;
+    const char* key;
+    const char* label;
+    bool defaultValue;
+};
+
+struct VisualChoiceOption
+{
+    int value;
+    const char* key;
+    const char* label;
+};
+
+struct VisualChoiceParameter
+{
+    VisualChoiceParameterId id;
+    const char* key;
+    const char* label;
+    const VisualChoiceOption* options;
+    size_t optionCount;
+    int defaultValue;
 };
 
 const VisualFloatParameter* visualFloatParameters(size_t& count);
@@ -38,4 +76,14 @@ float denormalizeVisualFloatParameter(const VisualFloatParameter& parameter, flo
 float getNormalizedVisualFloatParameter(const VisualParams& params, VisualFloatParameterId id);
 bool setNormalizedVisualFloatParameter(VisualParams& params, VisualFloatParameterId id, float normalizedValue);
 std::string formatVisualFloatParameterValue(VisualFloatParameterId id, float value);
+
+const VisualBoolParameter* visualBoolParameters(size_t& count);
+const VisualBoolParameter* findVisualBoolParameter(VisualBoolParameterId id);
+bool getVisualBoolParameter(const VisualParams& params, VisualBoolParameterId id);
+bool setVisualBoolParameter(VisualParams& params, VisualBoolParameterId id, bool value);
+
+const VisualChoiceParameter* visualChoiceParameters(size_t& count);
+const VisualChoiceParameter* findVisualChoiceParameter(VisualChoiceParameterId id);
+int getVisualChoiceParameter(const VisualParams& params, VisualChoiceParameterId id);
+bool setVisualChoiceParameter(VisualParams& params, VisualChoiceParameterId id, int value);
 }
