@@ -64,48 +64,25 @@ else()
 endif()
 
 if(BUILD_TESTING)
-    add_executable(prettyscope_external_signal_source_tests
-        tests/external_signal_source_tests.cpp)
+    function(add_prettyscope_core_test test_name source_path)
+        set(target_name "prettyscope_${test_name}_tests")
+        add_executable(${target_name}
+            ${source_path})
 
-    target_link_libraries(prettyscope_external_signal_source_tests PRIVATE
-        prettyscope_core)
+        target_link_libraries(${target_name} PRIVATE
+            prettyscope_core)
 
-    if(MSVC)
-        target_compile_options(prettyscope_external_signal_source_tests PRIVATE /W4 /permissive-)
-    else()
-        target_compile_options(prettyscope_external_signal_source_tests PRIVATE -Wall -Wextra -Wpedantic)
-    endif()
+        if(MSVC)
+            target_compile_options(${target_name} PRIVATE /W4 /permissive-)
+        else()
+            target_compile_options(${target_name} PRIVATE -Wall -Wextra -Wpedantic)
+        endif()
 
-    add_test(NAME external_signal_source
-        COMMAND prettyscope_external_signal_source_tests)
+        add_test(NAME ${test_name}
+            COMMAND ${target_name})
+    endfunction()
 
-    add_executable(prettyscope_visual_param_limits_tests
-        tests/visual_param_limits_tests.cpp)
-
-    target_link_libraries(prettyscope_visual_param_limits_tests PRIVATE
-        prettyscope_core)
-
-    if(MSVC)
-        target_compile_options(prettyscope_visual_param_limits_tests PRIVATE /W4 /permissive-)
-    else()
-        target_compile_options(prettyscope_visual_param_limits_tests PRIVATE -Wall -Wextra -Wpedantic)
-    endif()
-
-    add_test(NAME visual_param_limits
-        COMMAND prettyscope_visual_param_limits_tests)
-
-    add_executable(prettyscope_signal_buffer_tests
-        tests/signal_buffer_tests.cpp)
-
-    target_link_libraries(prettyscope_signal_buffer_tests PRIVATE
-        prettyscope_core)
-
-    if(MSVC)
-        target_compile_options(prettyscope_signal_buffer_tests PRIVATE /W4 /permissive-)
-    else()
-        target_compile_options(prettyscope_signal_buffer_tests PRIVATE -Wall -Wextra -Wpedantic)
-    endif()
-
-    add_test(NAME signal_buffer
-        COMMAND prettyscope_signal_buffer_tests)
+    add_prettyscope_core_test(external_signal_source tests/external_signal_source_tests.cpp)
+    add_prettyscope_core_test(visual_param_limits tests/visual_param_limits_tests.cpp)
+    add_prettyscope_core_test(signal_buffer tests/signal_buffer_tests.cpp)
 endif()
