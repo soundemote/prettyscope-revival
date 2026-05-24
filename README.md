@@ -24,6 +24,8 @@ work lives in `src/` and should stay small, direct, and runnable.
 - `ExternalSignalSource` bridge for future host/audio buffers
 - `ScopeEngine` host boundary that owns params, signal advancement, and rendering
 - `prettyscope.hpp` umbrella header for future host/plugin integrations
+- Shared visual parameter descriptors, normalized automation helpers, and named
+  palettes for future UI/plugin binding
 - Keyboard controls for fast visual testing
 
 ## Roadmap
