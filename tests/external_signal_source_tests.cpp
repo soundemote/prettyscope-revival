@@ -39,6 +39,7 @@ int main()
     source.advance(signal, 0.0f);
     passed = expectEqual("mono left", signal[2], 0.3f) && passed;
     passed = expectEqual("mono right mirrors left", signal.right(2), 0.3f) && passed;
+    passed = expectEqual("mono sample count", static_cast<float>(source.sampleCount()), 4.0f) && passed;
 
     const float left[] = {-0.5f, -0.25f, 0.25f, 0.5f};
     const float right[] = {0.5f, 0.25f, -0.25f, -0.5f};
@@ -54,6 +55,18 @@ int main()
     source.setStereoInput(nullptr, right, 4);
     source.advance(signal, 0.0f);
     passed = expectEqual("missing left mirrors right", signal[1], 0.25f) && passed;
+
+    source.reserve(16);
+    const float* monoChannels[] = {mono};
+    source.setInputChannels(monoChannels, 1, 4);
+    source.advance(signal, 0.0f);
+    passed = expectEqual("channel array mono", signal.right(3), 0.4f) && passed;
+
+    const float* stereoChannels[] = {left, right};
+    source.setInputChannels(stereoChannels, 2, 4);
+    source.advance(signal, 0.0f);
+    passed = expectEqual("channel array stereo left", signal[0], -0.5f) && passed;
+    passed = expectEqual("channel array stereo right", signal.right(0), 0.5f) && passed;
 
     return passed ? 0 : 1;
 }

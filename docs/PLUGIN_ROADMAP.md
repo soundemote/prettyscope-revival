@@ -36,7 +36,8 @@ direction.
 
 1. Open a JUCE/CLAP editor window with an OpenGL context.
 2. Initialize `ScopeRenderer` inside that context.
-3. Copy plugin audio input into `ExternalSignalSource`.
+3. Reserve and copy plugin audio input into `ExternalSignalSource` using host
+   channel pointers.
 4. Render using the golden phosphor preset defaults.
 5. Add minimal plugin parameters only after the hosted visual path is real.
 
