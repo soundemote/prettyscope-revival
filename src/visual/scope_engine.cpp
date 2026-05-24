@@ -17,10 +17,30 @@ void ScopeEngine::shutdown()
     renderer_.destroy();
 }
 
-void ScopeEngine::render(SignalSource& source, float dt, int width, int height)
+void ScopeEngine::advance(SignalSource& source, float dt)
 {
     source.advance(signal_, dt);
+}
+
+void ScopeEngine::render(SignalSource& source, float dt, int width, int height)
+{
+    advance(source, dt);
+    renderCurrentSignal(width, height);
+}
+
+void ScopeEngine::renderCurrentSignal(int width, int height)
+{
     renderer_.render(signal_, params_, width, height);
+}
+
+void ScopeEngine::setSampleCount(int sampleCount)
+{
+    signal_.resize(sampleCount);
+}
+
+int ScopeEngine::sampleCount() const
+{
+    return signal_.size();
 }
 
 VisualParams& ScopeEngine::params()

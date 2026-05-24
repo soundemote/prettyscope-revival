@@ -17,7 +17,11 @@ public:
 
     void initialize();
     void shutdown();
+    void advance(SignalSource& source, float dt);
     void render(SignalSource& source, float dt, int width, int height);
+    void renderCurrentSignal(int width, int height);
+    void setSampleCount(int sampleCount);
+    int sampleCount() const;
 
     VisualParams& params();
     const VisualParams& params() const;
