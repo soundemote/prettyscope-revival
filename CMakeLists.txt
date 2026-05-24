@@ -24,6 +24,7 @@ add_library(prettyscope_core STATIC
     src/visual/overlay_renderer.cpp
     src/visual/persistence_buffer.cpp
     src/visual/screen_quad.cpp
+    src/visual/signal_snapshot.cpp
     src/visual/scope_engine.cpp
     src/visual/scope_renderer.cpp
     src/visual/shaders.cpp
@@ -95,6 +96,7 @@ if(BUILD_TESTING)
     add_prettyscope_core_test(external_signal_source tests/external_signal_source_tests.cpp)
     add_prettyscope_core_test(visual_param_limits tests/visual_param_limits_tests.cpp)
     add_prettyscope_core_test(signal_buffer tests/signal_buffer_tests.cpp)
+    add_prettyscope_core_test(signal_snapshot tests/signal_snapshot_tests.cpp)
     add_prettyscope_core_test(scope_engine tests/scope_engine_tests.cpp)
     add_prettyscope_core_test(public_header tests/public_header_tests.cpp)
     add_prettyscope_core_test(visual_parameters tests/visual_parameters_tests.cpp)

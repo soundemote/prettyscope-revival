@@ -15,6 +15,14 @@ int main()
     source.setInputChannels(channels, 2, static_cast<int>(left.size()));
     scope.advance(source, 0.0f);
 
+    prettyscope::SignalSnapshot editorSnapshot(8);
+    for (int i = 0; i < editorSnapshot.buffer().size(); ++i)
+    {
+        editorSnapshot.buffer()[i] = left[static_cast<size_t>(i)];
+        editorSnapshot.buffer().right(i) = right[static_cast<size_t>(i)];
+    }
+    scope.advance(editorSnapshot, 0.0f);
+
     prettyscope::setNormalizedVisualFloatParameter(
         scope.params(),
         prettyscope::VisualFloatParameterId::TraceGain,

@@ -32,7 +32,8 @@ Call `initialize()` and `shutdown()` while the OpenGL context is current.
 
 ## Audio Handoff
 
-Use `ExternalSignalSource` as the bridge from host audio buffers.
+Use `ExternalSignalSource` as the first bridge from copied host audio buffers.
+It is a simple core adapter, not the final DAW audio-thread architecture.
 
 ```cpp
 prettyscope::ExternalSignalSource source;
@@ -43,8 +44,18 @@ scope.advance(source, dt);
 
 `ExternalSignalSource` synchronizes access internally, so a first plugin build can
 feed it from a host callback while the editor renders on another callback. Call
-`reserve()` during prepare/setup to avoid routine vector growth. If profiling
-shows the lock matters, replace this bridge with a lock-free handoff later.
+`reserve()` during prepare/setup to avoid routine vector growth.
+
+For the sidequest/JUCE/CLAP plugin, prefer the foundation's existing audio/UI
+handoff if it has one. In that case, copy into `ExternalSignalSource` only from
+the UI/editor side, or replace it with a host-specific `SignalSource`
+implementation. Do not treat the mutex bridge as a hard realtime audio-thread
+contract.
+
+If the plugin foundation already provides an editor-safe audio snapshot, copy it
+into `SignalSnapshot` and render from that. `SignalSnapshot` is a simple
+render-side `SignalSource` that owns drawable samples and does not imply any
+audio-thread behavior.
 
 When audio and OpenGL arrive on different callbacks, update the source from the
 audio side, then render the current signal from the OpenGL/editor side:

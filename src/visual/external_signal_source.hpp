@@ -7,6 +7,8 @@
 
 namespace prettyscope
 {
+// Small host/demo bridge for copied mono/stereo buffers. This is intentionally
+// simple; plugin wrappers may replace it with a host-specific lock-free source.
 class ExternalSignalSource : public SignalSource
 {
 public:

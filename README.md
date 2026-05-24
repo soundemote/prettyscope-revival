@@ -21,7 +21,7 @@ work lives in `src/` and should stay small, direct, and runnable.
 - Animated Gaussian beam waveform trace
 - Small `SignalBuffer`, `TestSignalGenerator`, and `VisualParams` abstraction
 - `SignalSource` interface for test signals now, and future audio/plugin input
-- `ExternalSignalSource` bridge for future host/audio buffers
+- `ExternalSignalSource` prototype bridge for copied host/audio buffers
 - `ScopeEngine` host boundary that owns params, signal advancement, and rendering
 - `prettyscope.hpp` umbrella header for future host/plugin integrations
 - Shared visual parameter descriptors, normalized automation helpers, and named
