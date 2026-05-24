@@ -17,6 +17,8 @@ target_include_directories(prettyscope_glad PUBLIC
 
 add_executable(prettyscope
     src/main.cpp
+    src/app/preset_store.cpp
+    src/app/standalone_controls.cpp
     src/platform/win32_gl_window.cpp
     src/visual/scope_renderer.cpp
     src/visual/test_signal.cpp)

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <array>
+#include <string>
+
 #include <windows.h>
 
 namespace prettyscope
@@ -22,6 +25,9 @@ public:
     bool processMessages();
     void swapBuffers();
     FramebufferSize framebufferSize() const;
+    bool isKeyDown(int key) const;
+    int consumeMouseWheelDelta();
+    void setTitle(const std::string& title);
 
 private:
     static LRESULT CALLBACK windowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam);
@@ -35,5 +41,7 @@ private:
     HDC deviceContext_ = nullptr;
     HGLRC glContext_ = nullptr;
     bool running_ = true;
+    std::array<bool, 256> keys_ = {};
+    int mouseWheelDelta_ = 0;
 };
 }

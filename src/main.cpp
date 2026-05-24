@@ -1,3 +1,5 @@
+#include "app/standalone_controls.hpp"
+#include "app/preset_store.hpp"
 #include "platform/win32_gl_window.hpp"
 #include "visual/scope_renderer.hpp"
 #include "visual/signal_buffer.hpp"
@@ -17,20 +19,30 @@ int main()
         prettyscope::ScopeRenderer renderer;
         prettyscope::SignalBuffer signal(1024);
         prettyscope::TestSignalGenerator generator;
+        prettyscope::StandaloneControls controls;
 
         prettyscope::VisualParams params;
-        params.traceColor = {0.24f, 0.92f, 0.78f};
-        params.glowColor = {0.95f, 0.20f, 0.72f};
-        params.backgroundColor = {0.015f, 0.014f, 0.022f};
+        prettyscope::PresetStore::loadDefault(params, generator);
 
         renderer.initialize();
 
         auto previous = std::chrono::steady_clock::now();
+        float smoothedFps = 60.0f;
         while (window.processMessages())
         {
             const auto now = std::chrono::steady_clock::now();
             const float dt = std::chrono::duration<float>(now - previous).count();
             previous = now;
+
+            if (dt > 0.0f)
+            {
+                const float instantFps = 1.0f / dt;
+                smoothedFps = smoothedFps * 0.92f + instantFps * 0.08f;
+                params.fps = smoothedFps;
+            }
+
+            controls.update(window, params, generator);
+            window.setTitle(controls.titleText(params, generator));
 
             generator.advance(signal, dt);
 

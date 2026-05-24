@@ -52,6 +52,28 @@ void Win32GlWindow::swapBuffers()
     SwapBuffers(deviceContext_);
 }
 
+bool Win32GlWindow::isKeyDown(int key) const
+{
+    if (key < 0 || key >= static_cast<int>(keys_.size()))
+    {
+        return false;
+    }
+
+    return keys_[static_cast<size_t>(key)];
+}
+
+int Win32GlWindow::consumeMouseWheelDelta()
+{
+    const int delta = mouseWheelDelta_;
+    mouseWheelDelta_ = 0;
+    return delta;
+}
+
+void Win32GlWindow::setTitle(const std::string& title)
+{
+    SetWindowTextA(hwnd_, title.c_str());
+}
+
 FramebufferSize Win32GlWindow::framebufferSize() const
 {
     RECT rect;
@@ -82,10 +104,28 @@ LRESULT CALLBACK Win32GlWindow::windowProc(HWND hwnd, UINT message, WPARAM wpara
         PostQuitMessage(0);
         return 0;
     case WM_KEYDOWN:
+        if (window != nullptr && wparam < window->keys_.size())
+        {
+            window->keys_[static_cast<size_t>(wparam)] = true;
+        }
+
         if (wparam == VK_ESCAPE && window != nullptr)
         {
             window->running_ = false;
             DestroyWindow(hwnd);
+            return 0;
+        }
+        break;
+    case WM_KEYUP:
+        if (window != nullptr && wparam < window->keys_.size())
+        {
+            window->keys_[static_cast<size_t>(wparam)] = false;
+        }
+        break;
+    case WM_MOUSEWHEEL:
+        if (window != nullptr)
+        {
+            window->mouseWheelDelta_ += GET_WHEEL_DELTA_WPARAM(wparam);
             return 0;
         }
         break;

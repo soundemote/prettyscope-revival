@@ -1,0 +1,17 @@
+{
+  "traceMode": "xy",
+  "signalMode": "fold",
+  "decayStyle": "phosphor",
+  "traceGain": 0.1,
+  "glowStrength": 0.35,
+  "traceWidth": 2,
+  "glowWidth": 7,
+  "persistence": 0.98,
+  "fastDecay": 0.25,
+  "afterglow": 0.95,
+  "persistenceEnabled": true,
+  "showGrid": false,
+  "traceColor": [1, 0.22, 0.7],
+  "glowColor": [0.18, 0.8, 1],
+  "backgroundColor": [0.018, 0.012, 0.026]
+}

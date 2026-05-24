@@ -12,8 +12,9 @@ work lives in `src/` and should stay small, direct, and runnable.
 
 - Native Win32 window
 - OpenGL rendering through the vendored GLAD 3.2 loader
-- Animated shader-drawn waveform trace
+- Animated Gaussian beam waveform trace
 - Small `SignalBuffer`, `TestSignalGenerator`, and `VisualParams` abstraction
+- Keyboard controls for fast visual testing
 
 ## Build
 
@@ -27,6 +28,28 @@ Run those commands from a Visual Studio Developer PowerShell or Developer
 Command Prompt so MSVC is on `PATH`.
 
 Press `Esc` or close the window to quit.
+
+## Controls
+
+- `1` / `2`: decrease / increase waveform gain
+- `Mouse wheel`: decrease / increase waveform gain
+- `3` / `4`: decrease / increase glow strength
+- `5` / `6`: decrease / increase trace width
+- `7` / `8`: decrease / increase glow width
+- `9` / `0`: coarse decrease / increase screen decay
+- `[` / `]`: fine decrease / increase screen decay
+- `T` / `Y`: decrease / increase phosphor fast decay
+- `-` / `=`: decrease / increase phosphor tail burn
+- `P`: toggle persistence
+- `D`: toggle classic / phosphor decay style
+- `F`: toggle FPS counter
+- `G`: toggle graticule grid
+- `X`: toggle 1D / XY vectorscope mode
+- `Space`: cycle test signal
+- `C`: cycle color palette
+- `S`: save current default preset to `presets/default.prettyscope.json`
+- `L`: load `presets/default.prettyscope.json`
+- `R`: reset visual parameters
 
 ## Salvage Policy
 
