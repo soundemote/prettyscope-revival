@@ -12,6 +12,11 @@ void ScopeEngine::initialize()
     renderer_.initialize();
 }
 
+void ScopeEngine::shutdown()
+{
+    renderer_.destroy();
+}
+
 void ScopeEngine::render(SignalSource& source, float dt, int width, int height)
 {
     source.advance(signal_, dt);

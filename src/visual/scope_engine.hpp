@@ -16,6 +16,7 @@ public:
     ScopeEngine& operator=(const ScopeEngine&) = delete;
 
     void initialize();
+    void shutdown();
     void render(SignalSource& source, float dt, int width, int height);
 
     VisualParams& params();

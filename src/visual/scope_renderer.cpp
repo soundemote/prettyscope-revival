@@ -14,6 +14,14 @@ void ScopeRenderer::initialize()
     glEnable(GL_BLEND);
 }
 
+void ScopeRenderer::destroy()
+{
+    overlayRenderer_.destroy();
+    persistenceBuffer_.destroy();
+    beamRenderer_.destroy();
+    screenQuad_.destroy();
+}
+
 void ScopeRenderer::render(const SignalBuffer& signal, const VisualParams& params, int width, int height)
 {
     if (width < 1 || height < 1)

@@ -19,6 +19,7 @@ public:
     ScopeRenderer& operator=(const ScopeRenderer&) = delete;
 
     void initialize();
+    void destroy();
     void render(const SignalBuffer& signal, const VisualParams& params, int width, int height);
 
 private:
