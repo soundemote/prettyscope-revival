@@ -23,6 +23,7 @@ work lives in `src/` and should stay small, direct, and runnable.
 - `SignalSource` interface for test signals now, and future audio/plugin input
 - `ExternalSignalSource` bridge for future host/audio buffers
 - `ScopeEngine` host boundary that owns params, signal advancement, and rendering
+- `prettyscope.hpp` umbrella header for future host/plugin integrations
 - Keyboard controls for fast visual testing
 
 ## Roadmap

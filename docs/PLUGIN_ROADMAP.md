@@ -29,6 +29,8 @@ direction.
   audio.
 - `ExternalSignalSource` is the first bridge for copied mono/stereo buffers from
   a host or runtime.
+- Plugin shells should include `prettyscope.hpp` and avoid depending on internal
+  renderer headers unless they are actively extending the renderer.
 
 ## First Plugin Milestone
 
