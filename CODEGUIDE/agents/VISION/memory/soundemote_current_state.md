@@ -239,15 +239,16 @@ Recent proven demos include:
 * reusable DSP block phase report value type and print helper
 * DSP block phase report text export helper
 * DSP block preflight failure demo now reports failed preflight and skipped processing through DspBlockPhaseReport
+* DSP execution questions doc clarified around reusable report helpers versus blocked execution machinery
 * DSP execution questions doc
 
 Recent completion:
 
 ```
-0ac7a82 Use DSP block phase report in preflight failure demo
+a4b62da Clarify DSP block phase report boundaries
 ```
 
-`runtime_dsp_object_block_preflight_failure_demo` now uses `DspBlockPhaseReport` to show failed preflight, zero applied parameters, skipped processing, and unchanged external memory.
+`docs/DSP_EXECUTION_QUESTIONS.md` now records that block phase reports can be printed/written and can show skipped processing, while scheduler/executor/batch extraction remains blocked.
 
 It remains reporting/export only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
 

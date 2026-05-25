@@ -94,6 +94,7 @@ Recent completed work:
 * reusable DSP block phase report value type and print helper
 * DSP block phase report text export helper
 * DSP block preflight failure demo now reports failed preflight and skipped processing through DspBlockPhaseReport
+* DSP execution questions doc clarified around reusable report helpers versus blocked execution machinery
 * DSP execution questions doc
 
 Important recent repo event:
@@ -107,28 +108,26 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Use DSP block phase report in preflight failure demo.
+Clarify DSP block phase report boundaries.
 ```
 
 Task goal:
 
 ```
-Make the preflight failure block demo emit the same phase report shape as the
-successful block phase demo.
+Update the DSP execution gate doc so reusable reporting/export helpers are
+allowed while scheduler/executor/batch extraction remains blocked.
 ```
 
 Added:
 
-* `runtime_dsp_object_block_preflight_failure_demo` uses `DspBlockPhaseReport`
-* failed preflight reports `preflight ok: false`
-* skipped processing reports `process ok: false` and `samples processed: 0`
-* generated failure report text can be written when the demo runs
+* `docs/DSP_EXECUTION_QUESTIONS.md` now names printable/writable block phase reports
+* skipped processing is documented as visible status
+* reporting/export helpers are allowed only when they do not own or execute DSP phases
 
 Boundary preserved:
 
-* report type only
-* text export only
-* failure status only
+* docs only
+* reporting/export only
 * no executor
 * no scheduler
 * no production batch API
@@ -136,7 +135,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-0ac7a82 Use DSP block phase report in preflight failure demo
+a4b62da Clarify DSP block phase report boundaries
 ```
 
 Reported repo status:
