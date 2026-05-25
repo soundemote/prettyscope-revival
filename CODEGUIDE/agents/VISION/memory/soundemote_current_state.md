@@ -241,15 +241,16 @@ Recent proven demos include:
 * DSP block phase report text export helper
 * DSP block preflight failure demo now reports failed preflight and skipped processing through DspBlockPhaseReport
 * DSP execution questions doc clarified around reusable report helpers versus blocked execution machinery
+* DSP execution questions doc records independent phase reports for resync block passes
 * DSP execution questions doc
 
 Recent completion:
 
 ```
-69afc44 Report DSP block resync phases
+7b252a9 Document DSP block resync phase reporting
 ```
 
-`runtime_dsp_object_block_resync_demo` now emits separate `DspBlockPhaseReport` status for the initial block pass and the resynced block pass.
+`docs/DSP_EXECUTION_QUESTIONS.md` now records that caller-owned resync demos can report each block pass independently before and after parameter changes.
 
 It remains reporting/export only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
 

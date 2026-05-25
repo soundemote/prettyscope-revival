@@ -96,6 +96,7 @@ Recent completed work:
 * DSP block phase report text export helper
 * DSP block preflight failure demo now reports failed preflight and skipped processing through DspBlockPhaseReport
 * DSP execution questions doc clarified around reusable report helpers versus blocked execution machinery
+* DSP execution questions doc records independent phase reports for resync block passes
 * DSP execution questions doc
 
 Important recent repo event:
@@ -109,22 +110,19 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Report DSP block resync phases.
+Document DSP block resync phase reporting.
 ```
 
 Task goal:
 
 ```
-Make the block resync demo emit separate phase reports for the first block
-pass and the resynced block pass.
+Update the execution gate doc after the resync demo learned to emit separate
+phase reports for first and resynced block passes.
 ```
 
 Added:
 
-* `runtime_dsp_object_block_resync_demo` uses `DspBlockPhaseReport`
-* first block pass reports preflight/apply/process counts
-* resynced block pass reports preflight/apply/process counts
-* generated report text files are written when the demo runs
+* `docs/DSP_EXECUTION_QUESTIONS.md` records independent resync block pass reporting
 
 Boundary preserved:
 
@@ -136,7 +134,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-69afc44 Report DSP block resync phases
+7b252a9 Document DSP block resync phase reporting
 ```
 
 Reported repo status:
