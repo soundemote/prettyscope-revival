@@ -69,11 +69,26 @@ DSP binding proof ladder moving toward caller-owned manual processing,
 while avoiding scheduler/API/plugin creep.
 ```
 
+Current transition model:
+
+```
+Vision = Soundemote DSP/sandbox mind, task author, and bounded direct editor when Architect assigns implementation work.
+Codex = optional historical context / helper agent if Architect pastes Codex reports or asks Vision to consult Codex.
+```
+
+Vision should take over direct `soemdsp` inspection and implementation.
+
+Architect will copy/paste Codex context if useful.
+
+Vision should ask for Codex only when it would materially reduce uncertainty.
+
 Recent completed work:
 
 * DSP binding apply batch aggregate demo
 * manual DSP object processing chain demo
 * manual DSP object processing chain resync demo
+* manual DSP object block processing demo
+* manual DSP object block resync demo
 
 Important recent repo event:
 
@@ -83,57 +98,58 @@ Important recent repo event:
 * merge commit: `e437f77 Merge remote-tracking branch 'origin/main'`
 * repo became no longer behind origin
 
-Current/last assigned Codex task:
+Last completed Vision task:
 
 ```
-Add manual DSP object block processing demo.
+Add manual DSP object block resync demo.
 ```
 
 Task goal:
 
 ```
-Prove that after DSP binding apply syncs Circuit parameters into external memory,
-a caller-owned chain of low-level DSP objects can manually process a small block
-of samples using those synced values.
+Prove that changed Circuit parameters can be resynced through DSP binding into
+external memory before another caller-owned DSP object block-processing pass.
 ```
 
 Expected demo:
 
 * TinyGainDsp
 * TinyBiasDsp
-* gain = 2.0
-* bias = 0.25
+* first gain = 2.0
+* first bias = 0.25
+* second gain = 4.0
+* second bias = 0.5
 * input block:
 
   * 0.0
   * 0.25
   * 0.5
   * 1.0
-* expected output block:
+* first output block:
 
   * 0.25
   * 0.75
   * 1.25
   * 2.25
+* second output block:
 
-Current active stamp:
+  * 0.5
+  * 1.5
+  * 2.5
+  * 4.5
 
-```
-[received: Codex→Vision: h9q2]
-[sent: Vision→Codex: w3n7]
-```
-
-Repo-status policy:
-
-* Codex reports repo status only
-* no push recommendations unless Architect asks
-* if behind origin, pause risky new coding and inspect
-
-Next expected Codex report:
+Completion commit:
 
 ```
-Completion report for runtime_dsp_object_manual_block_demo.cpp
+aaf4d9b Add manual DSP object block resync demo
 ```
+
+Reported repo status:
+
+* working tree clean
+* ahead of origin by 2 commits
+* behind origin by 0 commits
+* conflicts: none
 
 Watch for:
 
@@ -443,7 +459,7 @@ Guidance:
 Current big-ticket technical focus:
 
 ```
-Codex / soemdsp / soemdsp-sandbox
+Vision / soemdsp / soemdsp-sandbox
 ```
 
 Other agents:
@@ -479,6 +495,7 @@ High:
 * production batch API too early
 * repo divergence/behind-origin states
 * old local docs conflicting with CODEGUIDE
+* stale Codex context being mistaken for current repo truth
 
 Medium:
 
@@ -494,7 +511,9 @@ Low:
 
 ## Current Priority
 
-Keep Codex moving through small runtime proofs.
+Vision takes over direct `soemdsp` inspection and implementation.
+
+Continue the runtime proof ladder toward `soemdsp-sandbox`.
 
 Keep CODEGUIDE usable as Vision memory.
 

@@ -232,19 +232,42 @@ Recent proven demos include:
 * caller-level batch aggregate demo
 * manual DSP object processing chain demo
 * manual DSP object processing chain resync demo
-* manual DSP object block processing demo queued/active
+* manual DSP object block processing demo
+* manual DSP object block resync demo
 
-Current Codex cadence:
+Recent completion:
 
 ```
-one proof
-one demo
-one commit
-one report
-next instruction
+aaf4d9b Add manual DSP object block resync demo
 ```
 
-Codex reports every bounded task because `soemdsp` is the big-ticket spine.
+The block resync demo proves changed Circuit parameters can be reapplied through DSP binding into external memory before another caller-owned sample block loop:
+
+```
+first output:  0.25 0.75 1.25 2.25
+second output: 0.5 1.5 2.5 4.5
+```
+
+No scheduler, production batch API, graph-owned DSP state, plugin/UI code, or Circuit-owned DSP objects were added.
+
+## Vision Takeover / Codex Context
+
+Architect is moving Vision into the primary `soemdsp` / `soemdsp-sandbox` implementation role.
+
+Current working model:
+
+```
+Vision = Soundemote DSP/sandbox mind, task author, and bounded direct editor when Architect assigns implementation work.
+Codex = optional historical context / helper agent if Architect pastes Codex reports or asks Vision to consult Codex.
+```
+
+Current stance:
+
+* Vision should inspect and edit `soemdsp` directly when Architect asks.
+* Architect may paste Codex context into Vision when useful.
+* Vision should ask Architect only when Codex context is actually needed.
+* Architect remains final authority.
+* Codex may be phased out once Vision has absorbed enough code context.
 
 ## Current Codex Repo State To Remember
 
@@ -441,6 +464,7 @@ Highest agent risks:
 * unclear active stamp thread
 * old local docs conflicting with CODEGUIDE
 * agents over-reporting
+* stale Codex context being mistaken for current repo truth
 * Director accidentally becoming engineering router
 * Void sketches being mistaken for runtime architecture
 
@@ -449,6 +473,7 @@ Current mitigation:
 * small proofs
 * clear stamps
 * CODEGUIDE canonical docs
+* Vision direct inspection before implementation
 * no push recommendations by default
 * abstraction freeze rule
 * Codex tight cadence

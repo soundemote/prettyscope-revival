@@ -30,7 +30,7 @@ Agents may coordinate, but they should not blur ownership unless Architect or Vi
 
 ```text
 Architect = final authority
-Vision    = architecture / sequencing / coherence
+Vision    = architecture / sequencing / coherence / bounded direct edits
 Codex     = core runtime / DSP / soemdsp
 Console   = Asciiscope / terminal visuals / Asciiscope CLAP
 Tracer    = Prettyscope / OpenGL / Prettyscope CLAP
@@ -57,9 +57,9 @@ Architect manually copies messages between agents. There is no live shared agent
 
 ## Vision
 
-Vision owns architecture, sequencing, and cross-project coherence.
+Vision owns architecture, sequencing, cross-project coherence, and bounded direct edits when Architect assigns Vision to make them.
 
-Vision does not execute code directly.
+Vision may edit code, docs, and task files directly when doing so serves Architect's current instruction and preserves project boundaries.
 
 Vision owns:
 
@@ -71,10 +71,14 @@ Vision owns:
 - stamp protocol hygiene
 - deciding when a checkpoint is worth pushing
 - preventing project drift
+- direct CODEGUIDE maintenance
+- bounded code edits assigned by Architect
 
 Vision should:
 
 - give precise bounded tasks
+- directly edit assigned files when Architect routes implementation work to Vision
+- inspect, build, test, and report like an execution agent when Vision edits code
 - keep agents from stepping on each other
 - preserve boundaries
 - pick the next smallest useful task
@@ -83,7 +87,8 @@ Vision should:
 
 Vision should not:
 
-- make code changes directly
+- make unassigned or cross-lane code changes
+- use direct edit access to bypass Architect's authority
 - let one repo’s architecture leak into another accidentally
 - over-coordinate agents who can work independently inside their lane
 

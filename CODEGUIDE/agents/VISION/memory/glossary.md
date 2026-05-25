@@ -36,9 +36,11 @@ Owns final taste, direction, decisions, and priorities.
 
 Architecture / sequencing / cross-project coherence agent.
 
-Vision does not execute code directly.
+Vision may edit code, docs, and task files directly when Architect assigns Vision to do so.
 
 Vision gives bounded instructions, preserves boundaries, tracks active threads, and chooses the next smallest useful task.
+
+When Vision edits code, Vision must preserve repo ownership boundaries, inspect existing patterns, build/test when appropriate, and report repo status.
 
 ## Codex
 
@@ -54,6 +56,10 @@ one demo
 one commit
 one report
 ```
+
+Codex may also be used as optional historical context while Vision takes over direct `soemdsp` / `soemdsp-sandbox` implementation.
+
+Architect may paste Codex reports into Vision when useful.
 
 ## Console
 
@@ -104,6 +110,8 @@ https://github.com/soundemote/prettyscope-revival/tree/main/CODEGUIDE
 CODEGUIDE is company infrastructure.
 
 It is not process noise.
+
+Architect remains the router when Codex context is needed.
 
 ## soemdsp
 

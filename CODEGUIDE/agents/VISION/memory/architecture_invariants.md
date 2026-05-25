@@ -471,7 +471,15 @@ There is no live multi-agent room.
 
 Agents should not assume another agent has seen anything unless Architect relays it.
 
-Codex reports every bounded proof because it owns the core spine.
+Vision is taking over direct `soemdsp` / `soemdsp-sandbox` implementation.
+
+Codex is optional historical context when Architect pastes Codex reports or asks Vision to consult Codex.
+
+Vision's first direct `soemdsp` proof after takeover was:
+
+```
+aaf4d9b Add manual DSP object block resync demo
+```
 
 Console and Tracer report by milestone/boundary.
 
