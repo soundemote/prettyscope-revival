@@ -220,6 +220,7 @@ Recent proven demos include:
 * parameter sync into external memory
 * missing target failure
 * null memory slot failure
+* null DSP memory target validation before apply writes
 * apply result text export
 * contract-style DSP object sync
 * repeated resync after Circuit parameter change
@@ -248,10 +249,10 @@ Recent proven demos include:
 Recent completion:
 
 ```
-a9ebc72 Document DSP block preflight recovery proof
+a7d6f95 Document null DSP memory preflight guard
 ```
 
-`runtime_dsp_object_block_preflight_recovery_demo` proves a caller can fail preflight safely, keep external memory unchanged, correct the binding, and run a later successful block pass.
+DSP binding target validation now rejects null memory slots before apply writes any external memory. `runtime_dsp_binding_apply_null_memory_all_or_nothing_demo` proves an earlier valid memory slot remains unchanged when a later binding has null memory.
 
 It remains reporting/export only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
 

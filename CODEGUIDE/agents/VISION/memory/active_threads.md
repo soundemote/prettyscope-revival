@@ -85,6 +85,7 @@ Vision should ask for Codex only when it would materially reduce uncertainty.
 Recent completed work:
 
 * DSP binding apply batch aggregate demo
+* DSP binding null memory all-or-nothing apply demo
 * manual DSP object processing chain demo
 * manual DSP object processing chain resync demo
 * manual DSP object block processing demo
@@ -111,20 +112,21 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Document DSP block preflight recovery proof.
+Document null DSP memory preflight guard.
 ```
 
 Task goal:
 
 ```
-Record the recovery proof after a failed block preflight: the caller can fix
-the binding and run a later successful pass.
+Record the target-validation guard that rejects null DSP memory slots before
+apply writes any external memory.
 ```
 
 Added:
 
-* `runtime_dsp_object_block_preflight_recovery_demo`
-* `docs/DSP_EXECUTION_QUESTIONS.md` records recovery after failed preflight
+* `ValidateDspBindingTargets.hpp` rejects null memory slots
+* `runtime_dsp_binding_apply_null_memory_all_or_nothing_demo`
+* `docs/DSP_EXECUTION_QUESTIONS.md` records the null-memory preflight guard
 
 Boundary preserved:
 
@@ -136,7 +138,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-a9ebc72 Document DSP block preflight recovery proof
+a7d6f95 Document null DSP memory preflight guard
 ```
 
 Reported repo status:
