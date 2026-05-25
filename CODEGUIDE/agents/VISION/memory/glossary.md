@@ -495,6 +495,8 @@ Captures:
 
 It is reporting/status only.
 
+It has a print helper and a text-file write helper.
+
 It should not:
 
 * own DSP objects

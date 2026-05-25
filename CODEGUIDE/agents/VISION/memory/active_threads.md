@@ -92,6 +92,7 @@ Recent completed work:
 * manual DSP object block preflight failure demo
 * manual DSP object block phase report demo
 * reusable DSP block phase report value type and print helper
+* DSP block phase report text export helper
 * DSP execution questions doc
 
 Important recent repo event:
@@ -105,25 +106,28 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add DSP block phase report value type.
+Add DSP block phase report text export.
 ```
 
 Task goal:
 
 ```
-Promote the demo-local block phase status shape into a tiny reusable DSP-side
-report value and print helper, while keeping phase execution caller-owned.
+Add a text export helper for the DSP block phase report so demos and future
+sandbox status surfaces can persist inspection output.
 ```
 
 Added:
 
 * `include/soemdsp/runtime/dsp/DspBlockPhaseReport.hpp`
 * `include/soemdsp/runtime/dsp/PrintDspBlockPhaseReport.hpp`
+* `include/soemdsp/runtime/dsp/WriteDspBlockPhaseReport.hpp`
 * `runtime_dsp_object_block_phase_report_demo` now uses the shared report type
+* `runtime_dsp_object_block_phase_report_demo` writes a generated text report when run
 
 Boundary preserved:
 
 * report type only
+* text export only
 * no executor
 * no scheduler
 * no production batch API
@@ -131,7 +135,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-b22cb3b Add DSP block phase report value type
+de5e26e Add DSP block phase report text export
 ```
 
 Reported repo status:

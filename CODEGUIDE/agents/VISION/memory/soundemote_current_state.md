@@ -237,17 +237,18 @@ Recent proven demos include:
 * manual DSP object block preflight failure demo
 * manual DSP object block phase report demo
 * reusable DSP block phase report value type and print helper
+* DSP block phase report text export helper
 * DSP execution questions doc
 
 Recent completion:
 
 ```
-b22cb3b Add DSP block phase report value type
+de5e26e Add DSP block phase report text export
 ```
 
-`DspBlockPhaseReport` now captures caller-owned preflight/apply/process counts for demos and future sandbox status surfaces.
+`DspBlockPhaseReport` now captures caller-owned preflight/apply/process counts for demos and future sandbox status surfaces, and it can be written as a text file for inspection.
 
-It is reporting only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
+It remains reporting/export only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
 
 No scheduler, production batch API, graph-owned DSP state, plugin/UI code, or Circuit-owned DSP objects were added.
 
