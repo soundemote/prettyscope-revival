@@ -90,6 +90,7 @@ Recent completed work:
 * manual DSP object block processing demo
 * manual DSP object block resync demo
 * manual DSP object block preflight failure demo
+* manual DSP object block phase report demo
 
 Important recent repo event:
 
@@ -102,55 +103,53 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add manual DSP object block resync demo.
+Add DSP block phase report demo.
 ```
 
 Task goal:
 
 ```
-Prove that demo-local preflight validation can catch an invalid block resync
-target before external memory is written or a second block is processed.
+Prove that a demo-local phase report can summarize caller-owned preflight,
+apply, and process counts around a block pass without adding a scheduler.
 ```
 
 Expected demo:
 
 * TinyGainDsp
 * TinyBiasDsp
-* first synced gain = 2.0
-* first synced bias = 0.25
-* changed Circuit gain = 4.0
-* changed Circuit bias = 0.5
-* invalid second bias binding target
+* gain = 4.0
+* bias = 0.5
 * input block:
 
   * 0.0
   * 0.25
   * 0.5
   * 1.0
-* first output block:
+* phase report:
 
-  * 0.25
-  * 0.75
-  * 1.25
-  * 2.25
-* preflight result:
+  * preflight ok: true
+  * apply ok: true
+  * process ok: true
+  * bindings checked: 2
+  * parameters applied: 2
+  * samples processed: 4
+* output block:
 
-  * gain preflight ok: true
-  * bias preflight ok: false
-  * combined preflight ok: false
-  * second block skipped: true
-  * memory remains gain 2.0 / bias 0.25
+  * 0.5
+  * 1.5
+  * 2.5
+  * 4.5
 
 Completion commit:
 
 ```
-b1a548d Add DSP block preflight failure demo
+6d9a5b8 Add DSP block phase report demo
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 3 commits
+* ahead of origin by 4 commits
 * behind origin by 0 commits
 * conflicts: none
 

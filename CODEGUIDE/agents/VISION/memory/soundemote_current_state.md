@@ -235,19 +235,23 @@ Recent proven demos include:
 * manual DSP object block processing demo
 * manual DSP object block resync demo
 * manual DSP object block preflight failure demo
+* manual DSP object block phase report demo
 
 Recent completion:
 
 ```
-b1a548d Add DSP block preflight failure demo
+6d9a5b8 Add DSP block phase report demo
 ```
 
-The block preflight failure demo proves caller-owned validation can catch an invalid block resync target before writing external memory or running the second block pass:
+The block phase report demo proves a caller-owned block pass can summarize preflight, apply, and process phases without introducing a scheduler or reusable executor:
 
 ```
-combined preflight ok: false
-second block skipped: true
-memory after preflight: gain 2, bias 0.25
+preflight ok: true
+apply ok: true
+process ok: true
+bindings checked: 2
+parameters applied: 2
+samples processed: 4
 ```
 
 No scheduler, production batch API, graph-owned DSP state, plugin/UI code, or Circuit-owned DSP objects were added.
