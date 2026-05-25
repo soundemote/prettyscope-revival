@@ -1,6 +1,6 @@
 # Push Policy
 
-Do not mention pushes in normal agent reports unless Architect explicitly asks.
+Shared push policy for Soundemote agents.
 
 Push bandwidth is limited.
 
@@ -13,31 +13,44 @@ Agents should focus on:
 * committing clean checkpoints
 * reporting repo status
 
-## Agent Rule
+Agents should not make push recommendations by default.
 
-Agents should not recommend pushes by default.
+## Core Rule
 
-Agents should not include “push recommended” in every report.
+Do not mention pushes in normal agent reports unless Architect explicitly asks.
 
-Agents should not run `git push` unless Architect explicitly tells them to.
-
-## Report Rule
-
-Instead of saying:
+Do not include:
 
 ```
 Push recommended.
 ```
 
-Say only:
+Do not include:
+
+```
+No push performed.
+```
+
+Instead, report repo status only.
+
+Example:
 
 ```
 Repo status:
 - working tree clean
-- branch is ahead of origin/main by N commits
+- main is ahead of origin/main by 2 commits
+- main is behind origin/main by 0 commits
 ```
 
 That gives Architect / DIRECTOR enough information to decide when to push.
+
+## Agent Rule
+
+Agents should not run `git push` unless Architect explicitly tells them to or the active task explicitly includes a push.
+
+Agents should not ask whether to push after every commit.
+
+Agents should not treat pushing as part of the normal completion-report loop.
 
 ## When Pushes May Be Mentioned
 
@@ -51,7 +64,7 @@ Mention push only when:
 
 Otherwise, do not mention pushes.
 
-## Default Workflow
+## Default Agent Workflow
 
 Agent workflow:
 
@@ -68,75 +81,42 @@ Architect / DIRECTOR workflow:
 push every little while when bandwidth allows
 ```
 
-## Minimal Rule
+## Repo Status Reporting
 
-Commit cleanly.
+Agents should report:
 
-Report ahead/behind status.
+* working tree clean / dirty
+* ahead of origin by N commits
+* behind origin by N commits
+* conflicts if any
 
-Do not talk about pushes unless asked.
+Example:
 
-# Push Policy
+```
+Repo status:
+- working tree clean
+- main is ahead of origin/main by 1 commit
+- main is behind origin/main by 0 commits
+- conflicts: none
+```
 
-Do not mention pushes in normal agent reports unless Architect explicitly asks.
+## Behind-Origin Rule
 
-Push bandwidth is limited.
+If a repo is behind origin, agents should pause risky new coding work and report clearly.
 
-Architect / DIRECTOR will push every little while as needed.
+Do not merge, rebase, pull, or push unless Architect explicitly instructs it.
 
-Agents should focus on:
+Behind-origin state is not automatically bad, but it needs visibility before more work happens.
 
-* doing bounded work
-* building/testing
-* committing clean checkpoints
-* reporting repo status
+## Conflict Rule
 
-## Agent Rule
+If conflicts appear:
 
-Agents should not recommend pushes by default.
-
-Agents should not include “push recommended” in every report.
-
-Agents should not run `git push` unless Architect explicitly tells them to.
-
-## Report Rule
-
-Instead of saying:
-
-    Push recommended.
-
-Say only:
-
-    Repo status:
-    - working tree clean
-    - branch is ahead of origin/main by N commits
-
-That gives Architect / DIRECTOR enough information to decide when to push.
-
-## When Pushes May Be Mentioned
-
-Mention push only when:
-
-* Architect asks whether to push
-* Architect explicitly requests push instructions
-* a task explicitly says to push
-* a remote checkpoint is required before risky work
-* another agent cannot continue without remote state
-
-Otherwise, do not mention pushes.
-
-## Default Workflow
-
-Agent workflow:
-
-    edit
-    build/test
-    commit
-    report repo status
-
-Architect / DIRECTOR workflow:
-
-    push every little while when bandwidth allows
+* stop
+* do not guess
+* do not resolve unrelated conflicts silently
+* report conflict paths
+* wait for Architect/Vision direction
 
 ## Minimal Rule
 

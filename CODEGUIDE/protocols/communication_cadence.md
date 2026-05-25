@@ -17,12 +17,12 @@ Good reasons to report:
 * a bounded task is complete
 * a milestone is complete
 * a commit is made
-* a push checkpoint is recommended
 * an architectural boundary is about to be crossed
 * an agent is blocked
 * another agent’s context is needed
 * a task has drifted from its original scope
 * a decision affects another project
+* repo status has become unsafe or confusing, such as being behind origin or having unresolved conflicts
 
 Bad reasons to report:
 
@@ -43,6 +43,10 @@ Agents should write reports and handoffs so Architect can paste them directly.
 
 Agents should not assume any other agent has seen a message unless Architect relays it.
 
+Architect / DIRECTOR may push repositories every little while when bandwidth allows.
+
+Agents should not treat pushing as part of normal reporting unless Architect explicitly asks.
+
 ## Vision’s Role
 
 Vision receives reports when architecture, sequencing, boundaries, or cross-agent coordination matter.
@@ -57,7 +61,9 @@ Vision should be used when:
 * public/business strategy needs technical alignment
 * a clean next task is needed
 * stamps or task threads become confusing
-* a push checkpoint should be judged
+* repo state is unsafe or confusing
+
+Vision should not be used for routine local progress inside an already approved task.
 
 ## Codex Cadence
 
@@ -81,11 +87,11 @@ Codex should report when:
 
 * a bounded task is complete
 * a commit is made
-* a push checkpoint is recommended
 * a build/test/demo fails in a task-relevant way
 * implementation requires architecture changes
 * the task risks scheduler/plugin/UI/runtime leakage
 * docs or demos reveal an architectural inconsistency
+* repo status becomes unsafe, behind origin, conflicted, or confusing
 
 Codex should not report for:
 
@@ -104,13 +110,13 @@ Console reports when:
 
 * a milestone is complete
 * a commit is made
-* a push checkpoint is recommended
 * Console is blocked
 * Console is about to introduce a shared abstraction
 * Console is about to connect to `soemdsp` / `soemdsp-sandbox`
 * Console is about to change audio/plugin architecture
 * Console is about to remove or rename inherited startingpoint structure
 * Console needs another agent’s context
+* repo status becomes unsafe, behind origin, conflicted, or confusing
 
 Console should not report for:
 
@@ -139,7 +145,6 @@ Tracer reports when:
 
 * a milestone is complete
 * a commit is made
-* a push checkpoint is recommended
 * Tracer is blocked
 * Tracer is about to port the golden renderer
 * Tracer is about to introduce renderer abstraction
@@ -147,6 +152,7 @@ Tracer reports when:
 * Tracer is about to expand descriptor coverage beyond approved scope
 * Tracer is about to touch Console/Asciiscope territory
 * Tracer needs another agent’s context
+* repo status becomes unsafe, behind origin, conflicted, or confusing
 
 Tracer should not report for:
 
@@ -169,17 +175,19 @@ Tracer reports when complete, blocked, committed, or crossing a boundary.
 
 Void mostly works directly with Architect.
 
+Void is documented for context, but Void is not part of the normal routed agent workflow.
+
 Void does not need to report to Vision after every website edit or creative sketch.
 
-Void reports to Vision when:
+Void reports to Vision only when Architect decides a Void discovery should be routed into the formal system.
 
-* a website milestone is complete
-* a public demo is ready
-* a browser sketch becomes useful to another agent
-* a design affects public identity across projects
+Reasons to route Void through Vision may include:
+
+* a website milestone affects broader Soundemote positioning
+* a public demo becomes relevant to another agent
+* a browser sketch becomes useful to Codex, Console, Tracer, or DIRECTOR
 * a technical choice risks implying runtime architecture
-* Void needs Console, Tracer, Codex, or DIRECTOR context
-* a push/deploy checkpoint is recommended
+* Void needs another agent’s context
 
 Void should not report to Vision for:
 
@@ -192,8 +200,8 @@ Void rhythm:
 
 ```
 Architect and Void sketch freely.
-Void reports milestones or cross-project implications.
-Vision routes useful discoveries when relevant.
+Void stays separate from normal agent routing.
+Vision routes useful discoveries only when Architect chooses.
 ```
 
 ## DIRECTOR Cadence
@@ -272,39 +280,65 @@ Boundary crossings include:
 * any agent introducing a shared abstraction
 * any agent changing another agent’s repo
 
-## Push Checkpoints
+## Push Policy Summary
 
-Agents should recommend push when:
+Do not mention pushes in normal agent reports unless Architect explicitly asks.
 
-* a clean milestone is committed
-* a proof should not be lost
-* another agent may depend on the state
-* a risky next phase is about to begin
-* the repo is clean and ahead of origin
-* a public/demo milestone is ready
+Push bandwidth is limited.
 
-Agents should not push unless Architect or the active task explicitly allows it.
+Architect / DIRECTOR will push every little while as needed.
 
-## Tired Architect Mode
+Agents should focus on:
 
-When Architect is tired:
+* doing bounded work
+* building/testing
+* committing clean checkpoints
+* reporting repo status
+
+Instead of saying:
+
+```
+Push recommended.
+```
+
+Say only:
+
+```
+Repo status:
+- working tree clean
+- branch is ahead of origin/main by N commits
+```
+
+Mention push only when:
+
+* Architect asks whether to push
+* Architect explicitly requests push instructions
+* a task explicitly says to push
+* a remote checkpoint is required before risky work
+* another agent cannot continue without remote state
+
+Otherwise, do not mention pushes.
+
+## Architect High-Load Mode
+
+When Architect is carrying heavy routing load:
 
 * reduce chatter
 * avoid unnecessary questions
 * give paste-ready text
 * summarize current state
-* recommend clean stopping points
 * preserve the next obvious action
 * do not create extra routing work
+* keep stamps clean
 
-A strong day should end with the system easier to resume, not harder.
+High routing load is acceptable when packets have identity, ownership, and thread continuity.
 
 ## Minimal Rule
 
 If unsure whether to report, ask:
 
 ```
-Does this message protect architecture, sequence, boundaries, money, or momentum?
+Does this message protect architecture, sequence, boundaries, money, repo safety, or momentum?
 ```
 
 If yes, report.

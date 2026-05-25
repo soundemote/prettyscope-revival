@@ -152,8 +152,13 @@ Report back with:
 * build result
 * run/test result
 * commit hash
-* repo status
-* whether push is recommended
+* repo status only:
+
+  * working tree state
+  * ahead/behind origin
+  * conflicts if any
+
+Do not include push recommendations unless Architect explicitly asks.
 
 ## Stamp
 
@@ -237,8 +242,11 @@ Report:
 * docs updated
 * build/run result
 * commit hash
-* repo status
-* whether push is recommended
+* repo status only:
+
+  * working tree state
+  * ahead/behind origin
+  * conflicts if any
 
 [received: `<Sender→Receiver: previous>`]
 [sent: `<Sender→Receiver: fresh>`]

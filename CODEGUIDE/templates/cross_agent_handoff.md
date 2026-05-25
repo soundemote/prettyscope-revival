@@ -1,176 +1,99 @@
-# Read-Only Inspection Template
+# Cross-Agent Handoff Template
 
-Use this template when an agent is asked to inspect a repo, codebase, file set, plugin shell, architecture, or project state without making changes.
+Use this template when one agent needs to pass context, a request, or a boundary-sensitive update to another agent through Architect.
 
-Read-only means:
+There is no live multi-agent chat.
 
-* no edits
-* no commits
-* no formatting changes
-* no dependency updates
-* no submodule updates
-* no generated files unless explicitly requested
-* no cleanup
+Architect manually routes the handoff.
+
+A good cross-agent handoff should be paste-ready, bounded, and clear about what the receiving agent should do.
 
 ## Purpose
 
-A read-only inspection should answer:
+A cross-agent handoff should answer:
 
-* what exists
-* where important code lives
-* how the current architecture is shaped
-* what seams are available
-* what risks exist
-* what the recommended first edit should be
-
-The goal is orientation before action.
+* who is sending
+* who is receiving
+* why the handoff exists
+* what context matters
+* what action is requested
+* what boundaries must be preserved
+* whether the receiver should report back
 
 ## Basic Shape
 
-# Read-Only Inspection: `<topic>`
+# Cross-Agent Handoff: `<Sender>` → `<Receiver>`
 
-## Scope
+## Reason
 
-Inspected:
-
-* `repo/path`
-* `file/or/folder`
-* `file/or/folder`
-
-Did not inspect:
-
-* `optional item`
-* `optional item`
-
-No edits were made.
-
-No commits were made.
-
-## Repo State
-
-Repo:
-
-```
-`<path>`
-```
-
-Branch:
-
-```
-`<branch>`
-```
-
-Remote:
-
-```
-`<remote>`
-```
-
-Status:
-
-```
-clean / dirty / ahead / behind / unknown
-```
-
-Submodule status, if relevant:
-
-```
-`<summary>`
-```
-
-## Files / Areas Inspected
-
-* `path/to/file1`
-* `path/to/file2`
-* `path/to/folder`
-* `build/config/file`
-
-## Findings
-
-* finding 1
-* finding 2
-* finding 3
-
-## Architecture Summary
-
-Current structure:
-
-```
-`<component A>`
-    -> `<component B>`
-    -> `<component C>`
-```
-
-Important classes / modules:
-
-* `<name>` — `<role>`
-* `<name>` — `<role>`
-* `<name>` — `<role>`
-
-## Relevant Seams
-
-Potential places to attach future work:
-
-* seam 1
-* seam 2
-* seam 3
-
-Example:
-
-* editor timer / repaint loop
-* audio-to-UI queue
-* parameter registry
-* renderer component
-* snapshot buffer
-* plugin metadata
-* build target
-
-## Risks / Constraints
-
-* risk 1
-* risk 2
-* risk 3
+`<Why this handoff is being sent.>`
 
 Examples:
 
-* inherited architecture is still template-shaped
-* audio thread cannot allocate
-* submodules should not be updated
-* UI path exists but not snapshot-safe yet
-* current names are visible but class renames would cause broad churn
-* descriptor identity must not be replaced by adapter-local IDs
+* Console needs Tracer to know about a visual boundary.
+* DIRECTOR needs Console to create public clips.
+* Void created a browser sketch that may inform Prettyscope.
+* Vision needs Codex to avoid a boundary collision.
+* Architect wants two agents aligned before work continues.
 
-## Recommendation
+## Context
 
-Recommended next task:
+Relevant context:
 
-```
-`<bounded first edit>`
-```
+* context item 1
+* context item 2
+* context item 3
 
-Reason:
+Keep this short.
 
-```
-`<why this is the next smallest useful step>`
-```
+Do not dump unrelated history.
 
-Do not do yet:
+## Request
+
+Please do:
+
+* requested action 1
+* requested action 2
+* requested action 3
+
+Do not do:
 
 * non-goal 1
 * non-goal 2
 * non-goal 3
 
-## Questions / Decisions Needed
+## Boundaries
 
-Only include if needed.
+Preserve these boundaries:
 
-* question 1
-* question 2
+* boundary 1
+* boundary 2
+* boundary 3
 
-If no questions are needed:
+Examples:
+
+* Do not touch another agent’s repo.
+* Do not introduce a shared abstraction yet.
+* Do not assume direct dependency between projects.
+* Do not change runtime architecture.
+* Do not rush public claims ahead of proof.
+* Do not turn a sketch into core architecture prematurely.
+
+## Expected Report
+
+Report back with:
+
+* what was inspected or changed
+* conclusion or result
+* blockers
+* next recommendation
+* commit hash if committed
+* repo status if relevant
+
+If no report is needed:
 
 ```
-No architecture decision needed before the recommended next task.
+No report needed unless blocked or boundary changes.
 ```
 
 ## Stamp
@@ -182,85 +105,40 @@ End with:
 [sent: Sender→Receiver: fresh]
 ```
 
-# Copy/Paste Read-Only Inspection Skeleton
+# Copy/Paste Handoff Skeleton
 
-# Read-Only Inspection: `<topic>`
+# Cross-Agent Handoff: `<Sender>` → `<Receiver>`
 
-## Scope
+## Reason
 
-Inspected:
+`<reason>`
 
-* `<repo/path>`
-* `<file/folder>`
+## Context
 
-No edits were made.
+* `<context>`
+* `<context>`
 
-No commits were made.
+## Request
 
-## Repo State
+Please:
 
-Repo:
+* `<action>`
+* `<action>`
 
-```
-`<path>`
-```
-
-Branch:
-
-```
-`<branch>`
-```
-
-Remote:
-
-```
-`<remote>`
-```
-
-Status:
-
-```
-`<clean/dirty/ahead/behind>`
-```
-
-## Files / Areas Inspected
-
-* `<file>`
-* `<file>`
-* `<folder>`
-
-## Findings
-
-* `<finding>`
-* `<finding>`
-* `<finding>`
-
-## Architecture Summary
-
-`<summary>`
-
-## Relevant Seams
-
-* `<seam>`
-* `<seam>`
-
-## Risks / Constraints
-
-* `<risk>`
-* `<risk>`
-
-## Recommendation
-
-Recommended next task:
-
-```
-`<task>`
-```
-
-Do not do yet:
+Do not:
 
 * `<non-goal>`
 * `<non-goal>`
+
+## Boundaries
+
+* `<boundary>`
+* `<boundary>`
+
+## Expected Report
+
+* `<report item>`
+* `<report item>`
 
 [received: `<Sender→Receiver: previous>`]
 [sent: `<Sender→Receiver: fresh>`]

@@ -8,7 +8,7 @@ A completion report should make it easy for Architect and Vision to understand:
 * what did not change
 * whether the work built/ran
 * whether it was committed
-* whether it should be pushed
+* what the repo state is
 * what stamp thread it belongs to
 
 ## Basic Shape
@@ -29,10 +29,6 @@ A completion report should make it easy for Architect and Vision to understand:
 
 ## What Was Intentionally Not Changed
 
-* non-change 1
-* non-change 2
-* non-change 3
-
 Use this section when boundary preservation matters.
 
 Examples:
@@ -43,6 +39,8 @@ Examples:
 * No submodules changed.
 * No inherited architecture removed.
 * No cross-repo dependencies added.
+* No production batch API added.
+* No graph-owned DSP state added.
 
 ## Behavior / Demo Summary
 
@@ -89,6 +87,8 @@ No generated files were written.
 ```
 
 ## Docs Updated
+
+List docs updated:
 
 * `docs/STATUS.md`
 * `docs/PLAN.md`
@@ -147,20 +147,25 @@ Not committed.
 
 ## Repo Status
 
+Report repo status only.
+
+Include:
+
 * working tree clean / dirty
-* branch status
-* ahead/behind origin
-* push performed / not performed
-* push recommended / not recommended
+* branch ahead/behind origin
+* conflict state if any
 
 Example:
 
 ```
 Working tree clean.
 main is ahead of origin/main by 1 commit.
-Push recommended as a clean checkpoint.
-No push performed.
+main is behind origin/main by 0 commits.
 ```
+
+If the repo is behind origin or conflicted, report it clearly and pause risky new work until Architect/Vision decides the safe next step.
+
+Do not include push recommendations unless Architect explicitly asks.
 
 ## Risks / Notes
 
@@ -174,6 +179,7 @@ Examples:
 * This revealed a naming inconsistency.
 * This confirms existing behavior was already all-or-nothing.
 * This leaves the next likely task as `<task>`.
+* Repo is behind origin and needs inspection before more coding.
 
 ## Stamp
 
@@ -257,11 +263,14 @@ Result:
 
 ## Repo Status
 
-`<repo status>`
+* working tree: `<clean/dirty>`
+* ahead of origin: `<N>`
+* behind origin: `<N>`
+* conflicts: `<none/list>`
 
-## Push Recommendation
+## Risks / Notes
 
-`<push recommended or not>`
+`<optional>`
 
 [received: `<Sender→Receiver: previous>`]
 [sent: `<Sender→Receiver: fresh>`]
