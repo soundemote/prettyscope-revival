@@ -86,6 +86,7 @@ Recent completed work:
 
 * DSP binding apply batch aggregate demo
 * DSP binding null memory all-or-nothing apply demo
+* DSP binding unsupported target all-or-nothing apply demo
 * manual DSP object processing chain demo
 * manual DSP object processing chain resync demo
 * manual DSP object block processing demo
@@ -113,19 +114,20 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Document DSP block null memory recovery.
+Document unsupported DSP target boundary.
 ```
 
 Task goal:
 
 ```
-Record the block-level recovery proof for a failed null-memory preflight.
+Record that unsupported DSP target kinds are metadata-only and fail validation
+before apply writes external memory.
 ```
 
 Added:
 
-* `runtime_dsp_object_block_null_memory_recovery_demo`
-* `docs/DSP_EXECUTION_QUESTIONS.md` records block null-memory recovery
+* `runtime_dsp_binding_apply_unsupported_target_all_or_nothing_demo`
+* `docs/DSP_EXECUTION_QUESTIONS.md` records unsupported target boundary
 
 Boundary preserved:
 
@@ -137,7 +139,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-2273f3e Document DSP block null memory recovery
+1fbb94f Document unsupported DSP target boundary
 ```
 
 Reported repo status:

@@ -221,6 +221,7 @@ Recent proven demos include:
 * missing target failure
 * null memory slot failure
 * null DSP memory target validation before apply writes
+* unsupported DSP target kind validation before apply writes
 * apply result text export
 * contract-style DSP object sync
 * repeated resync after Circuit parameter change
@@ -250,10 +251,10 @@ Recent proven demos include:
 Recent completion:
 
 ```
-2273f3e Document DSP block null memory recovery
+1fbb94f Document unsupported DSP target boundary
 ```
 
-`runtime_dsp_object_block_null_memory_recovery_demo` proves caller-owned block processing can fail preflight on a null memory slot without writing memory or processing samples, then recover after the memory slot is corrected.
+Unsupported DSP target kinds remain metadata-only and now fail validation before apply writes any external memory. `runtime_dsp_binding_apply_unsupported_target_all_or_nothing_demo` proves earlier valid memory remains unchanged.
 
 It remains reporting/export only. It does not run DSP, own DSP objects, own memory, introduce a scheduler, or introduce a production batch API.
 
