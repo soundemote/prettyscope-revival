@@ -253,14 +253,16 @@ Recent proven demos include:
 * runtime Circuit audio path can render a short mono WAV artifact through SineOscillator -> AudioOutput
 * bound DSP object WAV demo
 * synced Circuit frequency/amplitude parameters can drive a caller-owned DSP object that renders an audible WAV artifact
+* bound DSP object WAV resync demo
+* changed Circuit frequency/amplitude parameters can resync into external DSP memory between two halves of an audible WAV artifact
 
 Recent completion:
 
 ```
-166b8a9 Add bound DSP object WAV demo
+f5ca1c3 Add bound DSP object WAV resync demo
 ```
 
-`runtime_dsp_object_bound_wav_demo` syncs Circuit frequency and amplitude parameters into caller-owned external memory through DSP binding, then a caller-owned `TinySineDsp` renders a short mono WAV artifact from that memory.
+`runtime_dsp_object_bound_wav_resync_demo` renders the first half of a WAV from initially synced Circuit frequency/amplitude parameters, changes those parameters through Circuit setters, reapplies the binding, and renders the second half from updated external DSP memory.
 
 The WAV writer, sample loop, and DSP object are demo-local. This does not introduce an audio engine, scheduler, production file API, plugin/UI layer, or new DSP ownership model.
 

@@ -113,6 +113,8 @@ Recent completed work:
 * runtime Circuit audio path can render a short mono WAV artifact through SineOscillator -> AudioOutput
 * bound DSP object WAV demo
 * synced Circuit frequency/amplitude parameters can drive a caller-owned DSP object that renders an audible WAV artifact
+* bound DSP object WAV resync demo
+* changed Circuit frequency/amplitude parameters can resync into external DSP memory between two halves of an audible WAV artifact
 
 Important recent repo event:
 
@@ -125,23 +127,25 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add bound DSP object WAV demo.
+Add bound DSP object WAV resync demo.
 ```
 
 Task goal:
 
 ```
-Create the first audible DSP binding artifact by syncing Circuit parameters
-into external memory consumed by a caller-owned DSP object, without introducing
-a scheduler, audio engine, production batch API, or plugin/UI layer.
+Prove an audible caller-owned DSP render can respond to Circuit parameter
+changes by reapplying binding between two render phases, without introducing a
+scheduler, audio engine, production batch API, or plugin/UI layer.
 ```
 
 Added:
 
-* `runtime_dsp_object_bound_wav_demo`
+* `runtime_dsp_object_bound_wav_resync_demo`
 * demo-local mono 16-bit WAV writer
-* `docs/STATUS.md` records the bound DSP object WAV proof
-* `docs/DSP_BINDING_MILESTONE_PLAN.md` records the audible binding milestone
+* first half renders from `220Hz / 0.2`
+* second half renders after resync to `440Hz / 0.35`
+* `docs/STATUS.md` records the bound DSP object WAV resync proof
+* `docs/DSP_BINDING_MILESTONE_PLAN.md` records the audible binding resync milestone
 
 Boundary preserved:
 
@@ -156,13 +160,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-166b8a9 Add bound DSP object WAV demo
+f5ca1c3 Add bound DSP object WAV resync demo
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 23 commits
+* ahead of origin by 24 commits
 * behind origin by 0 commits
 * conflicts: none
 
