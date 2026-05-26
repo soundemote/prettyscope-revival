@@ -320,15 +320,16 @@ Recent proven demos include:
 * first `soemdsp-sandbox` smoke test parses the root HTML shell and verifies the DOM IDs, app script, and stylesheet required by the browser UI
 * first `soemdsp-sandbox` smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
 * first `soemdsp-sandbox` smoke test proves mutation methods are rejected by the read-only local server
+* first `soemdsp-sandbox` smoke test proves missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection keep no-store error behavior
 * first `soemdsp-sandbox` smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Recent completion:
 
 ```
-4596f26 Reject mutation methods in sandbox server
+59f5a97 Expand sandbox error response smoke checks
 ```
 
-The first local `soemdsp-sandbox` server now explicitly rejects mutation methods with no-store 405 responses, and the smoke test proves POST, PUT, PATCH, and DELETE rejection.
+The first local `soemdsp-sandbox` smoke test now covers missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection with no-store error responses.
 
 Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\server.py C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
 

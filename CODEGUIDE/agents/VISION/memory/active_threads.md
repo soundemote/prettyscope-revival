@@ -195,6 +195,7 @@ Recent completed work:
 * sandbox smoke test parses the root HTML shell and verifies the DOM IDs, app script, and stylesheet required by the browser UI
 * sandbox smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
 * sandbox smoke test proves mutation methods are rejected by the read-only local server
+* sandbox smoke test proves missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection keep no-store error behavior
 * sandbox smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Important recent repo event:
@@ -208,21 +209,23 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Reject mutation methods in sandbox server.
+Expand sandbox error response smoke checks.
 ```
 
 Task goal:
 
 ```
-Make the read-only sandbox server explicitly reject mutation methods with the
-same local no-store error behavior as other server responses.
+Broaden the local server error-response proof around missing routes, missing
+static files, encoded traversal, and non-read method rejection.
 ```
 
 Added:
 
-* explicit POST, PUT, PATCH, and DELETE rejection in `server.py`
-* no-store 405 smoke checks for mutation methods
-* README note that the smoke test verifies read-only mutation rejection
+* explicit OPTIONS rejection in `server.py`
+* no-store smoke checks for missing routes and missing public files
+* no-store smoke check for encoded artifact traversal
+* no-store smoke check for OPTIONS rejection
+* README note that the smoke test checks encoded traversal and non-read methods
 
 Verification:
 
@@ -234,7 +237,7 @@ Verification:
 Commit:
 
 ```
-4596f26 Reject mutation methods in sandbox server
+59f5a97 Expand sandbox error response smoke checks
 ```
 
 Boundary preserved:
