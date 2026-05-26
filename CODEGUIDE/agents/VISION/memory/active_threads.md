@@ -184,6 +184,7 @@ Recent completed work:
 * sandbox shell displays server-reported artifact roots on manifest load errors
 * sandbox shell preserves source path/root details on malformed manifest shape errors
 * sandbox shell displays a dedicated Source Error row so manifest load failures and shape failures are visible beside path/root details
+* sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
 
 Important recent repo event:
 
@@ -196,28 +197,29 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show source error details.
+Show manifest HTTP status.
 ```
 
 Task goal:
 
 ```
-Make manifest/source failures explicit in the Source panel without relying on
-status chips or inferred missing metadata.
+Make manifest/source transport results explicit in the Source panel so local
+failure diagnosis shows both the semantic error and HTTP status.
 ```
 
 Added:
 
-* `Source Error` row in the Source panel
-* successful manifest loads show `none`
-* manifest load failures show the server/browser error message beside manifest path and artifact root
-* README note for source error details
+* `HTTP Status` row in the Source panel
+* `/api/manifest` response status and status text are captured before success/error rendering
+* successful manifest loads show `200 OK`
+* missing manifest loads show `404 Not Found`
+* README note for manifest HTTP status
 
 Verification note:
 
 * `git diff --check` passed
-* normal live browser load reported `Manifest: OK`, `Source: Loaded`, `Source Error: none`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`, manifest path, and artifact root
-* temporary missing-manifest server reported `Manifest: Check`, `Source: Check`, `Source Error: manifest not found`, the missing manifest path, and artifact root
+* normal live browser load reported `Manifest: OK`, `Source: Loaded`, `Source Error: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`
+* temporary missing-manifest server reported `Manifest: Check`, `Source: Check`, `Source Error: manifest not found`, `HTTP Status: 404 Not Found`, the missing manifest path, and artifact root
 * missing-manifest path cleared artifact rows
 * browser returned to 8765 with the normal green state restored
 * browser console error log was empty
@@ -238,7 +240,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-0de2643 Show source error details
+2c81f32 Show manifest HTTP status
 ```
 
 Reported repo status:
