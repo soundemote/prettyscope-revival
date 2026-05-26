@@ -275,16 +275,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell is a Python-stdlib server plus static browser UI
 * first `soemdsp-sandbox` shell reads the generated `soemdsp` manifest and serves the WAV/artifact packet read-only
 * first `soemdsp-sandbox` shell visibly applies the read-only consumer checklist and surfaces unsafe/unsupported manifest states as warnings
+* first `soemdsp-sandbox` shell draws a read-only waveform from the generated WAV
 
 Recent completion:
 
 ```
-dec6696 Show manifest consumer checklist
+e0a4d52 Draw read-only WAV waveform
 ```
 
-The first local `soemdsp-sandbox` shell now applies the manifest consumer checklist in the browser. It reports top-level checklist status, renders 16 accept checks, and highlights unsupported contract or ownership states as warnings.
+The first local `soemdsp-sandbox` shell now fetches the generated WAV, parses PCM 16-bit samples in the browser, and draws a read-only waveform canvas. The waveform visibly shows the resync boundary between the lower-frequency/quieter first half and higher-frequency/louder second half.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`. Browser verification reported `Manifest: OK`, `Checklist: Accepted`, 16 checklist rows, zero warning rows, 7 artifact links, 2 phase panels, no horizontal overflow, a real audio source, and no console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`. Browser verification reported `Waveform: Drawn`, 4 waveform metadata rows, `Checklist: Accepted`, zero warning rows, 7 artifact links, 2 phase panels, no horizontal overflow, and no console errors. Visual screenshot confirmed the waveform is nonblank and shows the two render halves.
 
 Generated preview screenshot:
 

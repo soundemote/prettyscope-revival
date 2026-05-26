@@ -148,6 +148,7 @@ Current first shell:
 * consumes generated `soemdsp` bound WAV resync manifest
 * displays status, boundary flags, phases, artifact links, and source paths
 * visibly applies the read-only consumer checklist
+* draws a read-only waveform from the generated WAV
 * plays the generated WAV with browser-native audio controls
 
 The full modular sandbox does not exist yet.

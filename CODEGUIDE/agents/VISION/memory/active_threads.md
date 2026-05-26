@@ -139,6 +139,7 @@ Recent completed work:
 * first local `soemdsp-sandbox` repo exists as a read-only manifest shell
 * sandbox shell displays status, contract, boundary flags, phases, artifact links, and a browser-native WAV player
 * sandbox shell visibly applies the consumer checklist and shows warning states for unsafe/unsupported manifest values
+* sandbox shell draws a read-only waveform from the generated WAV
 
 Important recent repo event:
 
@@ -151,35 +152,36 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show manifest consumer checklist.
+Draw read-only WAV waveform.
 ```
 
 Task goal:
 
 ```
-Make the first sandbox shell enforce the documented read-only manifest
-consumer checklist visibly, so unsupported contract or ownership states become
-warnings instead of silent raw fields.
+Give the first sandbox shell a visual read-only audio inspection surface by
+drawing the generated WAV waveform in the browser without adding DSP execution,
+scheduling, audio-engine ownership, or project state.
 ```
 
 Added:
 
-* top-level Checklist status
-* 16-row Consumer Checklist panel
-* browser-side accept checks for contract, version, inspection mode, entry/audio paths, ownership flags, artifact links, and phase reports
-* warning styling for unsafe/unsupported values
-* README note that the checklist is applied in the browser
+* Waveform panel
+* browser-side PCM 16-bit WAV parser
+* read-only canvas waveform renderer
+* waveform metadata rows for sample rate, channels, bit depth, and frames
+* resize redraw handling
+* README note that the shell displays a read-only waveform
 
 Verification note:
 
-* live browser reported `Manifest: OK`
-* live browser reported `Checklist: Accepted`
-* 16 checklist rows rendered
+* live browser reported `Waveform: Drawn`
+* 4 waveform metadata rows rendered
+* visual screenshot confirmed a nonblank waveform with two render halves
+* live browser still reported `Checklist: Accepted`
 * zero warning rows rendered
 * 7 artifact links rendered
 * 2 phase panels rendered
-* Refresh button worked
-* browser check found no console errors, no horizontal overflow, and a real audio source
+* browser check found no console errors and no horizontal overflow
 
 Boundary preserved:
 
@@ -197,7 +199,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-dec6696 Show manifest consumer checklist
+e0a4d52 Draw read-only WAV waveform
 ```
 
 Reported repo status:
