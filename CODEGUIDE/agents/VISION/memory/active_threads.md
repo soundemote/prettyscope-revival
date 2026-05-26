@@ -188,7 +188,7 @@ Recent completed work:
 * sandbox shell displays a dedicated Source Error row so manifest load failures and shape failures are visible beside path/root details
 * sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
 * sandbox shell displays Source Detail so manifest parse failures expose the server parse message beside source error and HTTP status
-* sandbox repo includes a stdlib smoke test for manifest loading, handoff contract flags, artifact coverage, primary audio reachability, expected error/forbidden responses, and no-store headers
+* sandbox repo includes a stdlib smoke test for manifest loading, handoff contract flags, artifact/phase coverage, primary audio reachability, expected error/forbidden responses, and no-store headers
 
 Important recent repo event:
 
@@ -201,24 +201,23 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Expand sandbox smoke test for handoff contract.
+Expand sandbox smoke test for phase coverage.
 ```
 
 Task goal:
 
 ```
-Make the sandbox handoff contract, boundary flags, and artifact coverage
-repeatably checkable without manual browser inspection.
+Make manifest phase coverage and per-phase success fields repeatably checkable
+without manual browser inspection.
 ```
 
 Added:
 
-* smoke test checks expected handoff contract, version, and inspection mode
-* smoke test checks caller-owned processing/DSP flags and forbidden ownership flags
-* smoke test checks required artifact kinds are present
-* smoke test checks missing artifact paths are absent
-* smoke test checks phase-report count matches phase count
-* README smoke-test text now names handoff contract, boundary flags, and artifact coverage checks
+* smoke test checks WAV frame count is present
+* smoke test checks phase list is present
+* smoke test checks each phase has a name, successful preflight/apply/process flags, and positive samples
+* smoke test checks summed phase samples equal WAV frames
+* README smoke-test text now names phase coverage
 
 Verification note:
 
@@ -226,7 +225,7 @@ Verification note:
 * `git diff --check` passed
 * `python scripts/smoke_test.py` passed
 * smoke test did not leave a test server running; only the live 8765 sandbox server remained
-* browser remained healthy at 8765 with `Manifest: OK`, contract `soemdsp-demo-local-sandbox-handoff v1`, mode `mouse-and-ears`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
+* browser remained healthy at 8765 with `Manifest: OK`, `Phase Coverage: Complete`, `Phase Status: 2 OK`, `phase frames: 44100`, `wav frames: 44100`, `coverage: 100%`, `delta: 0`, `Waveform: Drawn`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
 Boundary preserved:
@@ -245,7 +244,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-9b3b59b Check handoff contract in smoke test
+d995d78 Check phase coverage in smoke test
 ```
 
 Reported repo status:

@@ -313,17 +313,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays a dedicated Source Error row beside manifest path and artifact root details
 * first `soemdsp-sandbox` shell displays manifest HTTP status beside source error/path/root details
 * first `soemdsp-sandbox` shell displays Source Detail for manifest parse failure messages
-* first `soemdsp-sandbox` repo includes a stdlib smoke test for manifest loading, handoff contract flags, artifact coverage, primary audio reachability, expected error/forbidden responses, and no-store headers
+* first `soemdsp-sandbox` repo includes a stdlib smoke test for manifest loading, handoff contract flags, artifact/phase coverage, primary audio reachability, expected error/forbidden responses, and no-store headers
 
 Recent completion:
 
 ```
-9b3b59b Check handoff contract in smoke test
+d995d78 Check phase coverage in smoke test
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now covers the sandbox handoff contract, boundary flags, and artifact coverage as part of the repeatable witness proof.
+The first local `soemdsp-sandbox` repo smoke test now covers manifest phase coverage and per-phase success fields as part of the repeatable witness proof.
 
-Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test now checks expected contract/version/mode, caller-owned processing and DSP flags, forbidden ownership/scheduler/audio-engine flags, required artifact kinds, missing artifact paths, and phase-report count; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, contract `soemdsp-demo-local-sandbox-handoff v1`, mode `mouse-and-ears`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test now checks WAV frame count, phase list, phase names, per-phase preflight/apply/process success, positive processed sample counts, and summed phase samples equal WAV frames; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, `Phase Coverage: Complete`, `Phase Status: 2 OK`, `phase frames: 44100`, `wav frames: 44100`, `coverage: 100%`, `delta: 0`, `Waveform: Drawn`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
 
 Generated preview screenshot:
 
