@@ -152,6 +152,7 @@ Recent completed work:
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
+* bound DSP object WAV resync manifest writer now keeps nested phase and artifact link objects consistently indented for direct inspection
 * docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
 * first local `soemdsp-sandbox` repo exists as a read-only manifest shell
 * sandbox shell displays status, contract, boundary flags, phases, artifact links, artifact reachability, artifact-packet status, and a browser-native WAV player
@@ -204,34 +205,35 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Check malformed manifest source handling.
+Tidy resync manifest indentation.
 ```
 
 Task goal:
 
 ```
-Make the automated smoke test prove that readable-but-wrong manifest JSON is
-served with source path/root details instead of being treated as a server parse
-failure.
+Improve direct readability of the generated bound WAV resync artifact manifest
+without changing the manifest contract or introducing serialization machinery.
 ```
 
 Added:
 
-* readable malformed manifest fixture
-* source path/root assertions for malformed manifest shape
-* grouped smoke checkpoint for readable malformed manifest source handling
-* README note that malformed manifest shapes preserve source details for the browser consumer
+* indent-aware demo-local JSON helper calls
+* consistently indented phase objects in the manifest
+* consistently indented artifact link objects in the manifest
+* status docs noting the artifact readability change
 
 Verification:
 
-* `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
-* `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`
+* `cmake --build C:\Users\argit\Desktop\soemdsp\build --config Debug --target runtime_dsp_object_bound_wav_resync_demo`
+* `C:\Users\argit\Desktop\soemdsp\build\examples\Debug\runtime_dsp_object_bound_wav_resync_demo.exe`
+* regenerated `C:\Users\argit\Desktop\soemdsp\runtime_dsp_object_bound_wav_resync_demo.manifest.json` inspected with clean nested indentation
+* `git -C C:\Users\argit\Desktop\soemdsp diff --check`
 * `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
 
 Commit:
 
 ```
-ebd6add Check malformed manifest source handling
+629735c Tidy resync manifest indentation
 ```
 
 Boundary preserved:

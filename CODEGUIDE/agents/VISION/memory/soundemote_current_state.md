@@ -274,6 +274,7 @@ Recent proven demos include:
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
+* bound DSP object WAV resync manifest writer keeps nested phase and artifact link objects consistently indented for direct inspection
 * docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
 * first local `soemdsp-sandbox` repo exists at `C:\Users\argit\Desktop\soemdsp-sandbox`
 * first `soemdsp-sandbox` shell is a Python-stdlib server plus static browser UI
@@ -321,12 +322,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-ebd6add Check malformed manifest source handling
+629735c Tidy resync manifest indentation
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now proves that readable-but-wrong manifest JSON is served with source path/root details instead of being treated as a server parse failure.
+The bound WAV resync demo now writes its artifact manifest with consistently indented nested phase and artifact link objects. This improves direct inspection without changing the manifest contract or introducing serialization machinery.
 
-Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
+Verification passed with `cmake --build C:\Users\argit\Desktop\soemdsp\build --config Debug --target runtime_dsp_object_bound_wav_resync_demo`, `C:\Users\argit\Desktop\soemdsp\build\examples\Debug\runtime_dsp_object_bound_wav_resync_demo.exe`, regenerated manifest inspection, `git -C C:\Users\argit\Desktop\soemdsp diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
 
 Generated preview screenshot:
 
