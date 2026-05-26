@@ -290,16 +290,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell exposes a Follow Audio / Free View toggle for choosing audio-following transport view or independent waveform inspection
 * first `soemdsp-sandbox` shell displays parameter resync values from the generated text summary
 * first `soemdsp-sandbox` shell displays parameter resync deltas and ratios from the generated text summary
+* first `soemdsp-sandbox` shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
 
 Recent completion:
 
 ```
-6ba3c1d Show artifact packet status
+fba86fc Show producer proof flags
 ```
 
-The first local `soemdsp-sandbox` shell now promotes artifact reachability into an aggregate packet health signal in the Artifacts heading.
+The first local `soemdsp-sandbox` shell now shows a Producer Proof panel that verifies the packet producer identity and the top-level manifest flags that keep the shell read-only.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`: browser verification reported artifact packet status `7/7 OK 92.88 KB`, `pill good`, 7 artifact rows, all 7 rows resolved to `OK` with byte counts, zero rows remained in `Checking`, `Waveform: Drawn`, `Checklist: Accepted`, zero warnings, no horizontal overflow, and no console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Producer Proof: Verified`, 7 producer proof rows, matching demo identity, artifact kind, runtime API false, scheduler false, audio engine false, frequency setter true, amplitude setter true, `Manifest: OK`, and `Checklist: Accepted`.
 
 Generated preview screenshot:
 

@@ -165,6 +165,7 @@ Recent completed work:
 * waveform header has a Follow Audio / Free View toggle so Architect can choose audio-following transport view or independent waveform inspection
 * sandbox shell displays first/second frequency and amplitude from the generated summary artifact
 * sandbox shell displays frequency/amplitude resync deltas and ratios from the generated summary artifact
+* sandbox shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
 
 Important recent repo event:
 
@@ -177,34 +178,32 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show artifact packet status.
+Show producer proof flags.
 ```
 
 Task goal:
 
 ```
-Promote per-artifact reachability checks into one packet-level health signal
-so the sandbox can say whether the whole generated inspection packet resolved.
+Surface the producer identity and top-level non-runtime manifest flags so the
+sandbox makes clear what generated the packet and what it still does not own.
 ```
 
 Added:
 
-* Artifacts heading status pill
-* aggregate OK count
-* aggregate served byte count
-* README note for artifact-packet reachability
+* Producer Proof panel
+* producer verification status pill
+* demo and artifact-kind rows
+* runtime API / scheduler / audio engine rows expected false
+* frequency/amplitude setter rows expected true
+* README note for producer proof flags
 
 Verification note:
 
-* live browser reported artifact packet status `7/7 OK 92.88 KB`
-* packet status used `pill good`
-* live browser reported 7 artifact rows
-* all 7 artifact rows resolved to `OK` with byte counts
-* zero artifact rows remained in `Checking`
-* live browser reported `Waveform: Drawn`
+* live browser DOM reported `Producer Proof: Verified`
+* live browser DOM reported 7 producer proof rows
+* rows matched demo identity, artifact kind, runtime API false, scheduler false, audio engine false, frequency setter true, amplitude setter true
+* live browser still reported `Manifest: OK`
 * live browser still reported `Checklist: Accepted`
-* zero warning rows rendered
-* browser check found no console errors and no horizontal overflow
 
 Boundary preserved:
 
@@ -222,7 +221,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-6ba3c1d Show artifact packet status
+fba86fc Show producer proof flags
 ```
 
 Reported repo status:
