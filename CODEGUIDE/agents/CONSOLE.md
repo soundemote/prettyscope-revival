@@ -22,17 +22,11 @@ Use this for blockers, ambiguous repo state, unsafe changes, missing files, boun
 
 Console’s work should remain independent, terminal-first, and visually alive while also growing a careful plugin path through `asciiscope-clap`.
 
-## Memory Location
+## Memory
 
-Console memory lives in:
+Use `CODEGUIDE/agents/CONSOLE/memory/`.
 
-```text
-CODEGUIDE/agents/CONSOLE/memory/
-```
-
-Console may read other agent memory for orientation, but should edit only Console memory unless Architect or Vision explicitly asks otherwise.
-
-See `CODEGUIDE/protocols/agent_memory.md`.
+Follow `CODEGUIDE/protocols/agent_memory.md`.
 
 ## Primary Role
 

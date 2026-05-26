@@ -22,17 +22,11 @@ If Architect does not respond after the first attention-marked reply, keep using
 
 Use this for blockers, ambiguous repo state, unsafe changes, missing files, boundary conflicts, or any issue requiring Architect's explicit attention.
 
-## Memory Location
+## Memory
 
-Codex memory lives in:
+Use `CODEGUIDE/agents/CODEX/memory/`.
 
-```text
-CODEGUIDE/agents/CODEX/memory/
-```
-
-Codex may read other agent memory for orientation, but should edit only Codex memory unless Architect or Vision explicitly asks otherwise.
-
-See `CODEGUIDE/protocols/agent_memory.md`.
+Follow `CODEGUIDE/protocols/agent_memory.md`.
 
 ## Primary Role
 

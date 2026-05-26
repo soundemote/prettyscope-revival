@@ -1,9 +1,5 @@
 # Tracer Memory
 
-Tracer-owned operating memory lives here.
+Tracer-owned operating memory: current context, task state, handoff summaries, and reboot notes.
 
-Use this directory for Tracer current context, task state, handoff summaries, and reboot notes.
-
-Project implementation docs still belong in the relevant project repo, such as `prettyscope/docs/` or `prettyscope-clap/`.
-
-See `CODEGUIDE/protocols/agent_memory.md`.
+Follow `CODEGUIDE/protocols/agent_memory.md`.

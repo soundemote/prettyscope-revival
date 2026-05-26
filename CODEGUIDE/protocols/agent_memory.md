@@ -1,6 +1,6 @@
 # Agent Memory
 
-Agent operating memory lives in CODEGUIDE.
+Agent operating memory lives in CODEGUIDE, not in random project working directories.
 
 Each active agent owns a memory directory:
 
@@ -12,7 +12,7 @@ CODEGUIDE/agents/TRACER/memory/
 CODEGUIDE/agents/DIRECTOR/memory/
 ```
 
-## Ownership
+## Rules
 
 Agents may read any agent memory when they need context.
 
@@ -22,7 +22,7 @@ Vision may read and maintain cross-agent memory for routing, coherence, and rebo
 
 Architect may override any memory rule.
 
-## What Belongs Here
+## Belongs Here
 
 Agent memory is for:
 
@@ -36,7 +36,7 @@ Agent memory is for:
 
 Keep memory compact and current. Prefer the latest useful state over full history.
 
-## What Does Not Belong Here
+## Does Not Belong Here
 
 Project implementation docs belong in the project repo.
 
@@ -49,13 +49,9 @@ asciiscope/docs/
 prettyscope-clap/docs/
 ```
 
-Do not use random project working directories as agent memory spaces.
-
 Do not store private scratchpad drift in product repos.
 
 ## Cross-Agent Use
-
-Other agents may read an agent's memory for orientation.
 
 Reading does not transfer ownership.
 

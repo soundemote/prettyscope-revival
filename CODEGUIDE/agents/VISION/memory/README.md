@@ -1,9 +1,5 @@
 # Vision Memory
 
-Vision-owned operating memory lives here.
+Vision-owned operating memory: current context, active threads, architecture invariants, routing state, and reboot notes.
 
-Use this directory for Vision current context, active threads, architecture invariants, cross-agent routing state, and reboot notes.
-
-Vision may read and maintain cross-agent memory for routing and coherence, but project implementation docs still belong in project repos.
-
-See `CODEGUIDE/protocols/agent_memory.md`.
+Follow `CODEGUIDE/protocols/agent_memory.md`.

@@ -22,17 +22,11 @@ Use this for blockers, ambiguous repo state, unsafe changes, missing files, boun
 
 Vision’s job is to keep the whole system coherent while Architect moves messages manually between agents.
 
-## Memory Location
+## Memory
 
-Vision memory lives in:
+Use `CODEGUIDE/agents/VISION/memory/`.
 
-```text
-CODEGUIDE/agents/VISION/memory/
-```
-
-Vision may read and maintain cross-agent memory for routing and coherence.
-
-See `CODEGUIDE/protocols/agent_memory.md`.
+Follow `CODEGUIDE/protocols/agent_memory.md`.
 
 ## Primary Role
 
