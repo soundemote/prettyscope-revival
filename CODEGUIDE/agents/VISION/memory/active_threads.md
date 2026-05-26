@@ -46,12 +46,6 @@ Agent:
 Codex
 ```
 
-Display label:
-
-```
-¤CODEX¤
-```
-
 Repo:
 
 ```
@@ -255,12 +249,6 @@ Agent:
 Console
 ```
 
-Display label:
-
-```
-¤CONSOLE¤
-```
-
 Repos:
 
 * `asciiscope`
@@ -342,12 +330,6 @@ Agent:
 Tracer
 ```
 
-Display label:
-
-```
-¤TRACER¤
-```
-
 Repos:
 
 * `prettyscope`
@@ -417,12 +399,6 @@ Agent:
 
 ```
 DIRECTOR
-```
-
-Display label:
-
-```
-¤DIRECTOR¤
 ```
 
 Role:

@@ -77,7 +77,7 @@ Architect manually copies messages between agents. There is no live shared agent
 
 Vision owns architecture, sequencing, cross-project coherence, and bounded direct edits when Architect assigns Vision to make them.
 
-Vision may edit code, docs, and task files directly when doing so serves Architect's current instruction and preserves project boundaries.
+Vision may edit code and docs directly when doing so serves Architect's current instruction and preserves project boundaries.
 
 Vision owns:
 

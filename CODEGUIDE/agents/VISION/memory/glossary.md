@@ -36,7 +36,7 @@ Owns final taste, direction, decisions, and priorities.
 
 Architecture / sequencing / cross-project coherence agent.
 
-Vision may edit code, docs, and task files directly when Architect assigns Vision to do so.
+Vision may edit code and docs directly when Architect assigns Vision to do so.
 
 Vision gives bounded instructions, preserves boundaries, tracks active threads, and chooses the next smallest useful task.
 
@@ -847,11 +847,3 @@ Public proof should be truthful and concrete.
 ## ¤VISION¤ Vision
 
 Architecture, sequencing, cross-project coherence, CODEGUIDE maintenance, and bounded direct editing agent.
-
-## ¤VOID¤ Void
-
-Reserved / inactive display identity.
-
-No current active role.
-
-If revived later, define a fresh lane before routing work through it.

@@ -105,7 +105,6 @@ Architect:
 
 Vision:
 
-* display label `¤VISION¤`
 * architecture
 * sequencing
 * cross-project coherence
@@ -115,7 +114,6 @@ Vision:
 
 Codex:
 
-* display label `¤CODEX¤`
 * `soemdsp`
 * `soemdsp-sandbox`
 * core runtime and DSP execution
@@ -123,7 +121,6 @@ Codex:
 
 Console:
 
-* display label `¤CONSOLE¤`
 * `asciiscope`
 * `asciiscope-clap`
 * terminal/ASCII visual lane
@@ -131,7 +128,6 @@ Console:
 
 Tracer:
 
-* display label `¤TRACER¤`
 * `prettyscope`
 * `prettyscope-clap`
 * OpenGL/phosphor visual lane
@@ -139,7 +135,6 @@ Tracer:
 
 DIRECTOR:
 
-* display label `¤DIRECTOR¤`
 * business
 * money
 * audience
@@ -148,6 +143,8 @@ DIRECTOR:
 * YouTube
 * offers
 * finished creative product strategy
+
+Display labels live in `CODEGUIDE/AGENTS.md`.
 
 ## CODEGUIDE State
 
@@ -566,8 +563,3 @@ The goal is for Soundemote to become undeniable.
 Undeniable means people can see, hear, run, follow, trust, and eventually buy into what Architect is building.
 
 Keep Soundemote becoming harder to ignore.
-Reserved / inactive:
-
-* display label `¤VOID¤`
-* no current active role
-* if revived later, define a fresh role before routing work through it
