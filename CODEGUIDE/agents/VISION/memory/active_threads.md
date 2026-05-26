@@ -196,6 +196,7 @@ Recent completed work:
 * sandbox smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
 * sandbox smoke test proves mutation methods are rejected by the read-only local server
 * sandbox smoke test proves missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection keep no-store error behavior
+* sandbox smoke test prints sub-checkpoints for root shell, static assets, manifest transport, manifest contracts, artifact reports/audio, and server error responses
 * sandbox smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Important recent repo event:
@@ -209,27 +210,28 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Expand sandbox error response smoke checks.
+Split sandbox smoke checkpoints.
 ```
 
 Task goal:
 
 ```
-Broaden the local server error-response proof around missing routes, missing
-static files, encoded traversal, and non-read method rejection.
+Make the sandbox smoke output identify which major surface failed instead of
+reporting every valid-manifest failure under one broad group.
 ```
 
 Added:
 
-* explicit OPTIONS rejection in `server.py`
-* no-store smoke checks for missing routes and missing public files
-* no-store smoke check for encoded artifact traversal
-* no-store smoke check for OPTIONS rejection
-* README note that the smoke test checks encoded traversal and non-read methods
+* root shell contract checkpoint
+* static assets checkpoint
+* manifest transport checkpoint
+* manifest contracts checkpoint
+* artifact reports and audio checkpoint
+* server error responses checkpoint
+* README note describing the sub-checkpoints
 
 Verification:
 
-* `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\server.py`
 * `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
 * `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`
 * `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
@@ -237,7 +239,7 @@ Verification:
 Commit:
 
 ```
-59f5a97 Expand sandbox error response smoke checks
+ce46c60 Split sandbox smoke checkpoints
 ```
 
 Boundary preserved:

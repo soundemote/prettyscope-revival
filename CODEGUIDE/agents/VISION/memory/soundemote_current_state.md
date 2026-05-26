@@ -321,17 +321,18 @@ Recent proven demos include:
 * first `soemdsp-sandbox` smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
 * first `soemdsp-sandbox` smoke test proves mutation methods are rejected by the read-only local server
 * first `soemdsp-sandbox` smoke test proves missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection keep no-store error behavior
+* first `soemdsp-sandbox` smoke test prints sub-checkpoints for root shell, static assets, manifest transport, manifest contracts, artifact reports/audio, and server error responses
 * first `soemdsp-sandbox` smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Recent completion:
 
 ```
-59f5a97 Expand sandbox error response smoke checks
+ce46c60 Split sandbox smoke checkpoints
 ```
 
-The first local `soemdsp-sandbox` smoke test now covers missing routes, missing public files, encoded artifact traversal, and OPTIONS rejection with no-store error responses.
+The first local `soemdsp-sandbox` smoke test now prints sub-checkpoints for the major valid-manifest surfaces, so failures point at root shell, static assets, manifest transport/contracts, artifact reports/audio, or server error behavior.
 
-Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\server.py C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
+Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
 
 Generated preview screenshot:
 
