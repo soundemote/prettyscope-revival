@@ -169,12 +169,14 @@ Recent completed work:
 * sandbox shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * sandbox shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * sandbox shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
+* sandbox shell includes missing artifact path count in artifact coverage and treats missing paths as coverage failures
 * sandbox shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
 * sandbox shell displays the artifact manifest as pretty-printed read-only JSON in the same document viewer
 * sandbox shell clears stale dependent UI surfaces when manifest loading fails
 * sandbox shell displays served artifact modified times from HTTP Last-Modified metadata
 * sandbox shell checks artifact reachability with metadata-only HTTP HEAD requests
 * sandbox shell labels artifact table columns: Label, Kind, Path, Modified, Status
+* sandbox shell renders missing artifact paths as non-clickable artifact rows
 * sandbox server sends no-store headers for local JSON and file responses
 * sandbox shell displays browser-side manifest response load time
 * sandbox shell displays manifest response cache headers in the Source panel
@@ -198,30 +200,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show source error details.
+Guard missing artifact paths.
 ```
 
 Task goal:
 
 ```
-Make source failures explain themselves in the Source panel with a headline
-error, optional detail, HTTP status, path, and artifact root.
+Prevent malformed artifact links from becoming misleading clickable rows and
+make missing artifact paths fail artifact coverage visibly.
 ```
 
 Added:
 
-* `Source Detail` row in the Source panel
-* successful manifest loads show `none`
-* manifest parse failures show the server parse detail message
-* README wording now names source error and detail fields
+* artifact rows without paths render as `div` rows instead of anchors
+* missing artifact labels, kinds, and paths fall back to `missing`
+* Artifact Coverage includes `missing paths`
+* Artifact Coverage requires missing path count to be zero
+* README note for missing-path artifact coverage and non-clickable missing paths
 
 Verification note:
 
 * `git diff --check` passed
-* normal live browser load reported `Manifest: OK`, `Source: Loaded`, `Source Error: none`, `Source Detail: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`
-* temporary invalid-JSON server reported `Manifest: Check`, `Source: Check`, `Source Error: manifest JSON parse failed`, populated Source Detail, `HTTP Status: 500 Internal Server Error`, manifest path, and artifact root
-* invalid-JSON path cleared artifact rows
-* browser returned to 8765 with the normal green state restored
+* temporary missing-artifact-path manifest reported `Artifact Coverage: Check`, `missing paths: 1`, and artifact packet `7/8 OK`
+* missing artifact path row rendered as `DIV`, had no `href`, displayed path `missing`, and status `Check`
+* temporary missing-artifact-path run kept waveform drawn and produced no browser console errors
+* browser returned to 8765 with `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
 Boundary preserved:
@@ -240,7 +243,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-5ad7ef1 Show source parse details
+ae39035 Guard missing artifact paths
 ```
 
 Reported repo status:

@@ -294,12 +294,14 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * first `soemdsp-sandbox` shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * first `soemdsp-sandbox` shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
+* first `soemdsp-sandbox` shell includes missing artifact path count in artifact coverage
 * first `soemdsp-sandbox` shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
 * first `soemdsp-sandbox` shell displays the artifact manifest as pretty-printed read-only JSON in the same document viewer
 * first `soemdsp-sandbox` shell clears stale dependent UI surfaces when manifest loading fails
 * first `soemdsp-sandbox` shell displays served artifact modified times from HTTP Last-Modified metadata
 * first `soemdsp-sandbox` shell checks artifact reachability with metadata-only HTTP HEAD requests
 * first `soemdsp-sandbox` shell labels artifact table columns: Label, Kind, Path, Modified, Status
+* first `soemdsp-sandbox` shell renders missing artifact paths as non-clickable artifact rows
 * first `soemdsp-sandbox` server sends no-store headers for local JSON and file responses
 * first `soemdsp-sandbox` shell displays browser-side manifest response load time
 * first `soemdsp-sandbox` shell displays manifest response cache headers in the Source panel
@@ -315,12 +317,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-5ad7ef1 Show source parse details
+ae39035 Guard missing artifact paths
 ```
 
-The first local `soemdsp-sandbox` shell now makes manifest/source failures explicit with Source Error, Source Detail, HTTP Status, manifest path, and artifact root fields.
+The first local `soemdsp-sandbox` shell now treats missing artifact paths as artifact coverage failures and renders those rows as non-clickable diagnostics.
 
-Verification passed with `git diff --check`, the live browser at `http://127.0.0.1:8765`, and a temporary invalid-JSON server: normal load stayed green with `Source Error: none`, `Source Detail: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`; invalid JSON reported `Manifest: Check`, `Source: Check`, `Source Error: manifest JSON parse failed`, populated Source Detail, `HTTP Status: 500 Internal Server Error`, displayed manifest path and artifact root, cleared artifact rows, and produced no browser console errors; returning to 8765 restored `Manifest: OK`, `Source Error: none`, `Source Detail: none`, and `HTTP Status: 200 OK`.
+Verification passed with `git diff --check`, the live browser at `http://127.0.0.1:8765`, and a temporary missing-artifact-path manifest in the `soemdsp` artifact root: the fixture reported `Artifact Coverage: Check`, `missing paths: 1`, artifact packet `7/8 OK`, and a missing artifact path row rendered as `DIV` with no `href`, path `missing`, and status `Check`; waveform still drew and there were no browser console errors; returning to 8765 restored `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`.
 
 Generated preview screenshot:
 
