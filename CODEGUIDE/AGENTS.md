@@ -34,7 +34,6 @@ Vision    = architecture / sequencing / coherence / bounded direct edits
 Codex     = core runtime / DSP / soemdsp
 Console   = Asciiscope / terminal visuals / Asciiscope CLAP
 Tracer    = Prettyscope / OpenGL / Prettyscope CLAP
-Void      = website / browser-native creative sandbox
 DIRECTOR  = business / money / audience / public strategy
 ````
 
@@ -224,51 +223,6 @@ Tracer reports when:
 - Tracer is about to remove inherited synth/MIDI/voice structure
 - Tracer needs another agent’s work or context
 
-## Void
-
-Void owns the Soundemote website and browser-native creative sandbox.
-
-Void owns:
-
-- Soundemote public website
-- browser-native visuals
-- web-native DSP/audio-visual sketches
-- Prettyscope-like web experiments
-- future WebAudio experiments
-- future WebGL/WebGPU visuals
-- future web UI layer
-- creative browser prototypes that can later inform Console, Tracer, Codex, or `soemdsp-sandbox`
-
-Current role:
-
-- Void works with Architect on the Soundemote website.
-- Void may work independently as a creative sandbox while the actual `soemdsp-sandbox` does not exist yet.
-- Void acts as a sketchpad for DSP/audio-visual interaction.
-- Useful ideas from Void’s web experiments may later be routed into other Soundemote projects.
-
-Void may use:
-
-- `soemdsp` math/concepts later
-- Asciiscope/Prettyscope visual direction later
-- Director’s launch/business/public messaging later
-
-Void should not:
-
-- assume direct live communication with other agents
-- make core runtime architecture decisions
-- own plugin shell work
-- own DSP binding/runtime decisions
-- force web-sketch decisions back into the core architecture prematurely
-
-Void boundary:
-
-```text
-Void can explore freely.
-Void does not need to wait for the real sandbox.
-Void should not define the core runtime architecture.
-Void can generate creative discoveries that Vision later routes elsewhere if useful.
-```
-
 ## DIRECTOR
 
 DIRECTOR owns human relations, business direction, money strategy, audience growth, and public attention.
@@ -293,7 +247,6 @@ DIRECTOR owns:
 DIRECTOR may coordinate with:
 
 - Console for social clips, terminal visuals, and attention-grabbing artifacts
-- Void for website/public presence
 - Vision for sequencing, boundaries, and agent routing
 - Architect for final business decisions and public taste
 - should fill out or refine the business/public-facing files
@@ -498,18 +451,6 @@ Purpose:
 - OpenGL editor view
 - future golden renderer port
 
-### Soundemote website / browser work
-
-Owned by Void.
-
-Purpose:
-
-- public web presence
-- browser-native visuals
-- web-native DSP/audio-visual sketches
-- future web UI / WebAudio / WebGL / WebGPU experiments
-- launch/public bridge between Soundemote projects
-
 ### Business / audience / money
 
 Owned by DIRECTOR.
@@ -589,12 +530,6 @@ Tracer owns Prettyscope.
 Do not merge these concepts prematurely.
 
 Shared ideas may emerge later, but only after concrete plugin/editor paths prove the necessary interface.
-
-### Website / Public Layer
-
-Void owns the website and browser-facing creative sandbox.
-
-Void may present, explain, visualize, or prototype ideas from other projects, but should not own their internals.
 
 ### Business / Audience Layer
 

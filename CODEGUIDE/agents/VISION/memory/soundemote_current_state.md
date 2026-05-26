@@ -12,7 +12,7 @@ Current push context:
 * Day 2 means 58 days left
 * Architect is actively coordinating multiple agents
 * Codex is the main big-ticket technical focus
-* Console, Tracer, DIRECTOR, and Void are active but should not overload Vision routing
+* Console, Tracer, and DIRECTOR are active but should not overload Vision routing
 * the business pressure is real: Soundemote needs to become a functional business so Architect does not have to take another low-paying job and waste life potential
 * Vision should remember that business/money is handled primarily by DIRECTOR and other business agents
 * Vision's job is to keep worrying about `soemdsp`, `soemdsp-sandbox`, and the technical proof ladder
@@ -132,13 +132,6 @@ Tracer:
 * `prettyscope-clap`
 * OpenGL/phosphor visual lane
 * Prettyscope plugin visual path
-
-Void:
-
-* Soundemote website
-* browser-native creative sandbox
-* separate from normal routed agent workflow
-* works directly with Architect
 
 DIRECTOR:
 
@@ -468,26 +461,6 @@ Descriptors are truth.
 
 Sidequest/JUCE/CLAP plumbing adapts to descriptors.
 
-## Void State
-
-Void is separate from normal routed agent workflow.
-
-Void works directly with Architect.
-
-Void owns:
-
-* Soundemote website
-* browser-native visuals
-* web-native DSP/audio-visual sketches
-* Prettyscope-like web experiments
-* future WebAudio/WebGL/WebGPU ideas
-
-Void has created a Prettyscope-like web plugin / web visual experiment.
-
-Void is a creative sketchpad while the actual `soemdsp-sandbox` does not exist yet.
-
-Void can inspire other projects, but does not define core runtime architecture.
-
 ## DIRECTOR State
 
 DIRECTOR owns business/public strategy.
@@ -566,7 +539,6 @@ Highest agent risks:
 * agents over-reporting
 * stale Codex context being mistaken for current repo truth
 * Director accidentally becoming engineering router
-* Void sketches being mistaken for runtime architecture
 
 Current mitigation:
 
@@ -578,7 +550,6 @@ Current mitigation:
 * abstraction freeze rule
 * Codex tight cadence
 * Console/Tracer milestone cadence
-* Void separate
 * DIRECTOR mostly direct with Architect
 
 ## Current Success Standard

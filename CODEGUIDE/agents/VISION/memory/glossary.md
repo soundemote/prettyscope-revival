@@ -73,14 +73,6 @@ Execution agent for Prettyscope and Prettyscope CLAP.
 
 Owns OpenGL/phosphor/GPU visuals, descriptor parameters, plugin visual path, and future golden renderer port.
 
-## Void
-
-Website and browser-native creative sandbox agent.
-
-Void works directly with Architect and is separate from the normal routed agent mesh.
-
-Void can freely sketch web-native DSP/audio-visual interactions.
-
 ## DIRECTOR
 
 Business / money / audience / public strategy agent.
@@ -162,8 +154,6 @@ Current first shell:
 * plays the generated WAV with browser-native audio controls
 
 The full modular sandbox does not exist yet.
-
-Void currently acts as a creative web sketchpad while this is being built.
 
 ## Asciiscope
 
@@ -657,16 +647,6 @@ Do not introduce prematurely.
 
 Console should not add it until Asciiscope terminal and JUCE/plugin paths prove the required drawing interface.
 
-## Browser-Native Creative Sandbox
-
-Void’s lane.
-
-Web-based creative sketchpad for DSP/audio-visual interaction.
-
-Can produce ideas that later inform other projects.
-
-Does not define core runtime architecture.
-
 ## Agent
 
 A role/persona/process helping Architect with a specific lane.
@@ -796,7 +776,6 @@ Examples:
 * Codex owns core runtime
 * Console owns Asciiscope
 * Tracer owns Prettyscope
-* Void owns browser sketches
 * DIRECTOR owns business
 * Vision owns sequencing
 

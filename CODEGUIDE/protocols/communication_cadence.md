@@ -171,39 +171,6 @@ Tracer works independently inside that scope.
 Tracer reports when complete, blocked, committed, or crossing a boundary.
 ```
 
-## Void Cadence
-
-Void mostly works directly with Architect.
-
-Void is documented for context, but Void is not part of the normal routed agent workflow.
-
-Void does not need to report to Vision after every website edit or creative sketch.
-
-Void reports to Vision only when Architect decides a Void discovery should be routed into the formal system.
-
-Reasons to route Void through Vision may include:
-
-* a website milestone affects broader Soundemote positioning
-* a public demo becomes relevant to another agent
-* a browser sketch becomes useful to Codex, Console, Tracer, or DIRECTOR
-* a technical choice risks implying runtime architecture
-* Void needs another agent’s context
-
-Void should not report to Vision for:
-
-* every visual tweak
-* ordinary website layout changes
-* routine browser prototype iteration
-* casual creative exploration with Architect
-
-Void rhythm:
-
-```
-Architect and Void sketch freely.
-Void stays separate from normal agent routing.
-Vision routes useful discoveries only when Architect chooses.
-```
-
 ## DIRECTOR Cadence
 
 DIRECTOR mostly speaks directly with Architect.
@@ -213,7 +180,7 @@ DIRECTOR should not route every business or content idea through Vision.
 DIRECTOR reports to Vision when:
 
 * business strategy affects technical sequencing
-* a campaign needs Console, Tracer, Void, or Codex work
+* a campaign needs Console, Tracer, or Codex work
 * a technical claim needs architecture accuracy
 * public messaging risks misrepresenting a project
 * a launch plan needs cross-agent sequencing
@@ -272,7 +239,6 @@ Boundary crossings include:
 
 * Console touching Tracer work
 * Tracer touching Console work
-* Void defining core runtime architecture
 * DIRECTOR assigning engineering work directly
 * Codex introducing plugin or UI abstractions
 * any agent updating submodules

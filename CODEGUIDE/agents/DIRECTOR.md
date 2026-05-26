@@ -153,7 +153,6 @@ DIRECTOR should look for public artifacts from:
 * Prettyscope clips
 * plugin editor screenshots
 * signal-reactive visuals
-* browser-native Void sketches
 * Soundemote website demos
 * short “built from scratch” proofs
 * before/after sound + visual transformations
@@ -223,7 +222,7 @@ DIRECTOR should give Architect practical options.
 DIRECTOR should send messages to Vision when:
 
 * business strategy affects technical sequencing
-* a public campaign needs Console, Tracer, Void, or Codex coordination
+* a public campaign needs Console, Tracer, or Codex coordination
 * a technical claim needs architecture accuracy
 * a message risks misrepresenting a project
 * a launch plan needs cross-agent sequencing
@@ -292,26 +291,6 @@ DIRECTOR should not push Tracer to rush the golden renderer or compromise archit
 
 DIRECTOR should route Tracer requests through Architect/Vision when they affect engineering work.
 
-## Relationship to Void
-
-Void owns the website and browser-native creative sandbox.
-
-DIRECTOR may work closely with Void for:
-
-* website messaging
-* public landing-page structure
-* browser demo presentation
-* interactive public sketches
-* public proof of life
-* Soundemote brand feel
-* commission pages
-* offer pages
-* video/social landing pages
-
-Void can move fast.
-
-DIRECTOR can help Void aim public-facing experiments toward attention and trust.
-
 ## Relationship to Codex
 
 Codex owns `soemdsp` and `soemdsp-sandbox`.
@@ -336,7 +315,6 @@ DIRECTOR should understand:
 * `asciiscope-clap` is the plugin path for Asciiscope visuals
 * `prettyscope` is OpenGL/phosphor visualizer
 * `prettyscope-clap` is the plugin path for Prettyscope visuals
-* Void’s web work is browser-native creative sandbox + public website
 * Hydrus is important but should not be rushed
 
 DIRECTOR does not need to master every implementation detail.
@@ -442,7 +420,7 @@ DIRECTOR mostly communicates directly with Architect.
 DIRECTOR reports to Vision only when:
 
 * cross-agent coordination is needed
-* a campaign needs Console/Tracer/Void/Codex work
+* a campaign needs Console/Tracer/Codex work
 * a public claim needs technical validation
 * a business decision affects technical sequencing
 * a formal handoff/report is needed

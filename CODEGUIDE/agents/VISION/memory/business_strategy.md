@@ -192,7 +192,7 @@ Immediate paid offers can include:
 * sound design for game/video/streamer/project
 * music production or sonic identity work
 * visual identity loop for an artist/project
-* custom Soundemote-made clip using Asciiscope/Prettyscope/Void visuals
+* custom Soundemote-made clip using Asciiscope/Prettyscope visuals
 
 Offers should be concrete and buyable.
 
@@ -210,7 +210,7 @@ Deliverables may include:
 
 * short rendered video loop
 * optional audio-reactive style
-* visual style based on Asciiscope / Prettyscope / Void experiments
+* visual style based on Asciiscope / Prettyscope experiments
 * usable for social posts, release teasers, or background visuals
 
 ### Track Visualizer
@@ -255,7 +255,6 @@ Good public artifacts:
 
 * Asciiscope clips
 * Prettyscope clips
-* Void browser visual demos
 * plugin editor screenshots
 * signal-reactive visuals
 * “built from scratch” proof clips
@@ -347,7 +346,7 @@ DIRECTOR should mostly talk directly with Architect.
 
 DIRECTOR should contact Vision when:
 
-* a campaign needs Console, Tracer, Void, or Codex work
+* a campaign needs Console, Tracer, or Codex work
 * public messaging needs technical accuracy
 * business strategy affects technical sequencing
 * a handoff to another agent is needed
@@ -367,8 +366,6 @@ Codex creates deep proof.
 Console creates terminal/ASCII visual proof.
 
 Tracer creates OpenGL/phosphor visual proof.
-
-Void creates browser-native creative proof.
 
 DIRECTOR translates proof into attention, trust, offers, and money.
 

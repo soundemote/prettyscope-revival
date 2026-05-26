@@ -32,7 +32,6 @@ Examples:
 
 * Console needs Tracer to know about a visual boundary.
 * DIRECTOR needs Console to create public clips.
-* Void created a browser sketch that may inform Prettyscope.
 * Vision needs Codex to avoid a boundary collision.
 * Architect wants two agents aligned before work continues.
 

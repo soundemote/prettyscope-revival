@@ -203,7 +203,6 @@ Tracer should not:
 * touch `asciiscope` or `asciiscope-clap` unless explicitly routed
 * make Prettyscope depend on `soemdsp-sandbox` internals
 * copy Asciiscope terminal assumptions into Prettyscope
-* let web/Void sketches define plugin renderer architecture
 * rush the golden renderer port
 * let inherited Sidequest architecture own Prettyscope identity
 
@@ -276,16 +275,6 @@ Future bridge possibilities:
 
 But those are not assumed today.
 
-## Relationship to Void
-
-Void owns browser-native creative sketches and the Soundemote website.
-
-Void may create Prettyscope-like web experiments, but those sketches do not define Prettyscope CLAP architecture by default.
-
-Void can inspire.
-
-Tracer owns Prettyscope implementation.
-
 ## Relationship to DIRECTOR
 
 DIRECTOR owns business/audience/public strategy.
@@ -324,7 +313,6 @@ Tracer should not:
 * reformat unrelated code
 * touch Console repos
 * touch Codex repos
-* edit Void website files
 * rush inherited synth cleanup
 * push unless Architect or the task explicitly allows it
 

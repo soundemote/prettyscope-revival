@@ -393,43 +393,6 @@ Latest known Tracer stamp:
 
 This may be stale if Tracer has since received light-guidance messages.
 
-## Void Active Thread
-
-Agent:
-
-```
-Void
-```
-
-Role:
-
-```
-Separate browser-native creative sandbox and Soundemote website lane.
-```
-
-Normal routing:
-
-```
-Void works directly with Architect.
-```
-
-Void is not part of the normal routed agent mesh.
-
-Current state:
-
-* Void is working happily with Architect on the Soundemote website
-* Void created a Prettyscope-like web plugin / web visual experiment
-* Void acts as a sketchpad for DSP/audio-visual interaction while the real `soemdsp-sandbox` does not exist yet
-
-Guidance:
-
-* Void can explore freely
-* Void does not need to wait for the real sandbox
-* Void should not define core runtime architecture
-* Void discoveries can later be routed into Codex/Console/Tracer/DIRECTOR if Architect decides they are useful
-
-No active formal stamp required unless Architect routes a Void discovery into the formal system.
-
 ## DIRECTOR Active Thread
 
 Agent:
@@ -565,12 +528,6 @@ Other agents:
 light pressure, milestone cadence
 ```
 
-Void:
-
-```
-separate/private creative sandbox with Architect
-```
-
 Pushes:
 
 ```
@@ -598,7 +555,6 @@ Medium:
 
 * Director pulling engineering agents into public work too early
 * Console/Tracer adding shared abstractions too soon
-* Void sketches being mistaken for runtime architecture
 * stale active stamps
 
 Low:

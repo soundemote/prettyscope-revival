@@ -387,28 +387,6 @@ What part is reusable core?
 What part is plugin/editor shell?
 ```
 
-## Void Invariants
-
-Void is separate from the normal routed agent mesh.
-
-Void works directly with Architect.
-
-Void owns:
-
-* Soundemote website
-* browser-native creative sandbox
-* web visual experiments
-* Prettyscope-like web sketches
-* DSP/audio-visual interaction playground
-
-Void can explore freely.
-
-Void does not need to wait for the real sandbox.
-
-Void should not define core runtime architecture.
-
-Void sketches can inspire, but they should not become runtime law without Vision/Architect routing.
-
 ## DIRECTOR Invariants
 
 DIRECTOR owns:
@@ -490,8 +468,6 @@ fe267bb Document DSP execution questions
 Console and Tracer report by milestone/boundary.
 
 DIRECTOR mostly speaks directly with Architect.
-
-Void works directly with Architect and is separate.
 
 Vision routes only when routing protects:
 

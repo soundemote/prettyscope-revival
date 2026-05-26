@@ -119,7 +119,6 @@ Do not assume:
 
 * all repo-local instructions are current
 * old `.codex/AGENTS.md` files are canonical
-* Void is part of the normal routed agent mesh
 * DIRECTOR should route every business thought through Vision
 * Console and Tracer must keep code similar
 * Codex can continue coding when a repo is behind origin
@@ -165,8 +164,6 @@ next instruction
 Console and Tracer can work with lighter milestone cadence.
 
 DIRECTOR mostly talks directly with Architect.
-
-Void is separate and works directly with Architect.
 
 Vision should not over-route.
 

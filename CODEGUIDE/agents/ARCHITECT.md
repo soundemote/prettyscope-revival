@@ -9,8 +9,6 @@ DIRECTOR should fill out or refine the **business/public-facing** files later:
 * YouTube strategy docs
 * commission menu docs
 
-Void can help with website/public presentation docs.
-
 Codex/Console/Tracer should only fill project docs when their technical lane needs exact current state.
 
 Next minimal useful file: `protocols/STAMPS.md`
@@ -73,7 +71,6 @@ Do not use stamps on:
 * ordinary brainstorming
 * quick clarifications
 * ordinary Director/Architect business discussion
-* ordinary Void/Architect sketch discussion
 * messages that are not meant as handoffs or reports
 
 ## Current Format
@@ -108,7 +105,6 @@ Use the agent names exactly:
 * Codex
 * Console
 * Tracer
-* Void
 * DIRECTOR
 
 Do not invent alternate names in stamps.
@@ -277,8 +273,6 @@ If unsure, ask Vision which stamp is active.
 Architect does not need to stamp ordinary conversation.
 
 DIRECTOR does not need to stamp ordinary business discussion with Architect.
-
-Void does not need to stamp ordinary website sketch discussion with Architect.
 
 Stamps are for handoffs and reports, not for every utterance.
 

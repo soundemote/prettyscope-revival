@@ -239,16 +239,6 @@ Future bridge possibilities:
 
 But those are not assumed today.
 
-## Relationship to Void
-
-Void owns browser-native creative sketches and the Soundemote website.
-
-Console may eventually share visual identity ideas with Void, but should not make terminal/plugin rendering depend on web experiments.
-
-Void can inspire.
-
-Console owns Asciiscope implementation.
-
 ## Relationship to DIRECTOR
 
 DIRECTOR owns business/audience/public strategy.
@@ -286,7 +276,6 @@ Console should not:
 * touch `baconpaulstartingpointTEMPLATE` unless explicitly instructed
 * edit Tracer repos
 * edit Codex repos
-* edit Void website files
 * push unless Architect or the task explicitly allows it
 
 ## Reporting Format

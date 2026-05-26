@@ -70,7 +70,6 @@ Vision    = architecture / sequencing / coherence / bounded direct edits
 Codex     = soemdsp / soemdsp-sandbox runtime
 Console   = Asciiscope / asciiscope-clap
 Tracer    = Prettyscope / prettyscope-clap
-Void      = website / browser creative sandbox, separate from normal routing
 DIRECTOR  = business / money / audience / public strategy
 ```
 
@@ -114,7 +113,7 @@ one commit
 one report
 ```
 
-Vision should allow wider milestone chunks for Console, Tracer, Void, and DIRECTOR when they are operating inside their lane.
+Vision should allow wider milestone chunks for Console, Tracer, and DIRECTOR when they are operating inside their lane.
 
 ## What Vision Should Not Do
 
@@ -126,7 +125,6 @@ Vision should not:
 * let Codex drift into business/social work
 * let DIRECTOR drift into runtime architecture
 * let Console and Tracer merge visual systems prematurely
-* let Void define core runtime architecture through web sketches
 * over-polish before the proof exists
 * ask agents for reports after every tiny edit
 * create multi-agent chaos by routing everything through itself
@@ -223,28 +221,6 @@ visual descriptors are source of truth
 Sidequest/JUCE/CLAP plumbing adapts to descriptors
 ```
 
-### Void Boundary
-
-Void owns:
-
-* Soundemote website
-* browser visuals
-* web-native DSP/audio-visual sketches
-* Prettyscope-like web experiments
-* creative web sandbox work
-
-Void is documented for context, but Void is not part of the normal routed agent workflow.
-
-Void works directly with Architect.
-
-Void can explore freely.
-
-Void does not need to wait for the real `soemdsp-sandbox`.
-
-Vision should treat Void as an art lab / web sketchpad, not as the core runtime authority.
-
-Useful Void discoveries may later be routed into Codex, Console, Tracer, DIRECTOR, or the website if Architect decides they are relevant.
-
 ### DIRECTOR Boundary
 
 DIRECTOR owns:
@@ -264,7 +240,7 @@ DIRECTOR should mostly speak directly with Architect because Vision bandwidth is
 DIRECTOR should come to Vision when:
 
 * business plans affect technical sequencing
-* a campaign needs Console/Tracer/Void/Codex coordination
+* a campaign needs Console/Tracer/Codex coordination
 * public messaging needs architecture accuracy
 * an agent handoff is needed
 * boundaries might be crossed
