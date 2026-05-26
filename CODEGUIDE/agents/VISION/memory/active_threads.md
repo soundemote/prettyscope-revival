@@ -177,6 +177,7 @@ Recent completed work:
 * sandbox shell labels artifact table columns: Label, Kind, Path, Modified, Status
 * sandbox server sends no-store headers for local JSON and file responses
 * sandbox shell displays browser-side manifest response load time
+* sandbox shell displays manifest response cache headers in the Source panel
 
 Important recent repo event:
 
@@ -189,30 +190,30 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show manifest load time.
+Show manifest cache headers.
 ```
 
 Task goal:
 
 ```
-Show when the browser last loaded the current manifest response so repeated
-refreshes have a visible freshness cue in the Source panel.
+Make the current manifest response cache policy visible in the browser UI so
+no-store behavior is inspectable from the sandbox itself.
 ```
 
 Added:
 
-* Source panel `Response Loaded` row
-* browser-side manifest load timestamp on successful render
-* error path clears the load timestamp to `Unavailable`
-* README note for browser-side manifest load time
+* Source panel `Cache Control`, `Pragma`, and `Expires` rows
+* browser reads cache headers from the `/api/manifest` response
+* Source status requires the expected no-store/no-cache/0 values
+* error path clears cache header rows to `Unavailable`
+* README note for manifest response cache headers
 
 Verification note:
 
 * `python -m py_compile server.py` passed
 * browser runtime parsed `public/app.js`
-* live browser displayed a `Response Loaded` timestamp
-* pressing Refresh updated the `Response Loaded` timestamp
-* temporary missing-manifest server cleared `Response Loaded` to `Unavailable`
+* live browser Source panel displayed `Cache Control: no-store, max-age=0`, `Pragma: no-cache`, and `Expires: 0`
+* temporary missing-manifest server cleared cache header rows to `Unavailable`
 * live browser returned to `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
@@ -232,7 +233,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-b1ef3d1 Show manifest load time
+5a35258 Show manifest cache headers
 ```
 
 Reported repo status:
