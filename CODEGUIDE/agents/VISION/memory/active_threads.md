@@ -168,6 +168,7 @@ Recent completed work:
 * sandbox shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
 * sandbox shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * sandbox shell displays phase coverage status proving manifest phase sample totals match WAV frame count
+* sandbox shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
 
 Important recent repo event:
 
@@ -180,38 +181,34 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show phase coverage status.
+Show artifact coverage status.
 ```
 
 Task goal:
 
 ```
-Show whether manifest phase sample counts cover the generated WAV frames exactly,
-without inferring scheduling, execution order ownership, or runtime behavior.
+Show whether the manifest names the expected display artifact kinds separately
+from whether the server can reach and serve those artifacts.
 ```
 
 Added:
 
-* Phase Coverage panel
-* phase coverage status pill
-* aggregate phase frame count
-* WAV frame count comparison
-* coverage percent
-* frame delta check
-* phase list status pill
-* README note for phase coverage
+* Artifact Coverage panel
+* artifact coverage status pill
+* total artifact-link count
+* expected kind counts for entry point, audio, manifest, text summary, WAV report, and phase reports
+* README note for artifact coverage
 
 Verification note:
 
 * browser runtime parsed `public/app.js`
-* live browser DOM reported `Phase Coverage: Complete`
-* live browser DOM reported `Phases: 2 OK`
-* phase coverage rows reported phase count 2, phase frames 44100, WAV frames 44100, coverage 100%, delta 0
-* no phase coverage rows were marked warning
+* live browser DOM reported `Artifact Coverage: Complete`
+* artifact coverage rows reported 7 total links, entry point 1, audio 1, manifest 1, text summary 1, WAV report 1, phase reports 2
+* no artifact coverage rows were marked warning
+* live browser still reported artifact packet status `7/7 OK 92.88 KB`
+* live browser still reported `Phase Coverage: Complete`
 * live browser still reported `Manifest: OK`
 * live browser still reported `Checklist: Accepted`
-* live browser still reported `Source: Loaded`
-* live browser still reported `Producer Proof: Verified`
 * browser console error log was empty
 
 Boundary preserved:
@@ -230,7 +227,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-1b58a53 Show phase coverage status
+e84197a Show artifact coverage status
 ```
 
 Reported repo status:

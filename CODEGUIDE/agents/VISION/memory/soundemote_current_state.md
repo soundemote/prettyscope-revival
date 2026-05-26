@@ -293,16 +293,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
 * first `soemdsp-sandbox` shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * first `soemdsp-sandbox` shell displays phase coverage status proving manifest phase sample totals match WAV frame count
+* first `soemdsp-sandbox` shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
 
 Recent completion:
 
 ```
-1b58a53 Show phase coverage status
+e84197a Show artifact coverage status
 ```
 
-The first local `soemdsp-sandbox` shell now shows phase coverage so the user can see whether manifest phase sample totals cover the WAV exactly.
+The first local `soemdsp-sandbox` shell now shows artifact coverage so the user can distinguish manifest-declared packet completeness from served artifact reachability.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Phase Coverage: Complete`, `Phases: 2 OK`, phase count 2, phase frames 44100, WAV frames 44100, coverage 100%, delta 0, `Manifest: OK`, `Checklist: Accepted`, `Source: Loaded`, `Producer Proof: Verified`, and no browser console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Artifact Coverage: Complete`, rows for 7 total links, entry point 1, audio 1, manifest 1, text summary 1, WAV report 1, phase reports 2, artifact packet `7/7 OK 92.88 KB`, `Phase Coverage: Complete`, `Manifest: OK`, `Checklist: Accepted`, and no browser console errors.
 
 Generated preview screenshot:
 
