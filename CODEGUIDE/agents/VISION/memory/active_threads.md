@@ -118,6 +118,7 @@ Recent completed work:
 * bound DSP object WAV resync demo now reports each render half through DspBlockPhaseReport
 * examples-only mono WAV writer helper
 * audible demos share `examples/WriteMono16Wav.hpp` without making it a runtime API
+* audible demos can print and write compact WAV artifact metadata reports
 
 Important recent repo event:
 
@@ -130,24 +131,25 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Share demo-only WAV writer helper.
+Report demo WAV artifact metadata.
 ```
 
 Task goal:
 
 ```
-Remove repeated WAV writing code from audible demos while keeping file output
-scoped to examples and outside the runtime API.
+Give audible demos a compact artifact status report that a future sandbox can
+inspect without creating an audio engine, scheduler, or runtime file API.
 ```
 
 Added:
 
-* `examples/WriteMono16Wav.hpp`
-* runtime audio sine WAV demo now uses the helper
-* bound DSP object WAV demo now uses the helper
-* bound DSP object WAV resync demo now uses the helper
-* `docs/STATUS.md` records the examples-only helper
-* `docs/DSP_BINDING_MILESTONE_PLAN.md` records that this is not a runtime API
+* `Mono16WavWriteReport`
+* mono WAV report print helper
+* mono WAV report text writer helper
+* runtime audio sine WAV demo writes a WAV report
+* bound DSP object WAV demo writes a WAV report
+* bound DSP object WAV resync demo writes a WAV report
+* `docs/DSP_EXECUTION_QUESTIONS.md` records artifact status inspection as a current proof
 
 Boundary preserved:
 
@@ -162,13 +164,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-76d7750 Share demo-only WAV writer helper
+6409ae8 Report demo WAV artifact metadata
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 26 commits
+* ahead of origin by 27 commits
 * behind origin by 0 commits
 * conflicts: none
 

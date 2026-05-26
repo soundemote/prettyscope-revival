@@ -258,16 +258,17 @@ Recent proven demos include:
 * bound DSP object WAV resync demo now reports each render half through DspBlockPhaseReport
 * examples-only mono WAV writer helper
 * audible demos share `examples/WriteMono16Wav.hpp` without making it a runtime API
+* audible demos can print and write compact WAV artifact metadata reports
 
 Recent completion:
 
 ```
-76d7750 Share demo-only WAV writer helper
+6409ae8 Report demo WAV artifact metadata
 ```
 
-`examples/WriteMono16Wav.hpp` now holds the shared mono WAV writer used by the audible demos. It is intentionally scoped to examples and is not a production runtime API.
+`examples/WriteMono16Wav.hpp` can now emit a compact mono WAV write report with path, sample rate, channel count, bit depth, frame count, data bytes, file bytes, and success status. The three audible demos print and write these reports beside their generated WAV artifacts.
 
-The WAV writing path remains demo-only. This does not introduce an audio engine, scheduler, production file API, plugin/UI layer, or new DSP ownership model.
+The WAV writing and report path remains demo-only. This does not introduce an audio engine, scheduler, production file API, plugin/UI layer, or new DSP ownership model.
 
 This is a bridge toward the future `soemdsp-sandbox` hands-on threshold, where Architect should test by hearing, seeing, or manipulating something rather than reading CLI proof output.
 
