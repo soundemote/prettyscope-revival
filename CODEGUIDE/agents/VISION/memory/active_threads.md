@@ -201,28 +201,30 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Expand sandbox smoke test for forbidden paths.
+Expand sandbox smoke test for static shell.
 ```
 
 Task goal:
 
 ```
-Make sandbox read-only path boundaries repeatably checkable without manual
-curl/browser fixtures.
+Make the browser shell entry point and static assets part of the repeatable
+sandbox witness check.
 ```
 
 Added:
 
-* smoke test checks artifact traversal attempt `../server.py`
-* smoke test checks encoded public traversal attempt `/public/%2e%2e/server.py`
-* README smoke-test text now names forbidden path responses
+* smoke test checks `/` root shell response
+* smoke test checks `/public/app.js` response
+* smoke test checks `/public/styles.css` response
+* smoke test verifies content types and no-store headers for shell/static assets
+* README smoke-test text now names root shell and static asset checks
 
 Verification note:
 
 * `python -m py_compile scripts/smoke_test.py` passed
 * `git diff --check` passed
 * `python scripts/smoke_test.py` passed
-* traversal attempts returned `403` with no-store headers inside the smoke test
+* first smoke run caught Python serving JS as `application/javascript`; test was corrected to accept the actual JS MIME type
 * smoke test did not leave a test server running; only the live 8765 sandbox server remained
 * browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
@@ -243,7 +245,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-df8b36b Check forbidden paths in smoke test
+90d4b72 Check static shell in smoke test
 ```
 
 Reported repo status:

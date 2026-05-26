@@ -318,12 +318,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-df8b36b Check forbidden paths in smoke test
+90d4b72 Check static shell in smoke test
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now covers forbidden path traversal attempts as part of the read-only boundary proof.
+The first local `soemdsp-sandbox` repo smoke test now covers the browser shell entry point and static assets as part of the repeatable witness proof.
 
-Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test now checks artifact traversal and encoded public traversal attempts return `403` with no-store headers; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test now checks the `/` root shell, `/public/app.js`, and `/public/styles.css` for expected content types and no-store headers; the first smoke run caught Python serving JS as `application/javascript`, and the test was corrected to accept the actual JS MIME type; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
 
 Generated preview screenshot:
 
