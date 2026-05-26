@@ -119,6 +119,7 @@ Recent completed work:
 * examples-only mono WAV writer helper
 * audible demos share `examples/WriteMono16Wav.hpp` without making it a runtime API
 * audible demos can print and write compact WAV artifact metadata reports
+* bound DSP object WAV resync demo writes a combined render summary with setter status, both phase reports, and WAV artifact metadata
 
 Important recent repo event:
 
@@ -131,25 +132,23 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Report demo WAV artifact metadata.
+Summarize bound WAV resync render status.
 ```
 
 Task goal:
 
 ```
-Give audible demos a compact artifact status report that a future sandbox can
-inspect without creating an audio engine, scheduler, or runtime file API.
+Create one demo-local text summary that combines parameter-change status,
+phase status, and WAV artifact status for future sandbox-style inspection.
 ```
 
 Added:
 
-* `Mono16WavWriteReport`
-* mono WAV report print helper
-* mono WAV report text writer helper
-* runtime audio sine WAV demo writes a WAV report
-* bound DSP object WAV demo writes a WAV report
-* bound DSP object WAV resync demo writes a WAV report
-* `docs/DSP_EXECUTION_QUESTIONS.md` records artifact status inspection as a current proof
+* `runtime_dsp_object_bound_wav_resync_demo.summary.txt` generated at demo runtime
+* summary includes setter status
+* summary includes first and second phase reports
+* summary includes WAV artifact metadata
+* `docs/DSP_EXECUTION_QUESTIONS.md` records combined demo-local summaries as a current proof
 
 Boundary preserved:
 
@@ -164,13 +163,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-6409ae8 Report demo WAV artifact metadata
+9c4df60 Summarize bound WAV resync render status
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 27 commits
+* ahead of origin by 28 commits
 * behind origin by 0 commits
 * conflicts: none
 
