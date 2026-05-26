@@ -287,6 +287,7 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell overlays phase regions on the waveform and exposes phase view controls
 * first `soemdsp-sandbox` shell derives phase time ranges, durations, and WAV share from manifest phase sample counts and WAV metadata
 * first `soemdsp-sandbox` shell displays manifest WAV data byte and file byte metadata in the Waveform metadata panel
+* first `soemdsp-sandbox` shell compares decoded WAV metadata against manifest expectations and warns on mismatched metadata rows
 * first `soemdsp-sandbox` shell displays the current waveform phase and highlights the active phase button
 * first `soemdsp-sandbox` shell displays the current waveform cursor frame and decoded sample value
 * first `soemdsp-sandbox` shell decouples waveform view controls from native audio seeking to avoid slider/audio reset loops
@@ -330,12 +331,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-bbd203b Show WAV byte metadata in sandbox
+54352f8 Compare WAV metadata in sandbox UI
 ```
 
-The first local `soemdsp-sandbox` shell now displays manifest-provided primary WAV data byte and file byte values in the Waveform metadata panel.
+The first local `soemdsp-sandbox` shell now compares decoded WAV metadata against manifest expectations in the Waveform metadata panel, so sample rate, channels, bit depth, frames, data bytes, or file bytes drift becomes visible as a warning row.
 
-Verification passed with `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, and the live browser at `http://127.0.0.1:8765/`: Waveform metadata showed sample rate, channels, bit depth, frames, data bytes, and file bytes with no console errors.
+Verification passed with `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, and the live browser at `http://127.0.0.1:8765/`: all Waveform metadata rows were warning-free with no console errors.
 
 Generated preview screenshot:
 

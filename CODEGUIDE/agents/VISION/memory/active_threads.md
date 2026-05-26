@@ -162,6 +162,7 @@ Recent completed work:
 * sandbox shell overlays manifest-derived phase regions on the waveform and exposes phase view controls
 * sandbox shell derives phase time ranges, durations, and WAV share from manifest phase sample counts and WAV metadata
 * sandbox shell displays manifest WAV data byte and file byte metadata in the Waveform metadata panel
+* sandbox shell compares decoded WAV metadata against manifest expectations and warns on mismatched metadata rows
 * sandbox shell displays the current waveform phase in the waveform header and highlights the active phase button
 * sandbox shell displays the current waveform cursor frame and decoded sample value
 * waveform controls are decoupled from native audio seeking to avoid slider/audio reset loops; native audio playback can still drive waveform position
@@ -213,31 +214,32 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show WAV byte metadata in sandbox.
+Compare WAV metadata in sandbox UI.
 ```
 
 Task goal:
 
 ```
-Surface the manifest-provided primary WAV data byte and file byte values in the
-read-only Waveform metadata panel.
+Make the read-only Waveform metadata panel compare decoded WAV metadata against
+manifest expectations so mismatches become visible warnings.
 ```
 
 Added:
 
-* Waveform metadata rows for data bytes and file bytes
-* README note that the Waveform panel includes byte-metadata feedback
+* decoded WAV `dataBytes` and `fileBytes` fields in browser parsing
+* manifest expectation formatting helpers for numbers and bytes
+* warning-capable comparisons for sample rate, channels, bit depth, frames, data bytes, and file bytes
 
 Verification:
 
 * `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`
 * `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
-* live browser at `http://127.0.0.1:8765/` showed sample rate, channels, bit depth, frames, data bytes, and file bytes with no console errors
+* live browser at `http://127.0.0.1:8765/` showed all Waveform metadata rows warning-free with no console errors
 
 Commit:
 
 ```
-bbd203b Show WAV byte metadata in sandbox
+54352f8 Compare WAV metadata in sandbox UI
 ```
 
 Boundary preserved:
