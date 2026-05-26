@@ -130,6 +130,7 @@ Recent completed work:
 * bound DSP object WAV resync demo writes a demo-local JSON artifact manifest for inspection
 * bound DSP object WAV resync HTML report links the generated WAV, manifest, text summary, WAV metadata report, and phase reports as one local inspection packet
 * root-level runtime demo reports and inspection artifacts are gitignored so hands-on demo runs do not dirty source status
+* bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
 
 Important recent repo event:
 
@@ -142,28 +143,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Ignore runtime demo inspection artifacts.
+Add sandbox handoff to bound WAV manifest.
 ```
 
 Task goal:
 
 ```
-Make generated runtime demo reports safe for hands-on local runs by keeping
-root-level inspection artifacts out of normal git status.
+Make the generated artifact manifest self-describing enough for a future
+sandbox shell to find the mouse-and-ears inspection entry point while
+preserving all no-ownership boundaries.
 ```
 
 Added:
 
-* `.gitignore` entries for root-level `runtime_*_demo*.txt`
-* `.gitignore` entries for root-level `runtime_*_demo*.html`
-* `.gitignore` entries for root-level `runtime_*_demo*.json`
-* docs note that hands-on demo runs should not dirty source status
+* `sandboxHandoff.entryPoint`
+* `sandboxHandoff.primaryAudioArtifact`
+* `sandboxHandoff.inspectionMode = mouse-and-ears`
+* explicit false flags for Circuit-owned DSP objects, DSP-object knowledge of Circuit, patch serialization, audio engine ownership, and scheduler ownership
+* status/plan/execution-question doc notes
 
 Verification note:
 
-* generated bound WAV resync artifacts were created
-* normal git status ignored generated text/HTML/JSON artifacts
-* generated artifacts were cleaned after verification
+* full Debug build passed
+* bound WAV resync demo ran successfully
+* generated manifest parsed as JSON
+* manifest reported `allOk: true`, 2 phases, 44100 frames, HTML entry point, and mouse-and-ears inspection mode
 
 Boundary preserved:
 
@@ -178,13 +182,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-5fb572f Ignore runtime demo inspection artifacts
+aa5a357 Add sandbox handoff to bound WAV manifest
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 3 commits
+* ahead of origin by 4 commits
 * behind origin by 0 commits
 * conflicts: none
 
