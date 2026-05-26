@@ -307,16 +307,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell guards malformed-but-readable manifest JSON before rendering
 * first `soemdsp-sandbox` shell displays server-reported manifest error paths in the Source panel
 * first `soemdsp-sandbox` shell displays server-reported artifact roots on manifest load errors
+* first `soemdsp-sandbox` shell preserves source path/root details on malformed manifest shape errors
 
 Recent completion:
 
 ```
-d933229 Report artifact root on manifest errors
+f39086b Preserve source details on shape errors
 ```
 
-The first local `soemdsp-sandbox` shell now shows the server-reported artifact root on manifest load errors, so missing manifest configuration displays both the failed manifest path and the artifact root.
+The first local `soemdsp-sandbox` shell now preserves manifest path and artifact root details when valid JSON is rejected for the wrong sandbox manifest shape.
 
-Verification passed with `python -m py_compile server.py`, the live browser at `http://127.0.0.1:8765`, and a temporary missing-manifest server: missing manifest reported `Manifest: Check`, `manifest not found`, displayed `C:\Users\argit\Desktop\soemdsp\missing_sandbox_manifest.json`, displayed artifact root `C:\Users\argit\Desktop\soemdsp`, cleared artifact rows, and produced no browser console errors; returning to 8765 restored `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`.
+Verification passed with `python -m py_compile server.py`, the live browser at `http://127.0.0.1:8765`, and a temporary malformed-shape server: normal load stayed green with manifest path and artifact root; malformed valid JSON reported `Manifest: Check`, `sandbox handoff missing`, displayed the malformed manifest path and artifact root, cleared artifact/checklist/phase rows, and produced no browser console errors; returning to 8765 restored `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, `Artifact Coverage: Complete`, and artifact packet `7/7 OK 92.88 KB`.
 
 Generated preview screenshot:
 

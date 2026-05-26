@@ -182,6 +182,7 @@ Recent completed work:
 * sandbox shell guards malformed-but-readable manifest JSON before rendering
 * sandbox shell displays server-reported manifest error paths in the Source panel
 * sandbox shell displays server-reported artifact roots on manifest load errors
+* sandbox shell preserves source path/root details on malformed manifest shape errors
 
 Important recent repo event:
 
@@ -194,29 +195,29 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Report artifact root on manifest errors.
+Preserve source details on shape errors.
 ```
 
 Task goal:
 
 ```
-Show both sides of a failed manifest lookup: the configured manifest path and
-the artifact root the sandbox server would have used.
+Keep server-provided manifest path and artifact root visible when the browser
+rejects valid JSON for having the wrong sandbox manifest shape.
 ```
 
 Added:
 
-* missing-manifest response includes `artifactRoot`
-* manifest JSON parse failure response includes `artifactRoot`
-* existing error renderer displays the server-reported artifact root
-* README note for manifest error paths and roots
+* malformed shape error path passes the manifest response payload into the error renderer
+* malformed shape errors now retain Source manifest path and artifact root
+* README note for malformed manifest shape checks with source details
 
 Verification note:
 
 * `python -m py_compile server.py` passed
-* sandbox server restarted on port 8765
-* temporary missing-manifest server reported `Manifest: Check`, `manifest not found`, the missing manifest path, and artifact root `C:\Users\argit\Desktop\soemdsp`
-* missing-manifest path cleared artifact rows
+* browser runtime parsed `public/app.js`
+* normal live browser load still reported `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`, manifest path, and artifact root
+* temporary malformed-shape server reported `Manifest: Check`, `sandbox handoff missing`, the malformed manifest path, and its artifact root
+* malformed shape path cleared artifact, checklist, and phase rows
 * browser returned to 8765 with the normal green state restored
 * browser console error log was empty
 
@@ -236,7 +237,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-d933229 Report artifact root on manifest errors
+f39086b Preserve source details on shape errors
 ```
 
 Reported repo status:
