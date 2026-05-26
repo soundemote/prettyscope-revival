@@ -133,6 +133,7 @@ Recent completed work:
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
+* docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
 
 Important recent repo event:
 
@@ -145,22 +146,23 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add display links to sandbox handoff manifest.
+Document sandbox handoff consumer checklist.
 ```
 
 Task goal:
 
 ```
-Let a future sandbox shell render the local inspection packet from the
-manifest without hardcoding artifact filenames, while keeping the links
-read-only inspection metadata.
+Define the smallest safe read-only sandbox manifest consumer behavior without
+adding a JSON dependency, scheduler, audio engine, plugin layer, or project
+format to soemdsp.
 ```
 
 Added:
 
-* `artifactLinks` array in the generated manifest
-* display labels, kinds, and paths for HTML, WAV, manifest, summary, WAV report, and phase reports
-* `docs/SANDBOX_HANDOFF_CONTRACT.md` notes for display-ready links
+* `docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md`
+* accept criteria for contract, version, inspection mode, ownership flags, entry/audio paths, artifact links, and phase reports
+* display guidance for read-only sandbox shells
+* reject/warn guidance for unsafe ownership or unsupported contract states
 * status/plan/execution-question doc notes
 
 Verification note:
@@ -168,7 +170,8 @@ Verification note:
 * full Debug build passed
 * bound WAV resync demo ran successfully
 * generated manifest parsed as JSON
-* manifest reported `allOk: true`, 7 artifact links, HTML first link, WAV audio link, 2 phase links, and false scheduler ownership
+* external verification asserted 16 checklist fields
+* manifest passed all 16 checks, with 7 artifact links and 2 phases
 
 Boundary preserved:
 
@@ -183,13 +186,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-bae3c41 Add display links to sandbox handoff manifest
+08ef373 Document sandbox handoff consumer checklist
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 6 commits
+* ahead of origin by 7 commits
 * behind origin by 0 commits
 * conflicts: none
 

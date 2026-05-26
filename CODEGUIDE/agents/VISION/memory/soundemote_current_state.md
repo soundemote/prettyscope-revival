@@ -269,16 +269,17 @@ Recent proven demos include:
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
+* docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
 
 Recent completion:
 
 ```
-bae3c41 Add display links to sandbox handoff manifest
+08ef373 Document sandbox handoff consumer checklist
 ```
 
-The bound WAV resync demo manifest now includes an `artifactLinks` array with display labels, kinds, and paths for the generated HTML report, WAV, manifest, summary, WAV metadata report, and phase reports. This lets a future sandbox shell render the local inspection packet without hardcoding artifact filenames.
+`docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md` now records the smallest safe read-only sandbox manifest consumer behavior. It defines accept criteria for contract, version, inspection mode, ownership flags, entry/audio paths, artifact links, and phase reports, plus display guidance and reject/warn conditions.
 
-Verification passed with a full Debug build, a bound WAV resync demo run, and JSON parsing of the generated manifest. The manifest reported `allOk: true`, 7 artifact links, the HTML first link, the WAV audio link, 2 phase links, and false scheduler ownership.
+Verification passed with a full Debug build, a bound WAV resync demo run, and external JSON parsing of the generated manifest. The verification asserted 16 checklist fields, and the manifest passed all 16 checks with 7 artifact links and 2 phases.
 
 Codex in-app browser blocks direct `file://` navigation, so verify generated HTML by content inspection unless Architect asks to open it manually or through another approved local serving path.
 
