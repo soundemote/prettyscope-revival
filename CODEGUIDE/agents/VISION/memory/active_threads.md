@@ -191,6 +191,7 @@ Recent completed work:
 * sandbox repo includes a stdlib smoke test for manifest loading, producer proof flags, handoff contract flags/references, artifact/phase coverage, full artifact reachability, report documents, parameter resync summary values, primary audio WAV metadata, expected error/forbidden responses, and no-store headers
 * sandbox smoke test uses automatic temporary ports by default and rejects occupied explicit ports so the live `8765` browser server cannot accidentally satisfy readiness checks
 * sandbox smoke test parses the root HTML shell and verifies the DOM IDs, app script, and stylesheet required by the browser UI
+* sandbox smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Important recent repo event:
 
@@ -203,23 +204,23 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Check sandbox shell contract in smoke test.
+Check malformed manifest source handling.
 ```
 
 Task goal:
 
 ```
-Make the automated smoke test prove that `index.html` still exposes the DOM IDs
-and static asset references required by `app.js`.
+Make the automated smoke test prove that readable-but-wrong manifest JSON is
+served with source path/root details instead of being treated as a server parse
+failure.
 ```
 
 Added:
 
-* stdlib `HTMLParser` shell contract parser
-* required browser UI element ID checks
-* required `/public/app.js` script reference check
-* required `/public/styles.css` stylesheet reference check
-* README note that the smoke test checks the root shell DOM contract
+* readable malformed manifest fixture
+* source path/root assertions for malformed manifest shape
+* grouped smoke checkpoint for readable malformed manifest source handling
+* README note that malformed manifest shapes preserve source details for the browser consumer
 
 Verification:
 
@@ -230,7 +231,7 @@ Verification:
 Commit:
 
 ```
-f6dd584 Check sandbox shell contract in smoke test
+ebd6add Check malformed manifest source handling
 ```
 
 Boundary preserved:
