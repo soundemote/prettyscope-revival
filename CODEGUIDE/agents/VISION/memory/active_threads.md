@@ -120,6 +120,7 @@ Recent completed work:
 * audible demos share `examples/WriteMono16Wav.hpp` without making it a runtime API
 * audible demos can print and write compact WAV artifact metadata reports
 * bound DSP object WAV resync demo writes a combined render summary with setter status, both phase reports, and WAV artifact metadata
+* bound DSP object WAV resync demo writes a demo-local HTML audio report with browser-native audio controls and status sections
 
 Important recent repo event:
 
@@ -132,23 +133,30 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Summarize bound WAV resync render status.
+Generate bound WAV resync HTML report.
 ```
 
 Task goal:
 
 ```
-Create one demo-local text summary that combines parameter-change status,
-phase status, and WAV artifact status for future sandbox-style inspection.
+Create the first mouse-and-ears oriented generated artifact while keeping it
+example-local and outside any scheduler, audio engine, sandbox app, or UI
+framework.
 ```
 
 Added:
 
-* `runtime_dsp_object_bound_wav_resync_demo.summary.txt` generated at demo runtime
-* summary includes setter status
-* summary includes first and second phase reports
-* summary includes WAV artifact metadata
-* `docs/DSP_EXECUTION_QUESTIONS.md` records combined demo-local summaries as a current proof
+* `runtime_dsp_object_bound_wav_resync_demo.html` generated at demo runtime
+* HTML contains an audio control referencing the generated WAV
+* HTML contains render status
+* HTML contains first and second phase status
+* HTML contains WAV artifact status
+* `docs/DSP_EXECUTION_QUESTIONS.md` records browser-native mouse-and-ears inspection as a current proof
+
+Verification note:
+
+* Codex in-app browser blocks direct `file://` navigation
+* Generated HTML was verified by direct content inspection
 
 Boundary preserved:
 
@@ -163,13 +171,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-9c4df60 Summarize bound WAV resync render status
+03702e9 Generate bound WAV resync HTML report
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 28 commits
+* ahead of origin by 29 commits
 * behind origin by 0 commits
 * conflicts: none
 
