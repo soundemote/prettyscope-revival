@@ -188,7 +188,7 @@ Recent completed work:
 * sandbox shell displays a dedicated Source Error row so manifest load failures and shape failures are visible beside path/root details
 * sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
 * sandbox shell displays Source Detail so manifest parse failures expose the server parse message beside source error and HTTP status
-* sandbox repo includes a stdlib smoke test for manifest loading, primary audio reachability, expected error/forbidden responses, and no-store headers
+* sandbox repo includes a stdlib smoke test for manifest loading, handoff contract flags, artifact coverage, primary audio reachability, expected error/forbidden responses, and no-store headers
 
 Important recent repo event:
 
@@ -201,32 +201,32 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Expand sandbox smoke test for static shell.
+Expand sandbox smoke test for handoff contract.
 ```
 
 Task goal:
 
 ```
-Make the browser shell entry point and static assets part of the repeatable
-sandbox witness check.
+Make the sandbox handoff contract, boundary flags, and artifact coverage
+repeatably checkable without manual browser inspection.
 ```
 
 Added:
 
-* smoke test checks `/` root shell response
-* smoke test checks `/public/app.js` response
-* smoke test checks `/public/styles.css` response
-* smoke test verifies content types and no-store headers for shell/static assets
-* README smoke-test text now names root shell and static asset checks
+* smoke test checks expected handoff contract, version, and inspection mode
+* smoke test checks caller-owned processing/DSP flags and forbidden ownership flags
+* smoke test checks required artifact kinds are present
+* smoke test checks missing artifact paths are absent
+* smoke test checks phase-report count matches phase count
+* README smoke-test text now names handoff contract, boundary flags, and artifact coverage checks
 
 Verification note:
 
 * `python -m py_compile scripts/smoke_test.py` passed
 * `git diff --check` passed
 * `python scripts/smoke_test.py` passed
-* first smoke run caught Python serving JS as `application/javascript`; test was corrected to accept the actual JS MIME type
 * smoke test did not leave a test server running; only the live 8765 sandbox server remained
-* browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
+* browser remained healthy at 8765 with `Manifest: OK`, contract `soemdsp-demo-local-sandbox-handoff v1`, mode `mouse-and-ears`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
 Boundary preserved:
@@ -245,7 +245,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-90d4b72 Check static shell in smoke test
+9b3b59b Check handoff contract in smoke test
 ```
 
 Reported repo status:
