@@ -127,6 +127,7 @@ Recent completed work:
 * audible demos can print and write compact WAV artifact metadata reports
 * bound DSP object WAV resync demo writes a combined render summary with setter status, both phase reports, and WAV artifact metadata
 * bound DSP object WAV resync demo writes a demo-local HTML audio report with browser-native audio controls and status sections
+* bound DSP object WAV resync demo writes a demo-local JSON artifact manifest for inspection
 
 Important recent repo event:
 
@@ -139,30 +140,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Generate bound WAV resync HTML report.
+Write bound WAV resync artifact manifest.
 ```
 
 Task goal:
 
 ```
-Create the first mouse-and-ears oriented generated artifact while keeping it
-example-local and outside any scheduler, audio engine, sandbox app, or UI
-framework.
+Tie the generated WAV, HTML report, phase reports, and text reports together
+with an inspection-only manifest while avoiding project serialization or any
+runtime ownership claim.
 ```
 
 Added:
 
-* `runtime_dsp_object_bound_wav_resync_demo.html` generated at demo runtime
-* HTML contains an audio control referencing the generated WAV
-* HTML contains render status
-* HTML contains first and second phase status
-* HTML contains WAV artifact status
-* `docs/DSP_EXECUTION_QUESTIONS.md` records browser-native mouse-and-ears inspection as a current proof
+* `runtime_dsp_object_bound_wav_resync_demo.manifest.json` generated at demo runtime
+* manifest validates as JSON
+* manifest includes `allOk`
+* manifest links WAV, WAV report, phase reports, text summary, and HTML report
+* manifest explicitly marks runtime API, scheduler, and audio engine as false
+* `docs/DSP_EXECUTION_QUESTIONS.md` records demo-local artifact manifests as a current proof
 
 Verification note:
 
 * Codex in-app browser blocks direct `file://` navigation
 * Generated HTML was verified by direct content inspection
+* Generated manifest was verified with PowerShell JSON parsing
 
 Boundary preserved:
 
@@ -177,13 +179,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-03702e9 Generate bound WAV resync HTML report
+13ee194 Write bound WAV resync artifact manifest
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 29 commits
+* ahead of origin by 1 commit
 * behind origin by 0 commits
 * conflicts: none
 
