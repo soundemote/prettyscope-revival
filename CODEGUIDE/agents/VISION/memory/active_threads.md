@@ -140,6 +140,7 @@ Recent completed work:
 * sandbox shell displays status, contract, boundary flags, phases, artifact links, and a browser-native WAV player
 * sandbox shell visibly applies the consumer checklist and shows warning states for unsafe/unsupported manifest values
 * sandbox shell draws a read-only waveform from the generated WAV
+* sandbox shell overlays manifest-derived phase regions on the waveform and exposes phase seek controls
 
 Important recent repo event:
 
@@ -152,36 +153,39 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Draw read-only WAV waveform.
+Add phase-aware waveform controls.
 ```
 
 Task goal:
 
 ```
-Give the first sandbox shell a visual read-only audio inspection surface by
-drawing the generated WAV waveform in the browser without adding DSP execution,
-scheduling, audio-engine ownership, or project state.
+Make the waveform reflect manifest phase structure and expose read-only
+playback-position controls without adding DSP execution, scheduling,
+audio-engine ownership, or project state.
 ```
 
 Added:
 
-* Waveform panel
-* browser-side PCM 16-bit WAV parser
-* read-only canvas waveform renderer
-* waveform metadata rows for sample rate, channels, bit depth, and frames
-* resize redraw handling
-* README note that the shell displays a read-only waveform
+* phase shading on the waveform
+* `first` and `second` labels drawn from manifest phase data
+* playback position pill
+* native waveform scrubber
+* phase buttons derived from manifest regions
+* playhead redraw synced to browser audio time
+* README note for phase seek controls
 
 Verification note:
 
 * live browser reported `Waveform: Drawn`
+* phase buttons rendered as `first` and `second`
 * 4 waveform metadata rows rendered
-* visual screenshot confirmed a nonblank waveform with two render halves
+* visual screenshot confirmed a nonblank, phase-shaded, labeled waveform
 * live browser still reported `Checklist: Accepted`
 * zero warning rows rendered
 * 7 artifact links rendered
 * 2 phase panels rendered
 * browser check found no console errors and no horizontal overflow
+* browser automation did not prove the seek interaction
 
 Boundary preserved:
 
@@ -199,7 +203,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-e0a4d52 Draw read-only WAV waveform
+6e3684b Add phase-aware waveform controls
 ```
 
 Reported repo status:
