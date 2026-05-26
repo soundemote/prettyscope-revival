@@ -70,12 +70,15 @@ Current renderer strategy:
 audio snapshot -> visual state -> AsciiscopeVisualFrame -> JUCE Graphics draw pass
 ```
 
-OpenGL is deferred. If added later, it should be optional and behind the same visual frame/data model:
+Renderer direction is CPU-first and sample-aware. The base renderer should build glyph fields, trace memory, interpolation, and trail aging from the signal timeline so audio/visual behavior can stay coherent at the highest useful temporal density.
 
-- default fallback remains JUCE Graphics
-- OpenGL may draw texture glyphs, shader trails, dense particles, and phosphor feedback
-- use a dedicated visual component/context
-- do not make the whole plugin editor depend on OpenGL
+GPU work is deferred and should be treated as an effects/output layer after CPU visual state:
+
+- default renderer remains CPU/JUCE Graphics
+- GPU may add glow, bloom, phosphor diffusion, feedback, capture surfaces, or Syphon/Spout-style output
+- use a dedicated visual component/context only if needed
+- do not make OpenGL the implied migration target for the core renderer
+- do not make the whole plugin editor depend on a GPU context
 - do not replace ASCII identity with generic shader visuals
 
 ## Boundaries
@@ -131,4 +134,3 @@ Do not force reset, rewrite history, or force push.
 Do not touch submodules or dependency commits unless explicitly asked.
 
 Respect dirty worktrees and user changes. If another repo has unrelated changes, leave them alone.
-
