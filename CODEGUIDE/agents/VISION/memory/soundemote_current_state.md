@@ -267,16 +267,17 @@ Recent proven demos include:
 * bound DSP object WAV resync HTML report links the generated WAV, manifest, text summary, WAV metadata report, and phase reports as one local inspection packet
 * root-level runtime demo reports and inspection artifacts are gitignored so hands-on demo runs do not dirty source status
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
+* docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 
 Recent completion:
 
 ```
-aa5a357 Add sandbox handoff to bound WAV manifest
+4213614 Document sandbox handoff contract
 ```
 
-The bound WAV resync demo manifest now includes a `sandboxHandoff` object. It names `runtime_dsp_object_bound_wav_resync_demo.html` as the entry point, names the WAV as the primary audio artifact, marks inspection mode as `mouse-and-ears`, and explicitly records that the demo does not serialize patches, own an audio engine, own a scheduler, put DSP objects inside Circuit, or make DSP objects know Circuit.
+The bound WAV resync demo manifest now includes a versioned `sandboxHandoff` object with `contract = soemdsp-demo-local-sandbox-handoff` and `contractVersion = 1`. `docs/SANDBOX_HANDOFF_CONTRACT.md` documents what a future sandbox may read and what it must not infer from the manifest.
 
-Verification passed with a full Debug build, a bound WAV resync demo run, and JSON parsing of the generated manifest. The manifest reported `allOk: true`, 2 phases, 44100 frames, the HTML entry point, and mouse-and-ears inspection mode.
+Verification passed with a full Debug build, a bound WAV resync demo run, and JSON parsing of the generated manifest. The manifest reported `allOk: true`, the contract name, contract version 1, the HTML entry point, the WAV artifact, mouse-and-ears inspection mode, and false scheduler/audio-engine/serialization flags.
 
 Codex in-app browser blocks direct `file://` navigation, so verify generated HTML by content inspection unless Architect asks to open it manually or through another approved local serving path.
 

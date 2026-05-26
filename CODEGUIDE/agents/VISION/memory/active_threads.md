@@ -131,6 +131,7 @@ Recent completed work:
 * bound DSP object WAV resync HTML report links the generated WAV, manifest, text summary, WAV metadata report, and phase reports as one local inspection packet
 * root-level runtime demo reports and inspection artifacts are gitignored so hands-on demo runs do not dirty source status
 * bound DSP object WAV resync manifest includes a demo-local sandbox handoff contract naming the HTML entry point and WAV artifact for mouse-and-ears inspection
+* docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 
 Important recent repo event:
 
@@ -143,23 +144,24 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add sandbox handoff to bound WAV manifest.
+Document sandbox handoff contract.
 ```
 
 Task goal:
 
 ```
-Make the generated artifact manifest self-describing enough for a future
-sandbox shell to find the mouse-and-ears inspection entry point while
-preserving all no-ownership boundaries.
+Make the demo-local sandbox handoff versioned and documented so a future
+sandbox can safely read the artifact packet without inferring execution,
+serialization, scheduler, or ownership behavior.
 ```
 
 Added:
 
-* `sandboxHandoff.entryPoint`
-* `sandboxHandoff.primaryAudioArtifact`
-* `sandboxHandoff.inspectionMode = mouse-and-ears`
-* explicit false flags for Circuit-owned DSP objects, DSP-object knowledge of Circuit, patch serialization, audio engine ownership, and scheduler ownership
+* `sandboxHandoff.contract = soemdsp-demo-local-sandbox-handoff`
+* `sandboxHandoff.contractVersion = 1`
+* `docs/SANDBOX_HANDOFF_CONTRACT.md`
+* safe consumer behavior notes
+* non-meaning notes for project serialization, scheduler, audio engine, plugin API, runtime ownership, and DSP execution
 * status/plan/execution-question doc notes
 
 Verification note:
@@ -167,7 +169,7 @@ Verification note:
 * full Debug build passed
 * bound WAV resync demo ran successfully
 * generated manifest parsed as JSON
-* manifest reported `allOk: true`, 2 phases, 44100 frames, HTML entry point, and mouse-and-ears inspection mode
+* manifest reported `allOk: true`, contract name, contract version 1, HTML entry point, WAV artifact, mouse-and-ears inspection mode, and false scheduler/audio-engine/serialization flags
 
 Boundary preserved:
 
@@ -182,13 +184,13 @@ Boundary preserved:
 Completion commit:
 
 ```
-aa5a357 Add sandbox handoff to bound WAV manifest
+4213614 Document sandbox handoff contract
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 4 commits
+* ahead of origin by 5 commits
 * behind origin by 0 commits
 * conflicts: none
 
