@@ -188,6 +188,7 @@ Recent completed work:
 * sandbox shell displays a dedicated Source Error row so manifest load failures and shape failures are visible beside path/root details
 * sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
 * sandbox shell displays Source Detail so manifest parse failures expose the server parse message beside source error and HTTP status
+* sandbox repo includes a stdlib smoke test for manifest loading, primary audio reachability, expected error responses, and no-store headers
 
 Important recent repo event:
 
@@ -200,31 +201,30 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Send no-store on sandbox error responses.
+Add sandbox smoke test.
 ```
 
 Task goal:
 
 ```
-Keep local diagnostic failures fresh by applying the same no-store cache headers
-to static/artifact/API error responses as successful local responses.
+Make the sandbox's core manifest/artifact/header behavior repeatably
+checkable without manual browser interaction.
 ```
 
 Added:
 
-* sandbox server injects no-store headers while building `send_error` responses
-* README wording now names no-store local success and error responses
+* `scripts/smoke_test.py`
+* README smoke-test instructions
+* smoke test starts an isolated local server and shuts it down after checks
+* smoke test checks manifest JSON, primary audio artifact reachability, expected error responses, and no-store headers
 
 Verification note:
 
-* `python -m py_compile server.py` passed
+* `python -m py_compile scripts/smoke_test.py` passed
 * `git diff --check` passed
-* live sandbox server restarted with the server change
-* `curl -I /public/index.html` reported `200 OK` with `Cache-Control: no-store, max-age=0`, `Pragma: no-cache`, and `Expires: 0`
-* `curl -I /artifact` reported `400 Missing artifact path` with no-store headers
-* `curl -I /artifact?path=missing.wav` reported `404 Not found` with no-store headers
-* `curl -I /api/manifest` reported `405 Method not allowed` with no-store headers
-* browser returned to 8765 with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
+* `python scripts/smoke_test.py` passed
+* smoke test did not leave a test server running
+* browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
 Boundary preserved:
@@ -243,7 +243,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-5fc5e3b Send no-store on error responses
+067682c Add sandbox smoke test
 ```
 
 Reported repo status:

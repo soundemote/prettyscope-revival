@@ -313,16 +313,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays a dedicated Source Error row beside manifest path and artifact root details
 * first `soemdsp-sandbox` shell displays manifest HTTP status beside source error/path/root details
 * first `soemdsp-sandbox` shell displays Source Detail for manifest parse failure messages
+* first `soemdsp-sandbox` repo includes a stdlib smoke test for manifest loading, primary audio reachability, expected error responses, and no-store headers
 
 Recent completion:
 
 ```
-5fc5e3b Send no-store on error responses
+067682c Add sandbox smoke test
 ```
 
-The first local `soemdsp-sandbox` server now applies no-store cache headers to local error responses as well as successful local responses.
+The first local `soemdsp-sandbox` repo now has a repeatable smoke test for core manifest/artifact/header behavior.
 
-Verification passed with `python -m py_compile server.py`, `git diff --check`, direct `curl -I` header probes, and the live browser at `http://127.0.0.1:8765`: static success returned no-store headers; `/artifact` returned `400 Missing artifact path` with no-store headers; `/artifact?path=missing.wav` returned `404 Not found` with no-store headers; `/api/manifest` HEAD returned `405 Method not allowed` with no-store headers; after restarting the live sandbox server, the browser reported `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test started and stopped an isolated local server, checked manifest JSON, primary audio artifact reachability, expected error responses, and no-store headers; no test server was left running; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
 
 Generated preview screenshot:
 
