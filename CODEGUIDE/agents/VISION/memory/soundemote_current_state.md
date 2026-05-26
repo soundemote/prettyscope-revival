@@ -278,18 +278,19 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell draws a read-only waveform from the generated WAV
 * first `soemdsp-sandbox` shell overlays phase regions on the waveform and exposes phase seek controls
 * first `soemdsp-sandbox` shell derives phase time ranges, durations, and WAV share from manifest phase sample counts and WAV metadata
+* first `soemdsp-sandbox` shell displays the current waveform phase and highlights the active phase button
 * first `soemdsp-sandbox` shell displays parameter resync values from the generated text summary
 * first `soemdsp-sandbox` shell displays parameter resync deltas and ratios from the generated text summary
 
 Recent completion:
 
 ```
-d8d399f Show phase timing in sandbox
+1fbe66c Show current waveform phase
 ```
 
-The first local `soemdsp-sandbox` shell now derives phase timing from the generated manifest: the first phase displays 0.000s-0.500s, duration 0.500s, and WAV share 50%; the second phase displays 0.500s-1.000s, duration 0.500s, and WAV share 50%.
+The first local `soemdsp-sandbox` shell now displays the active waveform phase in the waveform header and highlights the active phase button from manifest-derived phase regions.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`. Browser verification reported `Manifest: OK`, `Parameter Resync: Loaded`, `Waveform: Drawn`, `Checklist: Accepted`, the expected phase timing rows, zero warning rows, 7 artifact links, no horizontal overflow, and no console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765` for initial render: browser verification reported `Manifest: OK`, `Parameter Resync: Loaded`, `Waveform: Drawn`, `Checklist: Accepted`, current phase `first`, active phase button `first`, zero warning rows, no horizontal overflow, and no console errors. Browser automation did not successfully prove phase-button/range seeking even when targeting visible controls, so manual mouse verification remains useful for the seek path.
 
 Generated preview screenshot:
 
