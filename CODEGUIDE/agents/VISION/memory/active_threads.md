@@ -170,6 +170,7 @@ Recent completed work:
 * sandbox shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * sandbox shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
 * sandbox shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
+* sandbox shell displays the artifact manifest as pretty-printed read-only JSON in the same document viewer
 
 Important recent repo event:
 
@@ -182,34 +183,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show inline artifact reports.
+Show manifest in document viewer.
 ```
 
 Task goal:
 
 ```
-Show the manifest-declared text reports inside the sandbox shell without turning
-the sandbox into an executor, editor, scheduler, or producer-owned runtime.
+Show both the manifest declaration and manifest-declared text reports in one
+read-only document viewer without turning the sandbox into an editor or runtime owner.
 ```
 
 Added:
 
-* Reports panel
-* report status pill
-* read-only report selector buttons
-* inline preformatted report viewer
-* report fetch/load status for text summary, WAV report, and phase reports
-* retained pill styling for proof/status badges
-* README note for inline text reports
+* Documents panel label
+* Artifact manifest as a selectable document
+* pretty-printed JSON display for manifest documents
+* document fetch/load status for manifest, text summary, WAV report, and phase reports
+* README note for inline artifact manifest and text reports
 
 Verification note:
 
 * browser runtime parsed `public/app.js`
-* live browser DOM reported `Reports: 4 Loaded`
-* report selector listed Combined text summary, WAV metadata report, First phase report, and Second phase report
-* report viewer displayed `[BOUND WAV RESYNC RENDER REPORT]` by default
-* clicking `Second phase report` made it active and displayed `[DSP BLOCK PHASE REPORT]`
-* report and artifact coverage status badges kept `pill good` styling
+* live browser DOM reported `Documents: 5 Loaded`
+* document selector listed Artifact manifest, Combined text summary, WAV metadata report, First phase report, and Second phase report
+* document viewer displayed pretty-printed manifest JSON by default
+* clicking `Combined text summary` made it active and displayed `[BOUND WAV RESYNC RENDER REPORT]`
 * live browser still reported artifact packet status `7/7 OK 92.88 KB`
 * live browser still reported `Artifact Coverage: Complete`
 * live browser still reported `Phase Coverage: Complete`
@@ -233,7 +231,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-b2b6c83 Show inline artifact reports
+9d119a4 Show manifest in document viewer
 ```
 
 Reported repo status:

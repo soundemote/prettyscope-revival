@@ -295,16 +295,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * first `soemdsp-sandbox` shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
 * first `soemdsp-sandbox` shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
+* first `soemdsp-sandbox` shell displays the artifact manifest as pretty-printed read-only JSON in the same document viewer
 
 Recent completion:
 
 ```
-b2b6c83 Show inline artifact reports
+9d119a4 Show manifest in document viewer
 ```
 
-The first local `soemdsp-sandbox` shell now shows manifest-declared text reports inline so the user can inspect the combined summary, WAV metadata report, and phase reports without leaving the read-only sandbox surface.
+The first local `soemdsp-sandbox` shell now shows the artifact manifest and manifest-declared text reports in one read-only document viewer, so the declaration and generated inspection documents are visible without leaving the sandbox surface.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Reports: 4 Loaded`, report buttons for Combined text summary, WAV metadata report, First phase report, and Second phase report, default report text beginning `[BOUND WAV RESYNC RENDER REPORT]`, click-switched Second phase report text beginning `[DSP BLOCK PHASE REPORT]`, artifact packet `7/7 OK 92.88 KB`, `Artifact Coverage: Complete`, `Phase Coverage: Complete`, `Manifest: OK`, `Checklist: Accepted`, no warning rows, and no browser console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Documents: 5 Loaded`, document buttons for Artifact manifest, Combined text summary, WAV metadata report, First phase report, and Second phase report, default pretty-printed manifest JSON beginning with `demo`, click-switched Combined text summary beginning `[BOUND WAV RESYNC RENDER REPORT]`, artifact packet `7/7 OK 92.88 KB`, `Artifact Coverage: Complete`, `Phase Coverage: Complete`, `Manifest: OK`, `Checklist: Accepted`, no warning rows, and no browser console errors.
 
 Generated preview screenshot:
 
