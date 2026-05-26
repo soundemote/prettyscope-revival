@@ -314,16 +314,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays manifest HTTP status beside source error/path/root details
 * first `soemdsp-sandbox` shell displays Source Detail for manifest parse failure messages
 * first `soemdsp-sandbox` repo includes a stdlib smoke test for manifest loading, producer proof flags, handoff contract flags/references, artifact/phase coverage, full artifact reachability, report documents, parameter resync summary values, primary audio WAV metadata, expected error/forbidden responses, and no-store headers
+* first `soemdsp-sandbox` smoke test uses automatic temporary ports by default and rejects occupied explicit ports so a live browser server cannot accidentally satisfy readiness checks
 
 Recent completion:
 
 ```
-c827c95 Print grouped smoke checkpoints
+0be73d3 Avoid smoke test port collisions
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now prints grouped checkpoints so automated failures are easier to locate.
+The first local `soemdsp-sandbox` repo smoke test now uses automatic temporary ports by default, rejects occupied explicit ports, and checks that the temporary server child is still alive during readiness polling.
 
-Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test printed grouped checkpoints for `valid manifest packet` and `manifest error responses`; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Reports: 5 Loaded`, `Waveform: Drawn`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`; intentional `--port 8765` testing against the live browser server failed cleanly with `port 8765 is not available`.
 
 Generated preview screenshot:
 

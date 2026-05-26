@@ -189,6 +189,7 @@ Recent completed work:
 * sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
 * sandbox shell displays Source Detail so manifest parse failures expose the server parse message beside source error and HTTP status
 * sandbox repo includes a stdlib smoke test for manifest loading, producer proof flags, handoff contract flags/references, artifact/phase coverage, full artifact reachability, report documents, parameter resync summary values, primary audio WAV metadata, expected error/forbidden responses, and no-store headers
+* sandbox smoke test uses automatic temporary ports by default and rejects occupied explicit ports so the live `8765` browser server cannot accidentally satisfy readiness checks
 
 Important recent repo event:
 
@@ -201,31 +202,35 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add grouped sandbox smoke test output.
+Avoid sandbox smoke test port collisions.
 ```
 
 Task goal:
 
 ```
-Make automated smoke-test failures easier to locate by printing high-level
-check groups before and after each group runs.
+Make the automated smoke test use isolated temporary ports by default and fail
+cleanly if an explicit port is already occupied.
 ```
 
 Added:
 
-* `run_step` helper for grouped smoke-test output
-* grouped output for valid manifest packet checks
-* grouped output for manifest error response checks
-* README note that smoke test prints grouped checkpoints
+* automatic free-port selection for default smoke runs
+* explicit occupied-port rejection before starting a test server
+* child-process liveness checks during server readiness polling
+* README note that smoke test servers run on automatic temporary ports
 
-Verification note:
+Verification:
 
-* `python -m py_compile scripts/smoke_test.py` passed
-* `git diff --check` passed
-* `python scripts/smoke_test.py` passed and printed grouped checkpoints for `valid manifest packet` and `manifest error responses`
-* smoke test did not leave a test server running; only the live 8765 sandbox server remained
-* browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Reports: 5 Loaded`, `Waveform: Drawn`, and artifact packet `7/7 OK 92.88 KB`
-* browser console error log was empty
+* `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
+* `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`
+* `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
+* intentional occupied-port check against live `8765` failed cleanly with `port 8765 is not available`
+
+Commit:
+
+```
+0be73d3 Avoid smoke test port collisions
+```
 
 Boundary preserved:
 
@@ -240,16 +245,10 @@ Boundary preserved:
 * no Circuit mutation
 * no project serialization
 
-Completion commit:
-
-```
-c827c95 Print grouped smoke checkpoints
-```
-
 Reported repo status:
 
-* working tree clean
-* initial local repo commit
+* `soemdsp-sandbox` working tree clean after commit
+* branch `main`
 * behind origin by 0 commits
 * conflicts: none
 
