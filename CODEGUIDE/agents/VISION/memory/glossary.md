@@ -152,6 +152,7 @@ Current first shell:
 * displays frequency/amplitude resync deltas and ratios from the generated summary artifact
 * draws a read-only waveform from the generated WAV
 * overlays manifest-derived phase regions on the waveform
+* derives phase time ranges, durations, and WAV share from manifest phase sample counts and WAV metadata
 * plays the generated WAV with browser-native audio controls
 
 The full modular sandbox does not exist yet.

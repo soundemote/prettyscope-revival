@@ -141,6 +141,7 @@ Recent completed work:
 * sandbox shell visibly applies the consumer checklist and shows warning states for unsafe/unsupported manifest values
 * sandbox shell draws a read-only waveform from the generated WAV
 * sandbox shell overlays manifest-derived phase regions on the waveform and exposes phase seek controls
+* sandbox shell derives phase time ranges, durations, and WAV share from manifest phase sample counts and WAV metadata
 * sandbox shell displays first/second frequency and amplitude from the generated summary artifact
 * sandbox shell displays frequency/amplitude resync deltas and ratios from the generated summary artifact
 
@@ -155,31 +156,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show parameter resync deltas.
+Show phase timing in sandbox.
 ```
 
 Task goal:
 
 ```
-Make the read-only sandbox state the actual parameter resync change by deriving
-frequency/amplitude deltas and ratios from the generated summary artifact,
-without adding DSP execution, scheduling, audio-engine ownership, or project state.
+Make the read-only sandbox phase cards show where each manifest phase lives
+inside the generated WAV by deriving time range, duration, and percentage
+from manifest phase sample counts and WAV metadata.
 ```
 
 Added:
 
-* Frequency Change comparison card
-* Amplitude Change comparison card
-* compact signed delta formatting
-* compact ratio formatting
-* README note for parameter change ratios
+* phase time range rows
+* phase duration rows
+* phase WAV share rows
+* phase span helper derived from manifest samples
+* README note for phase report time ranges
 
 Verification note:
 
+* live browser reported `Manifest: OK`
 * live browser reported `Parameter Resync: Loaded`
-* summary cards rendered first frequency 220, first amplitude 0.2, second frequency 440, second amplitude 0.35
-* summary comparison cards rendered `Frequency Change +220 / x2`
-* summary comparison cards rendered `Amplitude Change +0.15 / x1.75`
+* first phase rendered `0.000s-0.500s`, duration `0.500s`, and WAV share `50%`
+* second phase rendered `0.500s-1.000s`, duration `0.500s`, and WAV share `50%`
 * live browser reported `Waveform: Drawn`
 * live browser still reported `Checklist: Accepted`
 * zero warning rows rendered
@@ -203,7 +204,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-8e659a4 Show parameter resync deltas
+d8d399f Show phase timing in sandbox
 ```
 
 Reported repo status:
