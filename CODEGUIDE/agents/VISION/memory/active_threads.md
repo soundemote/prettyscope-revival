@@ -175,6 +175,7 @@ Recent completed work:
 * sandbox shell displays served artifact modified times from HTTP Last-Modified metadata
 * sandbox shell checks artifact reachability with metadata-only HTTP HEAD requests
 * sandbox shell labels artifact table columns: Label, Kind, Path, Modified, Status
+* sandbox server sends no-store headers for local JSON and file responses
 
 Important recent repo event:
 
@@ -187,30 +188,33 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Label artifact table columns.
+Serve sandbox responses no-store.
 ```
 
 Task goal:
 
 ```
-Make the expanded artifact table readable during hands-on inspection by labeling
-the modified-time and status columns explicitly.
+Prevent browser cache from obscuring regenerated local manifests, static app files,
+or served artifacts during repeated sandbox inspection.
 ```
 
 Added:
 
-* artifact table header row
-* labels for Label, Kind, Path, Modified, and Status columns
-* alignment styling for Modified and Status headings
-* README note for labeled reachable artifact links
+* `Cache-Control: no-store, max-age=0`
+* `Pragma: no-cache`
+* `Expires: 0`
+* no-store headers on JSON responses
+* no-store headers on static and artifact file responses
+* README note for no-store local responses
 
 Verification note:
 
 * `python -m py_compile server.py` passed
-* browser runtime parsed `public/app.js`
-* live browser reported artifact table headings Label, Kind, Path, Modified, and Status
-* live browser reported seven artifact rows, seven modified cells, and seven status cells
-* live browser still reported `Manifest: OK`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`
+* sandbox server restarted on port 8765
+* `/api/manifest` returned status 200 and no-store headers
+* artifact `HEAD` returned status 200, no-store headers, length 88244, and Last-Modified
+* `/public/app.js` `HEAD` returned status 200 and no-store headers
+* live browser still reported `Manifest: OK`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`, `Artifact Coverage: Complete`, and `Phase Coverage: Complete`
 * browser console error log was empty
 
 Boundary preserved:
@@ -229,7 +233,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-d962eeb Label artifact table columns
+078ec95 Serve sandbox responses no-store
 ```
 
 Reported repo status:
