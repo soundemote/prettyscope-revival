@@ -167,6 +167,7 @@ Recent completed work:
 * sandbox shell displays frequency/amplitude resync deltas and ratios from the generated summary artifact
 * sandbox shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
 * sandbox shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
+* sandbox shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 
 Important recent repo event:
 
@@ -179,34 +180,37 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show manifest source metadata.
+Show phase coverage status.
 ```
 
 Task goal:
 
 ```
-Show concrete source-file provenance for the read-only manifest packet without
-turning the sandbox into a project format, loader, or runtime owner.
+Show whether manifest phase sample counts cover the generated WAV frames exactly,
+without inferring scheduling, execution order ownership, or runtime behavior.
 ```
 
 Added:
 
-* `manifestInfo` in `/api/manifest`
-* manifest byte count
-* manifest UTC modified timestamp
-* Source status pill
-* Source panel rows for manifest bytes and modified time
-* README note for source file metadata
+* Phase Coverage panel
+* phase coverage status pill
+* aggregate phase frame count
+* WAV frame count comparison
+* coverage percent
+* frame delta check
+* phase list status pill
+* README note for phase coverage
 
 Verification note:
 
-* Python compile passed for `server.py`
 * browser runtime parsed `public/app.js`
-* API returned `manifestInfo` with bytes and `modifiedUtc`
-* live browser DOM reported `Source: Loaded`
-* live browser DOM reported manifest bytes and manifest modified time
+* live browser DOM reported `Phase Coverage: Complete`
+* live browser DOM reported `Phases: 2 OK`
+* phase coverage rows reported phase count 2, phase frames 44100, WAV frames 44100, coverage 100%, delta 0
+* no phase coverage rows were marked warning
 * live browser still reported `Manifest: OK`
 * live browser still reported `Checklist: Accepted`
+* live browser still reported `Source: Loaded`
 * live browser still reported `Producer Proof: Verified`
 * browser console error log was empty
 
@@ -226,7 +230,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-4ab1c8a Show manifest source metadata
+1b58a53 Show phase coverage status
 ```
 
 Reported repo status:
