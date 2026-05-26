@@ -270,6 +270,10 @@ light / milestone-based
 Current state:
 
 * Asciiscope remains independent and terminal-first
+* Console wrote `C:\Users\argit\Desktop\asciiscope\docs\CLAP_STARTINGPOINT_HANDOFF.md`
+* handoff says the reusable middle is `audio/plugin input -> SignalFrame -> visual scene / renderer`
+* scenes should keep asking for named signal sources, latest samples, stats, and timing
+* scenes should not know about CLAP, JUCE, plugin processors, ports, buses, or host callbacks
 * Asciiscope CLAP identity rename completed
 * JUCE visual component added
 * `ui::AsciiscopeVisualComponent` exists
@@ -281,16 +285,21 @@ Current state:
 Likely next Console milestone:
 
 ```
-Add lightweight audio-to-visual snapshot boundary for Asciiscope CLAP.
+Inspect baconpaul/sidequest-startingpoint, keep its JUCE/CLAP/CMake structure intact,
+and make a minimal Asciiscope CLAP startingpoint without pulling sandbox internals.
 ```
 
 Guidance:
 
 * Console does not need to report every local edit
 * report milestones, blockers, commits, repo unsafe state, or boundary decisions
-* no premature `IVisualSurface`
+* `IVisualSurface` is now a likely extraction before/during plugin work, but only when the CLAP/editor split needs it
+* do not force `IVisualSurface` before the startingpoint/template shape is understood
+* keep the base renderer CPU-first and sample-aware
+* do not make OpenGL the implied migration target for the core Asciiscope renderer
 * no direct `soemdsp-sandbox` coupling
 * no collision with Tracer
+* do not reuse terminal input polling, Windows console buffer output, command-line capture flags, thread sleeps as timing, or stdout rendering in the plugin path
 
 Relevant shared guidance:
 

@@ -189,7 +189,12 @@ Current direction:
 * preserve Asciiscope identity
 * add plugin visual component
 * add audio-to-visual snapshot path
-* avoid premature shared visual abstraction
+* reuse `SignalFrame` as the plugin/visual middle
+* avoid terminal assumptions in plugin code
+* keep scenes unaware of CLAP, JUCE, plugin processors, ports, buses, and host callbacks
+* keep renderer direction CPU-first and sample-aware
+* treat `IVisualSurface` as a likely extraction when the CLAP/editor split needs it, not as a forced early abstraction
+* avoid direct `soemdsp-sandbox` coupling
 
 ## Prettyscope
 

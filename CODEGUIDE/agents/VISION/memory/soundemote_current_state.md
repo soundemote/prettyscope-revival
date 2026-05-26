@@ -380,6 +380,26 @@ ISignalInput
     -> ConsoleRenderer
 ```
 
+Latest Console handoff:
+
+```
+C:\Users\argit\Desktop\asciiscope\docs\CLAP_STARTINGPOINT_HANDOFF.md
+```
+
+Handoff direction:
+
+* terminal Asciiscope stays independent
+* CLAP/plugin path should reuse `SignalFrame`, not terminal assumptions
+* reusable middle is `audio/plugin input -> SignalFrame -> visual scene / renderer`
+* scenes should know named signal sources, latest samples, stats, and timing
+* scenes should not know CLAP, JUCE, plugin processors, ports, buses, or host callbacks
+* base renderer should stay CPU-first and sample-aware
+* OpenGL is optional later effects/output plumbing, not the implied core renderer migration target
+* likely extraction before/during plugin work is a renderer-neutral `IVisualSurface`
+* do not force `IVisualSurface` before the startingpoint/template shape is understood
+* first startingpoint pass should inspect `baconpaul/sidequest-startingpoint`, preserve its JUCE/CLAP/CMake structure, rename only expected template parts, add MIT metadata, and add a tiny signal visual prototype
+* do not pull `soemdsp-sandbox` internals into Asciiscope CLAP
+
 Asciiscope CLAP current state:
 
 * plugin identity renamed to Asciiscope CLAP
