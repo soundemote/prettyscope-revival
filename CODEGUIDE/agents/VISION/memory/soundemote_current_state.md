@@ -291,16 +291,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays parameter resync values from the generated text summary
 * first `soemdsp-sandbox` shell displays parameter resync deltas and ratios from the generated text summary
 * first `soemdsp-sandbox` shell displays producer proof flags from the manifest: demo identity, artifact kind, non-runtime API status, non-scheduler status, non-audio-engine status, and expected frequency/amplitude setter support
+* first `soemdsp-sandbox` shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 
 Recent completion:
 
 ```
-fba86fc Show producer proof flags
+4ab1c8a Show manifest source metadata
 ```
 
-The first local `soemdsp-sandbox` shell now shows a Producer Proof panel that verifies the packet producer identity and the top-level manifest flags that keep the shell read-only.
+The first local `soemdsp-sandbox` shell now shows Source panel file metadata so the read-only packet has visible provenance.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Producer Proof: Verified`, 7 producer proof rows, matching demo identity, artifact kind, runtime API false, scheduler false, audio engine false, frequency setter true, amplitude setter true, `Manifest: OK`, and `Checklist: Accepted`.
+Verification passed in the live browser at `http://127.0.0.1:8765`: API returned `manifestInfo` with bytes and `modifiedUtc`; browser DOM reported `Source: Loaded`, manifest bytes, manifest modified time, `Manifest: OK`, `Checklist: Accepted`, and `Producer Proof: Verified`; browser console error log was empty.
 
 Generated preview screenshot:
 
