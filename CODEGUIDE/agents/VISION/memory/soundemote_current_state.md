@@ -318,12 +318,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-067682c Add sandbox smoke test
+3fc04eb Expand sandbox smoke test
 ```
 
-The first local `soemdsp-sandbox` repo now has a repeatable smoke test for core manifest/artifact/header behavior.
+The first local `soemdsp-sandbox` repo smoke test now covers manifest failure diagnostics as well as the valid manifest path.
 
-Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test started and stopped an isolated local server, checked manifest JSON, primary audio artifact reachability, expected error responses, and no-store headers; no test server was left running; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, and `python scripts/smoke_test.py`: the smoke test starts and stops isolated local servers, checks valid manifest JSON, primary audio artifact reachability, expected artifact/API error responses, no-store headers, missing-manifest API payloads, and invalid-JSON parse-detail payloads; no test server was left running beyond the live 8765 sandbox server.
 
 Generated preview screenshot:
 

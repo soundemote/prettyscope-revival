@@ -201,31 +201,28 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Add sandbox smoke test.
+Expand sandbox smoke test for manifest failures.
 ```
 
 Task goal:
 
 ```
-Make the sandbox's core manifest/artifact/header behavior repeatably
-checkable without manual browser interaction.
+Make missing-manifest and invalid-JSON manifest API diagnostics repeatably
+checkable without manual browser fixtures.
 ```
 
 Added:
 
-* `scripts/smoke_test.py`
-* README smoke-test instructions
-* smoke test starts an isolated local server and shuts it down after checks
-* smoke test checks manifest JSON, primary audio artifact reachability, expected error responses, and no-store headers
+* smoke test now has reusable start/stop server helpers
+* smoke test creates temporary missing-manifest and invalid-JSON fixtures
+* smoke test checks failure status, JSON payload shape, source path, artifact root, parse detail, and no-store headers
 
 Verification note:
 
 * `python -m py_compile scripts/smoke_test.py` passed
 * `git diff --check` passed
 * `python scripts/smoke_test.py` passed
-* smoke test did not leave a test server running
-* browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Waveform: Drawn`, `Artifact Coverage: Complete`, `missing paths: 0`, and artifact packet `7/7 OK 92.88 KB`
-* browser console error log was empty
+* smoke test did not leave a test server running; only the live 8765 sandbox server remained
 
 Boundary preserved:
 
@@ -243,7 +240,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-067682c Add sandbox smoke test
+3fc04eb Expand sandbox smoke test
 ```
 
 Reported repo status:
