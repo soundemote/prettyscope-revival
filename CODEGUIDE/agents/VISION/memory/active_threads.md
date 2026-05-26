@@ -185,6 +185,7 @@ Recent completed work:
 * sandbox shell preserves source path/root details on malformed manifest shape errors
 * sandbox shell displays a dedicated Source Error row so manifest load failures and shape failures are visible beside path/root details
 * sandbox shell displays manifest HTTP status so source failures show transport status beside source error/path/root details
+* sandbox shell displays Source Detail so manifest parse failures expose the server parse message beside source error and HTTP status
 
 Important recent repo event:
 
@@ -197,30 +198,29 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show manifest HTTP status.
+Show source error details.
 ```
 
 Task goal:
 
 ```
-Make manifest/source transport results explicit in the Source panel so local
-failure diagnosis shows both the semantic error and HTTP status.
+Make source failures explain themselves in the Source panel with a headline
+error, optional detail, HTTP status, path, and artifact root.
 ```
 
 Added:
 
-* `HTTP Status` row in the Source panel
-* `/api/manifest` response status and status text are captured before success/error rendering
-* successful manifest loads show `200 OK`
-* missing manifest loads show `404 Not Found`
-* README note for manifest HTTP status
+* `Source Detail` row in the Source panel
+* successful manifest loads show `none`
+* manifest parse failures show the server parse detail message
+* README wording now names source error and detail fields
 
 Verification note:
 
 * `git diff --check` passed
-* normal live browser load reported `Manifest: OK`, `Source: Loaded`, `Source Error: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`
-* temporary missing-manifest server reported `Manifest: Check`, `Source: Check`, `Source Error: manifest not found`, `HTTP Status: 404 Not Found`, the missing manifest path, and artifact root
-* missing-manifest path cleared artifact rows
+* normal live browser load reported `Manifest: OK`, `Source: Loaded`, `Source Error: none`, `Source Detail: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`
+* temporary invalid-JSON server reported `Manifest: Check`, `Source: Check`, `Source Error: manifest JSON parse failed`, populated Source Detail, `HTTP Status: 500 Internal Server Error`, manifest path, and artifact root
+* invalid-JSON path cleared artifact rows
 * browser returned to 8765 with the normal green state restored
 * browser console error log was empty
 
@@ -240,7 +240,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-2c81f32 Show manifest HTTP status
+5ad7ef1 Show source parse details
 ```
 
 Reported repo status:

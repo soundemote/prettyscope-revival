@@ -310,16 +310,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell preserves source path/root details on malformed manifest shape errors
 * first `soemdsp-sandbox` shell displays a dedicated Source Error row beside manifest path and artifact root details
 * first `soemdsp-sandbox` shell displays manifest HTTP status beside source error/path/root details
+* first `soemdsp-sandbox` shell displays Source Detail for manifest parse failure messages
 
 Recent completion:
 
 ```
-2c81f32 Show manifest HTTP status
+5ad7ef1 Show source parse details
 ```
 
-The first local `soemdsp-sandbox` shell now makes manifest/source transport results explicit with an HTTP Status row, while still preserving source error, manifest path, and artifact root details.
+The first local `soemdsp-sandbox` shell now makes manifest/source failures explicit with Source Error, Source Detail, HTTP Status, manifest path, and artifact root fields.
 
-Verification passed with `git diff --check`, the live browser at `http://127.0.0.1:8765`, and a temporary missing-manifest server: normal load stayed green with `Source Error: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`; missing manifest reported `Manifest: Check`, `Source: Check`, `Source Error: manifest not found`, `HTTP Status: 404 Not Found`, displayed the missing manifest path and artifact root, cleared artifact rows, and produced no browser console errors; returning to 8765 restored `Manifest: OK`, `Source Error: none`, and `HTTP Status: 200 OK`.
+Verification passed with `git diff --check`, the live browser at `http://127.0.0.1:8765`, and a temporary invalid-JSON server: normal load stayed green with `Source Error: none`, `Source Detail: none`, `HTTP Status: 200 OK`, `Documents: 5 Loaded`, and artifact packet `7/7 OK 92.88 KB`; invalid JSON reported `Manifest: Check`, `Source: Check`, `Source Error: manifest JSON parse failed`, populated Source Detail, `HTTP Status: 500 Internal Server Error`, displayed manifest path and artifact root, cleared artifact rows, and produced no browser console errors; returning to 8765 restored `Manifest: OK`, `Source Error: none`, `Source Detail: none`, and `HTTP Status: 200 OK`.
 
 Generated preview screenshot:
 
