@@ -117,13 +117,13 @@ Architect remains the router when Codex context is needed.
 
 Core DSP/runtime library.
 
-Owned by Codex.
+Owned by Vision, with Codex available only as optional pasted historical context.
 
 Contains the runtime spine that future Soundemote systems may build on.
 
 ## soemdsp-sandbox
 
-Future modular creative environment built on `soemdsp`.
+Local sandbox environment built on `soemdsp`.
 
 Intended to evolve into:
 
@@ -134,7 +134,22 @@ Intended to evolve into:
 * scripting environment
 * exportable/open modular platform
 
-The actual sandbox does not fully exist yet.
+The first local repo now exists at:
+
+```text
+C:\Users\argit\Desktop\soemdsp-sandbox
+```
+
+Current first shell:
+
+* read-only manifest consumer
+* Python stdlib server
+* static browser UI
+* consumes generated `soemdsp` bound WAV resync manifest
+* displays status, boundary flags, phases, artifact links, and source paths
+* plays the generated WAV with browser-native audio controls
+
+The full modular sandbox does not exist yet.
 
 Void currently acts as a creative web sketchpad while this is being built.
 

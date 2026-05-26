@@ -166,14 +166,15 @@ Old repo-local `.codex/AGENTS.md` in `soemdsp` is obsolete/removed.
 
 ## soemdsp / soemdsp-sandbox State
 
-Owner: Codex.
+Owner: Vision, with Codex available only as optional pasted historical context.
 
 Current focus:
 
 * `soemdsp` core runtime
 * DSP binding
 * runtime graph foundation
-* future `soemdsp-sandbox`
+* first local `soemdsp-sandbox`
+* future full modular `soemdsp-sandbox`
 
 Current runtime foundation includes:
 
@@ -270,20 +271,27 @@ Recent proven demos include:
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
 * docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
+* first local `soemdsp-sandbox` repo exists at `C:\Users\argit\Desktop\soemdsp-sandbox`
+* first `soemdsp-sandbox` shell is a Python-stdlib server plus static browser UI
+* first `soemdsp-sandbox` shell reads the generated `soemdsp` manifest and serves the WAV/artifact packet read-only
 
 Recent completion:
 
 ```
-08ef373 Document sandbox handoff consumer checklist
+7235826 Create read-only manifest sandbox shell
 ```
 
-`docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md` now records the smallest safe read-only sandbox manifest consumer behavior. It defines accept criteria for contract, version, inspection mode, ownership flags, entry/audio paths, artifact links, and phase reports, plus display guidance and reject/warn conditions.
+The first local `soemdsp-sandbox` repo now exists. It provides a read-only browser shell at `http://127.0.0.1:8765` that consumes the generated bound WAV resync manifest from the sibling `soemdsp` repo, displays contract/status/boundary flags/phases/artifact links, and plays the generated WAV through a browser-native audio control.
 
-Verification passed with a full Debug build, a bound WAV resync demo run, and external JSON parsing of the generated manifest. The verification asserted 16 checklist fields, and the manifest passed all 16 checks with 7 artifact links and 2 phases.
+Verification passed with Python compilation, generated `soemdsp` artifact refresh, API checks, WAV artifact serving checks, Browser DOM inspection, Refresh button interaction, console-error inspection, audio element inspection, and screenshot review. Browser verification reported 7 artifact rows, 2 phase panels, no warning flags, no horizontal overflow, a real audio source, and no console errors.
 
-Codex in-app browser blocks direct `file://` navigation, so verify generated HTML by content inspection unless Architect asks to open it manually or through another approved local serving path.
+Generated preview screenshot:
 
-This is a bridge toward the future `soemdsp-sandbox` hands-on threshold, where Architect should test by hearing, seeing, or manipulating something rather than reading CLI proof output.
+```
+C:\Users\argit\Desktop\soemdsp-sandbox\sandbox-preview.png
+```
+
+This now reaches Architect's hands-on testing threshold because it has mouse interaction, visual inspection value, and audible output.
 
 ## Vision Takeover / Codex Context
 

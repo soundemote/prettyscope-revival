@@ -50,6 +50,7 @@ Repo:
 
 ```
 C:\Users\argit\Desktop\soemdsp
+C:\Users\argit\Desktop\soemdsp-sandbox
 ```
 
 Ownership:
@@ -60,7 +61,8 @@ Ownership:
 * DSP binding
 * ControlGraph
 * validation/reporting/export
-* future sandbox spine
+* first local sandbox shell
+* future full sandbox spine
 
 Current focus:
 
@@ -134,6 +136,8 @@ Recent completed work:
 * docs/SANDBOX_HANDOFF_CONTRACT.md documents the versioned read-only sandbox handoff contract and its non-meanings
 * bound DSP object WAV resync manifest includes display-ready artifact links for read-only sandbox shells
 * docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
+* first local `soemdsp-sandbox` repo exists as a read-only manifest shell
+* sandbox shell displays status, contract, boundary flags, phases, artifact links, and a browser-native WAV player
 
 Important recent repo event:
 
@@ -146,53 +150,62 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Document sandbox handoff consumer checklist.
+Create read-only manifest sandbox shell.
 ```
 
 Task goal:
 
 ```
-Define the smallest safe read-only sandbox manifest consumer behavior without
-adding a JSON dependency, scheduler, audio engine, plugin layer, or project
-format to soemdsp.
+Create the first local soemdsp-sandbox shell that consumes the generated
+soemdsp handoff manifest, displays the artifact packet, and plays the WAV
+without adding scheduler, audio-engine, plugin, project, or DSP ownership.
 ```
 
 Added:
 
-* `docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md`
-* accept criteria for contract, version, inspection mode, ownership flags, entry/audio paths, artifact links, and phase reports
-* display guidance for read-only sandbox shells
-* reject/warn guidance for unsafe ownership or unsupported contract states
-* status/plan/execution-question doc notes
+* new local repo at `C:\Users\argit\Desktop\soemdsp-sandbox`
+* Python stdlib server
+* static browser UI
+* manifest API
+* read-only artifact serving rooted at the generated `soemdsp` artifact folder
+* browser-native audio player
+* status strip, boundary flags, phase panels, artifact links, source paths
+* README and repo ignore rules
 
 Verification note:
 
-* full Debug build passed
-* bound WAV resync demo ran successfully
-* generated manifest parsed as JSON
-* external verification asserted 16 checklist fields
-* manifest passed all 16 checks, with 7 artifact links and 2 phases
+* `server.py` compiled with Python
+* `soemdsp` bound WAV resync artifact packet regenerated
+* local server started at `http://127.0.0.1:8765`
+* API returned `ok: true`, `allOk: true`, 7 links, and 2 phases
+* WAV endpoint returned `audio/wav` with 88244 bytes
+* Browser DOM inspection showed status, contract, flags, phases, and artifact links
+* Refresh button worked
+* browser check found no console errors, no warning flags, no horizontal overflow, and a real audio source
 
 Boundary preserved:
 
-* demo-local only
+* read-only shell
 * no audio engine
 * no executor
 * no scheduler
 * no production batch API
-* no plugin/UI layer
+* no plugin layer
+* no runtime-owned UI layer
 * no graph-owned DSP object state
+* no Circuit mutation
+* no project serialization
 
 Completion commit:
 
 ```
-08ef373 Document sandbox handoff consumer checklist
+7235826 Create read-only manifest sandbox shell
 ```
 
 Reported repo status:
 
 * working tree clean
-* ahead of origin by 7 commits
+* initial local repo commit
 * behind origin by 0 commits
 * conflicts: none
 
