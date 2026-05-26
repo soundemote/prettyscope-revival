@@ -304,6 +304,7 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell labels artifact table columns: Label, Kind, Path, Modified, Status
 * first `soemdsp-sandbox` shell renders missing artifact paths as non-clickable artifact rows
 * first `soemdsp-sandbox` server sends no-store headers for local success and error responses
+* first `soemdsp-sandbox` server explicitly rejects POST, PUT, PATCH, and DELETE with no-store 405 responses
 * first `soemdsp-sandbox` shell displays browser-side manifest response load time
 * first `soemdsp-sandbox` shell displays manifest response cache headers in the Source panel
 * first `soemdsp-sandbox` shell displays the artifact reachability method as `HEAD`
@@ -318,17 +319,18 @@ Recent proven demos include:
 * first `soemdsp-sandbox` smoke test uses automatic temporary ports by default and rejects occupied explicit ports so a live browser server cannot accidentally satisfy readiness checks
 * first `soemdsp-sandbox` smoke test parses the root HTML shell and verifies the DOM IDs, app script, and stylesheet required by the browser UI
 * first `soemdsp-sandbox` smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
+* first `soemdsp-sandbox` smoke test proves mutation methods are rejected by the read-only local server
 * first `soemdsp-sandbox` smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Recent completion:
 
 ```
-49a7434 Check duplicate shell IDs in smoke test
+4596f26 Reject mutation methods in sandbox server
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now rejects duplicate DOM IDs in the root shell before browser UI behavior can become ambiguous silently.
+The first local `soemdsp-sandbox` server now explicitly rejects mutation methods with no-store 405 responses, and the smoke test proves POST, PUT, PATCH, and DELETE rejection.
 
-Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
+Verification passed with `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\server.py C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`, `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`, and `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`.
 
 Generated preview screenshot:
 

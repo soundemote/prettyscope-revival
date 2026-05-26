@@ -179,6 +179,7 @@ Recent completed work:
 * sandbox shell labels artifact table columns: Label, Kind, Path, Modified, Status
 * sandbox shell renders missing artifact paths as non-clickable artifact rows
 * sandbox server sends no-store headers for local success and error responses
+* sandbox server explicitly rejects POST, PUT, PATCH, and DELETE with no-store 405 responses
 * sandbox shell displays browser-side manifest response load time
 * sandbox shell displays manifest response cache headers in the Source panel
 * sandbox shell displays the artifact reachability method as `HEAD`
@@ -193,6 +194,7 @@ Recent completed work:
 * sandbox smoke test uses automatic temporary ports by default and rejects occupied explicit ports so the live `8765` browser server cannot accidentally satisfy readiness checks
 * sandbox smoke test parses the root HTML shell and verifies the DOM IDs, app script, and stylesheet required by the browser UI
 * sandbox smoke test rejects duplicate root shell DOM IDs before browser behavior can become ambiguous
+* sandbox smoke test proves mutation methods are rejected by the read-only local server
 * sandbox smoke test proves readable malformed manifest JSON is transported with source details for browser-side shape validation
 
 Important recent repo event:
@@ -206,24 +208,25 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Check duplicate shell IDs in smoke test.
+Reject mutation methods in sandbox server.
 ```
 
 Task goal:
 
 ```
-Make the sandbox smoke test reject duplicate DOM IDs in the root shell so
-browser UI behavior cannot become ambiguous silently.
+Make the read-only sandbox server explicitly reject mutation methods with the
+same local no-store error behavior as other server responses.
 ```
 
 Added:
 
-* duplicate-ID tracking in the stdlib shell contract parser
-* duplicate-ID assertion before required-ID checks
-* README note that the smoke test checks duplicate IDs
+* explicit POST, PUT, PATCH, and DELETE rejection in `server.py`
+* no-store 405 smoke checks for mutation methods
+* README note that the smoke test verifies read-only mutation rejection
 
 Verification:
 
+* `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\server.py`
 * `python -m py_compile C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
 * `git -C C:\Users\argit\Desktop\soemdsp-sandbox diff --check`
 * `python C:\Users\argit\Desktop\soemdsp-sandbox\scripts\smoke_test.py`
@@ -231,7 +234,7 @@ Verification:
 Commit:
 
 ```
-49a7434 Check duplicate shell IDs in smoke test
+4596f26 Reject mutation methods in sandbox server
 ```
 
 Boundary preserved:
