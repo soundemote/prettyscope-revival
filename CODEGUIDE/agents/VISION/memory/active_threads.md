@@ -180,6 +180,7 @@ Recent completed work:
 * sandbox shell displays manifest response cache headers in the Source panel
 * sandbox shell displays the artifact reachability method as `HEAD`
 * sandbox shell guards malformed-but-readable manifest JSON before rendering
+* sandbox shell displays server-reported manifest error paths in the Source panel
 
 Important recent repo event:
 
@@ -192,30 +193,31 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Guard malformed manifest shape.
+Show manifest error path.
 ```
 
 Task goal:
 
 ```
-Fail visibly and clear stale UI when `/api/manifest` returns valid JSON that is
-not the expected sandbox manifest shape, instead of throwing during render.
+Show the server-reported manifest path on manifest load errors so missing or
+bad manifest configuration is inspectable without leaving the sandbox UI.
 ```
 
 Added:
 
-* minimal manifest shape guard before render
-* checks for manifest object, sandbox handoff, WAV metadata, WAV frame count, artifact links array, and phases array
-* malformed shape failures reuse the existing Check-state cleanup path
-* README note for malformed manifest shape checks
+* error renderer accepts optional response details
+* manifest path uses server `path` / `manifestPath` details when available
+* artifact root uses server details when available
+* manifest error payload is passed through to the error renderer
+* README note for manifest error paths
 
 Verification note:
 
 * `python -m py_compile server.py` passed
 * browser runtime parsed `public/app.js`
-* normal live browser load still reported `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`, `Artifact Coverage: Complete`, and `Phase Coverage: Complete`
-* temporary malformed-manifest server with valid JSON but missing sandbox handoff reported `Manifest: Check` and `sandbox handoff missing`
-* malformed shape path cleared artifact rows, checklist rows, phase rows, and waveform metadata rows
+* normal live browser load still reported `Manifest: OK`, `Source: Loaded`, `Documents: 5 Loaded`, artifact packet `7/7 OK 92.88 KB`, and the normal manifest path
+* temporary missing-manifest server reported `Manifest: Check`, `manifest not found`, and displayed the missing manifest path
+* missing-manifest path cleared artifact rows
 * browser returned to 8765 with the normal green state restored
 * browser console error log was empty
 
@@ -235,7 +237,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-72a11ad Guard malformed manifest shape
+7d5a731 Show manifest error path
 ```
 
 Reported repo status:
