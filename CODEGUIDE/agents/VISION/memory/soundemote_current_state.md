@@ -318,12 +318,12 @@ Recent proven demos include:
 Recent completion:
 
 ```
-0771b10 Check producer proof in smoke test
+c827c95 Print grouped smoke checkpoints
 ```
 
-The first local `soemdsp-sandbox` repo smoke test now checks the producer proof fields used by the browser Producer Proof panel.
+The first local `soemdsp-sandbox` repo smoke test now prints grouped checkpoints so automated failures are easier to locate.
 
-Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test now checks demo identity, artifact kind, runtime API/scheduler/audio engine flags are false, and frequency/amplitude setters are present; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Producer Proof: Verified`, demo `runtime_dsp_object_bound_wav_resync_demo`, kind `demo-local-bound-wav-resync-artifacts`, runtime API/scheduler/audio engine all `false`, frequency/amplitude setters `true`, `Waveform: Drawn`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
+Verification passed with `python -m py_compile scripts/smoke_test.py`, `git diff --check`, `python scripts/smoke_test.py`, and the live browser at `http://127.0.0.1:8765`: the smoke test printed grouped checkpoints for `valid manifest packet` and `manifest error responses`; no test server was left running beyond the live 8765 sandbox server; the browser remained healthy with `Manifest: OK`, `Source: Loaded`, `Reports: 5 Loaded`, `Waveform: Drawn`, artifact packet `7/7 OK 92.88 KB`, and no console errors.
 
 Generated preview screenshot:
 

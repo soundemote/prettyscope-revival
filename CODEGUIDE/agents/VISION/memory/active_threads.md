@@ -201,31 +201,30 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Expand sandbox smoke test for producer proof.
+Add grouped sandbox smoke test output.
 ```
 
 Task goal:
 
 ```
-Make the Producer Proof panel inputs repeatably checkable without manual
-browser inspection.
+Make automated smoke-test failures easier to locate by printing high-level
+check groups before and after each group runs.
 ```
 
 Added:
 
-* smoke test checks demo identity
-* smoke test checks artifact kind
-* smoke test checks runtime API, scheduler, and audio engine flags are false
-* smoke test checks frequency and amplitude setters are present
-* README smoke-test text now names producer proof flags
+* `run_step` helper for grouped smoke-test output
+* grouped output for valid manifest packet checks
+* grouped output for manifest error response checks
+* README note that smoke test prints grouped checkpoints
 
 Verification note:
 
 * `python -m py_compile scripts/smoke_test.py` passed
 * `git diff --check` passed
-* `python scripts/smoke_test.py` passed
+* `python scripts/smoke_test.py` passed and printed grouped checkpoints for `valid manifest packet` and `manifest error responses`
 * smoke test did not leave a test server running; only the live 8765 sandbox server remained
-* browser remained healthy at 8765 with `Producer Proof: Verified`, demo `runtime_dsp_object_bound_wav_resync_demo`, kind `demo-local-bound-wav-resync-artifacts`, runtime API/scheduler/audio engine all `false`, frequency/amplitude setters `true`, `Waveform: Drawn`, and artifact packet `7/7 OK 92.88 KB`
+* browser remained healthy at 8765 with `Manifest: OK`, `Source: Loaded`, `Reports: 5 Loaded`, `Waveform: Drawn`, and artifact packet `7/7 OK 92.88 KB`
 * browser console error log was empty
 
 Boundary preserved:
@@ -244,7 +243,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-0771b10 Check producer proof in smoke test
+c827c95 Print grouped smoke checkpoints
 ```
 
 Reported repo status:
