@@ -89,6 +89,15 @@ Architect hands-on testing threshold:
 * do not ask Architect to test CLI-only demos
 * Vision handles command-line build/run/proof verification
 * ask Architect for hands-on testing when there is mouse interaction, audible output, or visual inspection value
+* keep using Architect for difficult-to-confirm widget interactions, browser-native media behavior, mouse behavior, and audible/visual matching
+
+Vision time-awareness rule:
+
+* Vision is aware of time only when checking a clock or when Architect reports time
+* whenever Architect gives an important time/runway update, record it in durable memory
+* latest Architect time update: Day 2, 11:39 PM
+* local machine clock near that update: 2026-05-25 23:40:20 -07:00
+* Architect may continue having Vision work through part of the night because continuing can be driven by simple `continue` prompts
 
 Vision thought-processing stance:
 

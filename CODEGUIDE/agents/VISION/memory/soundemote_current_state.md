@@ -13,6 +13,11 @@ Current push context:
 * Codex is the main big-ticket technical focus
 * Console, Tracer, DIRECTOR, and Void are active but should not overload Vision routing
 * Architect should not be asked for hands-on testing of CLI demos; save hands-on testing requests for mouse interaction, audible output, or visual inspection
+* Architect should keep being used for difficult-to-confirm widget interactions, browser-native media behavior, mouse behavior, and audible/visual matching
+* Vision is aware of time only when checking a clock or when Architect reports time; record important time/runway updates here
+* latest Architect time update: Day 2, 11:39 PM
+* local machine clock near that update: 2026-05-25 23:40:20 -07:00
+* Architect may continue having Vision work through part of the night because continuing can be driven by simple `continue` prompts
 
 * Vision is currently allowed to use maximum/Extra High thought processing; it is worthwhile for architecture-sensitive boundary decisions, but mechanical edits do not inherently require it
 
