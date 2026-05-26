@@ -147,6 +147,7 @@ Current first shell:
 * static browser UI
 * consumes generated `soemdsp` bound WAV resync manifest
 * displays status, boundary flags, phases, artifact links, and source paths
+* visibly applies the read-only consumer checklist
 * plays the generated WAV with browser-native audio controls
 
 The full modular sandbox does not exist yet.

@@ -138,6 +138,7 @@ Recent completed work:
 * docs/SANDBOX_HANDOFF_CONSUMER_CHECKLIST.md records accept/display/reject rules for a future read-only sandbox manifest consumer
 * first local `soemdsp-sandbox` repo exists as a read-only manifest shell
 * sandbox shell displays status, contract, boundary flags, phases, artifact links, and a browser-native WAV player
+* sandbox shell visibly applies the consumer checklist and shows warning states for unsafe/unsupported manifest values
 
 Important recent repo event:
 
@@ -150,38 +151,35 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Create read-only manifest sandbox shell.
+Show manifest consumer checklist.
 ```
 
 Task goal:
 
 ```
-Create the first local soemdsp-sandbox shell that consumes the generated
-soemdsp handoff manifest, displays the artifact packet, and plays the WAV
-without adding scheduler, audio-engine, plugin, project, or DSP ownership.
+Make the first sandbox shell enforce the documented read-only manifest
+consumer checklist visibly, so unsupported contract or ownership states become
+warnings instead of silent raw fields.
 ```
 
 Added:
 
-* new local repo at `C:\Users\argit\Desktop\soemdsp-sandbox`
-* Python stdlib server
-* static browser UI
-* manifest API
-* read-only artifact serving rooted at the generated `soemdsp` artifact folder
-* browser-native audio player
-* status strip, boundary flags, phase panels, artifact links, source paths
-* README and repo ignore rules
+* top-level Checklist status
+* 16-row Consumer Checklist panel
+* browser-side accept checks for contract, version, inspection mode, entry/audio paths, ownership flags, artifact links, and phase reports
+* warning styling for unsafe/unsupported values
+* README note that the checklist is applied in the browser
 
 Verification note:
 
-* `server.py` compiled with Python
-* `soemdsp` bound WAV resync artifact packet regenerated
-* local server started at `http://127.0.0.1:8765`
-* API returned `ok: true`, `allOk: true`, 7 links, and 2 phases
-* WAV endpoint returned `audio/wav` with 88244 bytes
-* Browser DOM inspection showed status, contract, flags, phases, and artifact links
+* live browser reported `Manifest: OK`
+* live browser reported `Checklist: Accepted`
+* 16 checklist rows rendered
+* zero warning rows rendered
+* 7 artifact links rendered
+* 2 phase panels rendered
 * Refresh button worked
-* browser check found no console errors, no warning flags, no horizontal overflow, and a real audio source
+* browser check found no console errors, no horizontal overflow, and a real audio source
 
 Boundary preserved:
 
@@ -199,7 +197,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-7235826 Create read-only manifest sandbox shell
+dec6696 Show manifest consumer checklist
 ```
 
 Reported repo status:

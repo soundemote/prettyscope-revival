@@ -274,16 +274,17 @@ Recent proven demos include:
 * first local `soemdsp-sandbox` repo exists at `C:\Users\argit\Desktop\soemdsp-sandbox`
 * first `soemdsp-sandbox` shell is a Python-stdlib server plus static browser UI
 * first `soemdsp-sandbox` shell reads the generated `soemdsp` manifest and serves the WAV/artifact packet read-only
+* first `soemdsp-sandbox` shell visibly applies the read-only consumer checklist and surfaces unsafe/unsupported manifest states as warnings
 
 Recent completion:
 
 ```
-7235826 Create read-only manifest sandbox shell
+dec6696 Show manifest consumer checklist
 ```
 
-The first local `soemdsp-sandbox` repo now exists. It provides a read-only browser shell at `http://127.0.0.1:8765` that consumes the generated bound WAV resync manifest from the sibling `soemdsp` repo, displays contract/status/boundary flags/phases/artifact links, and plays the generated WAV through a browser-native audio control.
+The first local `soemdsp-sandbox` shell now applies the manifest consumer checklist in the browser. It reports top-level checklist status, renders 16 accept checks, and highlights unsupported contract or ownership states as warnings.
 
-Verification passed with Python compilation, generated `soemdsp` artifact refresh, API checks, WAV artifact serving checks, Browser DOM inspection, Refresh button interaction, console-error inspection, audio element inspection, and screenshot review. Browser verification reported 7 artifact rows, 2 phase panels, no warning flags, no horizontal overflow, a real audio source, and no console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`. Browser verification reported `Manifest: OK`, `Checklist: Accepted`, 16 checklist rows, zero warning rows, 7 artifact links, 2 phase panels, no horizontal overflow, a real audio source, and no console errors.
 
 Generated preview screenshot:
 
@@ -291,7 +292,7 @@ Generated preview screenshot:
 C:\Users\argit\Desktop\soemdsp-sandbox\sandbox-preview.png
 ```
 
-This now reaches Architect's hands-on testing threshold because it has mouse interaction, visual inspection value, and audible output.
+This remains at Architect's hands-on testing threshold because it has mouse interaction, visual inspection value, and audible output.
 
 ## Vision Takeover / Codex Context
 
