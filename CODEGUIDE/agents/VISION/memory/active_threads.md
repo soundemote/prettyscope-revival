@@ -169,6 +169,7 @@ Recent completed work:
 * sandbox shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * sandbox shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * sandbox shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
+* sandbox shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
 
 Important recent repo event:
 
@@ -181,31 +182,36 @@ Important recent repo event:
 Last completed Vision task:
 
 ```
-Show artifact coverage status.
+Show inline artifact reports.
 ```
 
 Task goal:
 
 ```
-Show whether the manifest names the expected display artifact kinds separately
-from whether the server can reach and serve those artifacts.
+Show the manifest-declared text reports inside the sandbox shell without turning
+the sandbox into an executor, editor, scheduler, or producer-owned runtime.
 ```
 
 Added:
 
-* Artifact Coverage panel
-* artifact coverage status pill
-* total artifact-link count
-* expected kind counts for entry point, audio, manifest, text summary, WAV report, and phase reports
-* README note for artifact coverage
+* Reports panel
+* report status pill
+* read-only report selector buttons
+* inline preformatted report viewer
+* report fetch/load status for text summary, WAV report, and phase reports
+* retained pill styling for proof/status badges
+* README note for inline text reports
 
 Verification note:
 
 * browser runtime parsed `public/app.js`
-* live browser DOM reported `Artifact Coverage: Complete`
-* artifact coverage rows reported 7 total links, entry point 1, audio 1, manifest 1, text summary 1, WAV report 1, phase reports 2
-* no artifact coverage rows were marked warning
+* live browser DOM reported `Reports: 4 Loaded`
+* report selector listed Combined text summary, WAV metadata report, First phase report, and Second phase report
+* report viewer displayed `[BOUND WAV RESYNC RENDER REPORT]` by default
+* clicking `Second phase report` made it active and displayed `[DSP BLOCK PHASE REPORT]`
+* report and artifact coverage status badges kept `pill good` styling
 * live browser still reported artifact packet status `7/7 OK 92.88 KB`
+* live browser still reported `Artifact Coverage: Complete`
 * live browser still reported `Phase Coverage: Complete`
 * live browser still reported `Manifest: OK`
 * live browser still reported `Checklist: Accepted`
@@ -227,7 +233,7 @@ Boundary preserved:
 Completion commit:
 
 ```
-e84197a Show artifact coverage status
+b2b6c83 Show inline artifact reports
 ```
 
 Reported repo status:

@@ -294,16 +294,17 @@ Recent proven demos include:
 * first `soemdsp-sandbox` shell displays source file metadata from the manifest response: manifest bytes and manifest modified time
 * first `soemdsp-sandbox` shell displays phase coverage status proving manifest phase sample totals match WAV frame count
 * first `soemdsp-sandbox` shell displays artifact coverage status proving the manifest names the expected display artifact kinds before reachability checks
+* first `soemdsp-sandbox` shell displays read-only inline text reports for the combined summary, WAV metadata report, and phase reports
 
 Recent completion:
 
 ```
-e84197a Show artifact coverage status
+b2b6c83 Show inline artifact reports
 ```
 
-The first local `soemdsp-sandbox` shell now shows artifact coverage so the user can distinguish manifest-declared packet completeness from served artifact reachability.
+The first local `soemdsp-sandbox` shell now shows manifest-declared text reports inline so the user can inspect the combined summary, WAV metadata report, and phase reports without leaving the read-only sandbox surface.
 
-Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Artifact Coverage: Complete`, rows for 7 total links, entry point 1, audio 1, manifest 1, text summary 1, WAV report 1, phase reports 2, artifact packet `7/7 OK 92.88 KB`, `Phase Coverage: Complete`, `Manifest: OK`, `Checklist: Accepted`, and no browser console errors.
+Verification passed in the live browser at `http://127.0.0.1:8765`: browser DOM reported `Reports: 4 Loaded`, report buttons for Combined text summary, WAV metadata report, First phase report, and Second phase report, default report text beginning `[BOUND WAV RESYNC RENDER REPORT]`, click-switched Second phase report text beginning `[DSP BLOCK PHASE REPORT]`, artifact packet `7/7 OK 92.88 KB`, `Artifact Coverage: Complete`, `Phase Coverage: Complete`, `Manifest: OK`, `Checklist: Accepted`, no warning rows, and no browser console errors.
 
 Generated preview screenshot:
 
